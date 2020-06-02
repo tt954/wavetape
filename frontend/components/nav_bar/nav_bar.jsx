@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 
 class NavBar extends React.Component {
   render() {
+    const { currentUser } = this.props;
+
     return (
       <div className="nav-bar">
         <button>
@@ -26,6 +28,14 @@ class NavBar extends React.Component {
 
         <button>
           <NavLink to="/upgrade">Upgrade</NavLink>
+        </button>
+
+        <button>
+          <NavLink to="/signin">Sign in</NavLink>
+        </button>
+
+        <button>
+          <NavLink to="/signup">Create account</NavLink>
         </button>
         
       </div>
