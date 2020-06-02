@@ -1,18 +1,20 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-// import { AuthRoute, ProtectedRoute } from '../util/route_api_util';
+import { AuthRoute, ProtectedRoute } from '../util/route_api_util';
+import Splash from '../components/splash/splash_container';
 import NavBar from '../components/nav_bar/nav_bar_container';
-import SignUpContainer from '../components/session/signup_form_container';
-import SignInContainer from '../components/session/signin_form_container';
+import Modal from './modal/modal';
 
 const App = () => (
   <>
+    <Modal />
     <header>
       <h1>WaveTape</h1>
-      <NavBar />
-      <Route exact path="/signup" component={SignUpContainer} />
-      <Route exact path="/signin" component={SignInContainer} />
+
+      <AuthRoute path="/" component={Splash} />
+      <Route path="/discover" component={NavBar} />
+
     </header>
 
   </>

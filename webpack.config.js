@@ -14,7 +14,9 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /(node_modules)/,
+        exclude: [
+          /(node_modules)/, 
+          /\.scss$/, ],
         use: {
           loader: 'babel-loader',
           query: {

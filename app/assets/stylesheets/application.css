@@ -14,6 +14,66 @@
  *= require_self
  */
 
-@import 'reset';
-@import 'nav-bar.scss';
+/* @import 'reset.scss';
+@import 'nav-bar.scss'; */
+
+html, body, div, span, h1, h2, h3, h4, 
+a, p, ol, ul, li, form, label, article, aside, 
+figure, figcaption, footer, header, nav {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: 'Overpass', sans-serif;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  text-decoration: none;
+  box-sizing: content-box;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+img {
+  width: 100%
+}
+
+input[type='submit'] {
+  border: none;
+  background-color: white;
+  font-size: 100%;
+  cursor: pointer;
+}
+
+input {
+  outline: none;
+  border: none;
+}
+
+.modal-background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+}
+
+.modal-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 450px;
+  height: 555px;
+  background-color: white;
+}
+
+.splash-top .btn {
+  background-color: #350FCF;
+  color: white;
+  padding: 10px;
+}
 

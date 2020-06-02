@@ -1,42 +1,38 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class NavBar extends React.Component {
   render() {
-    const { currentUser } = this.props;
+    const { currentUser, openModal } = this.props;
 
     return (
       <div className="nav-bar">
         <button>
-          <NavLink className="nav-bar-logo" to="/discover">Image of Logo</NavLink> 
+          <Link className="nav-bar-logo" to="/discover">Image of Logo</Link> 
         </button>
 
         <button>
-          <NavLink to="/discover">Home</NavLink> 
+          <Link to="/discover">Home</Link> 
         </button>
 
         <button>
-          <NavLink to="/stream">Stream</NavLink> 
+          <Link to="/stream">Stream</Link> 
         </button>
 
         <button>
-          <NavLink to="/library">Library</NavLink> 
+          <Link to="/library">Library</Link> 
         </button>
 
         <input
           type="search" />
 
         <button>
-          <NavLink to="/upgrade">Upgrade</NavLink>
+          <Link to="/upgrade">Upgrade</Link>
         </button>
 
-        <button>
-          <NavLink to="/signin">Sign in</NavLink>
-        </button>
+        <button onClick={() => openModal('login')}>Sign in</button>
+        <button onClick={() => openModal('signup')}>Create account</button>
 
-        <button>
-          <NavLink to="/signup">Create account</NavLink>
-        </button>
         
       </div>
     )

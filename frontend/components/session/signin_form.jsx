@@ -26,7 +26,7 @@ class SigninForm extends React.Component {
     e.preventDefault();
     const { email, password, username } = this.state;
     const user = Object.assign({}, { email, password, username });
-    this.props.processForm(user);
+    this.props.processForm(user).then(this.props.closeModal);
   }
 
   _next() {
