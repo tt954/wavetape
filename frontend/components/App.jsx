@@ -10,8 +10,6 @@ const App = () => (
   <>
     <Modal />
     <header>
-      <h1>WaveTape</h1>
-
       <AuthRoute path="/" component={Splash} />
       <Route path="/discover" component={NavBar} />
 

@@ -23,12 +23,13 @@ figure, figcaption, footer, header, nav {
   margin: 0;
   padding: 0;
   border: 0;
+  background-color: #F2F2F2; /* background: whitesmoke */
   font-family: 'Overpass', sans-serif;
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
   text-decoration: none;
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 
 ol, ul {
@@ -71,9 +72,49 @@ input {
   background-color: white;
 }
 
-.splash-top .btn {
-  background-color: #350FCF;
-  color: white;
-  padding: 10px;
+.splash-main {
+  display: flex;
+  justify-content: center;
 }
+
+.splash-top {
+  background: url('splash-top-1-natalie-cardona.jpg');
+  border-top: 5px solid #FF5604;
+  height: 455px;
+  position: relative;
+  width: 1240px;
+}
+
+.signup {
+  background: #FF5604; /* SoundCloud orange */
+}
+
+.signin {
+  background: transparent;
+}
+
+.not-allowed {
+  background: transparent;
+  cursor: not-allowed;
+}
+
+.splash-top-right {
+  background: transparent;
+  right: 100px;
+  top: 25px;
+  position: absolute;
+}
+
+.splash-top-right button {
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 100px;
+  padding: 5px 15px;
+  margin-right: 10px;
+}
+
+
 
