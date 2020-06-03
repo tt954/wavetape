@@ -2,17 +2,17 @@ import React from 'react';
 
 const Step2 = props => {
   if (props.currentStep !== 2) {
-    return null
-  }
+    return null;
+  };
+
+  const placeholder = (props.formType === "signin") ? "Your password" : "Choose your password";
   return (
     <div className="form-group">
-      <label htmlFor="password">Choose a password</label>
       <input
         className="form-control"
-        id="password"
         name="password"
         type="password"
-        placeholder="Enter password"
+        placeholder={placeholder}
         value={props.password}
         onChange={props.handleChange}
       />

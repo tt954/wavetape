@@ -5,43 +5,37 @@ class NavBar extends React.Component {
   render() {
     const { currentUser, openModal, signout } = this.props;
     const sessionBtns = () => {
-      return currentUser ? null : (
+      return currentUser ? (
         <>
-          <button onClick={() => openModal('login')}>Sign in</button>
-          <button onClick={() => openModal('signup')}>Create account</button>
+          <button><Link to="/upgrade">Upgrade</Link></button>
+          <button><Link to="/upload">Upload</Link></button>
+        </>
+      ) : (
+        <>
+          <button className="session-btn signin" onClick={() => openModal('login')}>Sign in</button>
+          <button className="session-btn signup" onClick={() => openModal('signup')}>Create account</button>
+          <button onClick={() => openModal('signup')}>Upload</button>
         </>
       )
     }
+    const signoutBtn = () => currentUser ? <button onClick={signout}>Sign out</button> : null
 
     return (
       <div className="nav-bar">
-        <button>
-          <Link className="nav-bar-logo" to="/discover">Image of Logo</Link> 
-        </button>
-
-        <button>
-          <Link to="/discover">Home</Link> 
-        </button>
-
-        <button>
-          <Link to="/stream">Stream</Link> 
-        </button>
-
-        <button>
-          <Link to="/library">Library</Link> 
-        </button>
-
-        <input
-          type="search" />
-
-        <button>
-          <Link to="/upgrade">Upgrade</Link>
-        </button>
+        <button className="nb-left btn"><Link to="/discover">Image of Logo</Link></button>
+        <button className="nb-left btn"><Link to="/discover">Home</Link></button>
+        <button className="nb-left btn"><Link className="not-allowed" to="/discover">Stream</Link></button>
+        <button className="nb-left btn"><a className="not-allowed" href="https://github.com/tt954/wavetape" target="_blank">Library</a></button>
+        
+        <form className="nav-bar-search">
+          <input type="search" />
+        </form>
 
         {sessionBtns()}
 
-        <button onClick={signout}>Sign out</button>
-        
+        {/* <ProfileDropDown />  */}
+
+        {signoutBtn()}
       </div>
     )
   }

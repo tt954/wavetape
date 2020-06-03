@@ -8,8 +8,8 @@ class Splash extends React.Component {
      <div className="splash-main">
       <section className="splash-top">
         <div className="splash-top-session">
-          <button className="session signin" onClick={() => openModal('login')}>Sign in</button>
-          <button className="session signup" onClick={() => openModal('signup')}>Create account</button>
+          <button className="session-btn signin" onClick={() => openModal('login')}>Sign in</button>
+          <button className="session-btn signup" onClick={() => openModal('signup')}>Create account</button>
           <Link className="not-allowed">For Creators</Link>
         </div>
 

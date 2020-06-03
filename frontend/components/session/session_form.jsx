@@ -4,7 +4,7 @@ import Step1 from './step_1_email';
 import Step2 from './step_2_password';
 import Step3 from './step_3_username';
 
-class SignupForm extends React.Component {
+class SessionForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -13,8 +13,10 @@ class SignupForm extends React.Component {
       password: '',
       username: '',
     }
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleDemo = this.handleDemo.bind(this);
     this._next = this._next.bind(this);
   }
 
@@ -30,8 +32,16 @@ class SignupForm extends React.Component {
     this.props.processForm(user).then(this.props.closeModal);
   }
 
+  handleDemo(e) {
+    e.preventDefault();
+    const user = Object.assign({
+      email: "tt@gmail.com",
+      password: "strawberries",
+    });
+    this.props.signin(user).then(this.props.closeModal);
+  }
+
   _next() {
-    debugger;
     let currentStep = this.state.currentStep;
     currentStep = currentStep >= 2 ? 3 : currentStep + 1
     this.setState({
@@ -41,12 +51,20 @@ class SignupForm extends React.Component {
 
   nextButton() {
     let currentStep = this.state.currentStep;
-    if (currentStep < 3) {
+    // debugger;
+    let btnNext;
+    if (currentStep === 2 && this.props.formType === "signup") {
+      btnNext = "Accept & Continue";
+    } else {
+      btnNext = "Continue";
+    }
+  
+    if (currentStep < this.props.lastStep) {
       return (
         <button
-          className="btn btn-primary float-right"
+          className="session-form-btn"
           type="button" onClick={this._next}>
-          Next
+          {btnNext}
         </button>
       )
     }
@@ -54,64 +72,47 @@ class SignupForm extends React.Component {
   }
 
   render() {
+    const { formType, lastStep } = this.props;
+    const btnText = (formType === "signin") ? "Sign in" : "Get started"
+    const btnSubmit = () => {
+      if (this.state.currentStep === lastStep) {
+        return (
+          <button 
+            className = "session-form-btn"
+            type="submit" >{ btnText }</button>
+        )
+      }
+    }
+
     return (
       <React.Fragment>
-        <form onSubmit={this.handleSubmit}>
-          {/* render the form steps and pass required props in */}
+        <form className="session-form" onSubmit={this.handleSubmit}>
           <Step1
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
             email={this.state.email}
+            handleDemo={this.handleDemo}
           />
           <Step2
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
             password={this.state.password}
+            formType={formType}
           />
           <Step3
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
-            username={this.state.username}
+            password={this.state.password}
+            formType={formType}
           />
-          {this.nextButton()}
-          <button className="btn btn-success btn-block">Get started</button>
+          <div className="session-form-btn-container">
+            {this.nextButton()}
+            {btnSubmit()}
+          </div>
         </form>
       </React.Fragment>
     );
   }
 }
 
-export default SignupForm;
-
-// render errors
-  // renderErrors() {
-  //   return (
-  //     <ul>
-  //       {this.props.errors.map((error, i) =>
-  //         <li key={`error-${i}`}>{error}</li>
-  //       )}
-  //     </ul>
-  //   )
-  // }
-
-// previousButton() {
-//   let currentStep = this.state.currentStep;
-//   if (currentStep !== 1) {
-//     return (
-//       <button
-//         className="btn btn-secondary"
-//         type="button" onClick={this._prev}>
-//         Previous
-//       </button>
-//     )
-//   }
-//   return null;
-// }
-
-// _prev() {
-//   let currentStep = this.state.currentStep;
-//   currentStep = currentStep <= 1 ? 1 : currentStep - 1
-//   this.setState({
-//     currentStep: currentStep
-//   })
-// }
+export default SessionForm;
