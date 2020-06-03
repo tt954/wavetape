@@ -14,9 +14,6 @@
  *= require_self
  */
 
-/* @import 'reset.scss';
-@import 'nav-bar.scss'; */
-
 html, body, div, span, h1, h2, h3, h4, 
 a, p, ol, ul, li, form, label, article, aside, 
 figure, figcaption, footer, header, nav {
@@ -37,7 +34,7 @@ ol, ul {
 }
 
 img {
-  width: 100%
+  width: 100%;
 }
 
 input[type='submit'] {
@@ -52,36 +49,107 @@ input {
   border: none;
 }
 
+/* MODAL */
+
 .modal-background {
   position: fixed;
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(242, 242, 242, 0.8);
+  opacity: 1;
+  transition: opacity 5s;
   z-index: 10;
 }
 
 .modal-child {
+  animation: modal-drop-in 0.3s;
+  background-color: white;
+  height: 555px;
+  left: 50%;
   position: absolute;
   top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
   width: 450px;
-  height: 555px;
-  background-color: white;
 }
+
+@keyframes modal-drop-in {
+  from { top: -100px; }
+  to { top: 0; }
+}
+
+/* SPLASH */
 
 .splash-main {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
 }
 
 .splash-top {
-  background: url('splash-top-1-natalie-cardona.jpg');
+  background: url('splash-top-01.jpg');
+  background-size: 100%;
+  display: flex;
   border-top: 5px solid #FF5604;
   height: 455px;
   position: relative;
+  width: 1240px;
+}
+
+.splash-top-session {
+  background: transparent;
+  right: 50px;
+  top: 25px;
+  position: absolute;
+  z-index: 900;
+}
+
+.splash-top-session button {
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 100px;
+  padding: 5px 15px;
+  margin-right: 10px;
+}
+
+.splash-top > .splash-top-main {
+  background: transparent;
+}
+
+.splash-music {
+  background: white;
+  height: 830px;
+  width: 1240px;
+}
+
+.splash-devices {
+  height: 450px;
+  width: 1240px;
+}
+
+.splash-creative {
+  background: url('splash-creative-raphael-schaller.jpg');
+  background-size: 100%;
+  height: 350px;
+  width: 1240px;
+}
+
+.splash-creative-content p {
+  background: transparent;
+  color: white;
+  float: right;
+  /* flex-wrap: column; */
+}
+
+.splash-bottom {
+  background: white;
+  height: 500px;
   width: 1240px;
 }
 
@@ -94,27 +162,18 @@ input {
 }
 
 .not-allowed {
-  background: transparent;
+  background: transparent;  
   cursor: not-allowed;
 }
 
-.splash-top-right {
-  background: transparent;
-  right: 100px;
-  top: 25px;
-  position: absolute;
+.devices-mockup {
+  height: auto;
+  max-width: 800px;
+  padding: 75px 0 0 100px;
 }
 
-.splash-top-right button {
-  border: 1px solid #e5e5e5;
-  border-radius: 3px;
-  color: white;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 100px;
-  padding: 5px 15px;
-  margin-right: 10px;
-}
+/* DISCOVER */
+
 
 
 

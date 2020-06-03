@@ -10,7 +10,7 @@ const App = () => (
   <>
     <Modal />
     <header>
-      <AuthRoute path="/" component={Splash} />
+      <AuthRoute exact path="/" component={Splash} />
       <Route path="/discover" component={NavBar} />
 
     </header>

@@ -30,7 +30,6 @@ class SigninForm extends React.Component {
   }
 
   _next() {
-    debugger;
     let currentStep = this.state.currentStep;
     currentStep = currentStep >= 2 ? 3 : currentStep + 1
     this.setState({
