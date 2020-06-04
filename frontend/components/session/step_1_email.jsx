@@ -12,6 +12,7 @@ const Step1 = props => {
         <button>Continue with Apple</button>
       </div>
       <div className="auth-separator"><span>or</span></div>
+      <p>{props.errors}</p>
       <input
         className="form-control"
         id="email"

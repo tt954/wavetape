@@ -8,6 +8,7 @@ const Step2 = props => {
   const placeholder = (props.formType === "signin") ? "Your password" : "Choose your password";
   return (
     <div className="form-group">
+      <p>{props.errors}</p>
       <input
         className="form-control"
         name="password"

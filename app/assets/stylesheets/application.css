@@ -109,8 +109,6 @@ input {
   text-shadow: none;
 }
 
-
-
 /* SPLASH */
 
 .splash-main {
@@ -228,6 +226,8 @@ input {
 
 .nb-left {
   background: #333;
+  border: 0;
+  border-right: 1px solid #111;
 }
 
 .nav-bar-search {
@@ -245,6 +245,23 @@ input {
   outline: 0;
   padding: 5px 7px;
   width: 390px;
+}
+
+.nav-bar-menu-container {
+  position: relative;
+  display: inline-block;
+}
+
+ul.nav-bar-menu-dropdown.revealed {
+  display: block;
+  position: absolute;
+  top:  100%;
+  left: 0;
+  z-index: 2;
+}
+
+ul.nav-bar-menu-dropdown.hidden {
+  display: none;
 }
 
 /* DISCOVER */

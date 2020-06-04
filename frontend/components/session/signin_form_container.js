@@ -16,7 +16,7 @@ const mDTP = (dispatch) => {
   return {
     signin: user => dispatch(signin(user)),
     processForm: user => dispatch(signin(user)),
-    closeModal: () => dispatch(closeModal())
+    closeModal: () => dispatch(closeModal()),
   }
 }
 

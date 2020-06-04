@@ -1,5 +1,7 @@
 import React from 'react';
 
+import SideBar from '../sidebar/sidebar_container';
+
 class Discover extends React.Component {
   constructor(props) {
     super(props)
@@ -8,7 +10,14 @@ class Discover extends React.Component {
   render() {
     return (
       <div className="discover-main">
-        Hello
+        <div className="discover-main-music">
+          {/* <Playlist /> */}
+          {/* <Playlist /> */}
+          {/* <Playlist /> */}
+
+        </div>
+        
+        <SideBar />
       </div>
     )
   }

@@ -7,6 +7,22 @@ class User < ApplicationRecord
   attr_reader :password
   after_initialize :ensure_session_token
 
+  has_many :in_follows,
+    foreign_key: :followee_id,
+    class_name: 'Follow'
+
+  has_many :out_follows,
+    foreign_key: :follower_id,
+    class_name: 'Follow'
+
+  has_many :followers,
+    through: :in_follows,
+    source: :follower
+
+  has_many :followees,
+    through: :out_follows,
+    source: :followee
+
   def self.find_by_credentials(email, pw)
     user = User.find_by(email: email)
     user && user.is_password?(pw) ? user : nil

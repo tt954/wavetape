@@ -3,6 +3,7 @@ import * as SessionAPIUtil from '../util/session_api_util'
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const SIGNOUT_CURRENT_USER = 'SIGNOUT_CURRENT_USER';
 export const RECEIVE_SESSION_ERRORS = 'RECEIVE_ERRORS';
+export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
 // POJO actions
 const receiveCurrentUser = currentUser => ({
@@ -19,10 +20,13 @@ export const receiveErrors = errors => ({
   errors // errors array
 })
 
+export const clearErrors = () => ({
+  type: CLEAR_ERRORS,
+})
+
 // thunk action creators
 export const signup = user => {
   return dispatch => {
-    // debugger;
     return SessionAPIUtil.signup(user)
       .then(
         user => dispatch(receiveCurrentUser(user)),
@@ -33,7 +37,6 @@ export const signup = user => {
 
 export const signin = user => {
   return dispatch => {
-    // debugger;
     return SessionAPIUtil.signin(user)
       .then(
         user => dispatch(receiveCurrentUser(user)),

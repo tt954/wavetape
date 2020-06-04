@@ -18,6 +18,7 @@ class SessionForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleDemo = this.handleDemo.bind(this);
     this._next = this._next.bind(this);
+    this.nextButton = this.nextButton.bind(this);
   }
 
   handleChange(e) {
@@ -32,6 +33,7 @@ class SessionForm extends React.Component {
     this.props.processForm(user).then(this.props.closeModal);
   }
 
+  // signins with below info for demo user
   handleDemo(e) {
     e.preventDefault();
     const user = Object.assign({
@@ -41,9 +43,45 @@ class SessionForm extends React.Component {
     this.props.signin(user).then(this.props.closeModal);
   }
 
+  checkEmail(email) {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) { 
+      // regular expression (@ must be present, cannot begin with a dot, no double dots, 
+      // no special characters(only digits, characters, underscore or dash))
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  checkPassword(pw) {
+    return (pw.length < 6) ? false : true;
+  }
+
+  // handling NEXT through multistage form
   _next() {
     let currentStep = this.state.currentStep;
-    currentStep = currentStep >= 2 ? 3 : currentStep + 1
+    const { setErrors } = this.props;
+    let count = 0;
+    currentStep = currentStep >= 2 ? 3 : currentStep + 1;
+
+    if (currentStep === 1) {
+      debugger;
+      if (!this.checkEmail(this.state.email)) {
+        currentStep = 1;
+        setErrors(["Enter a valid email address."])
+      } 
+    }
+
+    if (currentStep === 2) {
+      debugger;
+      count = count + 1;
+      if (!this.checkPassword(this.state.password) && count !== 1) {
+        currentStep = 2;
+        setErrors(["Please lengthen password to 6 characters or more"])
+      }
+    }
+
+    debugger;
     this.setState({
       currentStep: currentStep
     })
@@ -51,7 +89,6 @@ class SessionForm extends React.Component {
 
   nextButton() {
     let currentStep = this.state.currentStep;
-    // debugger;
     let btnNext;
     if (currentStep === 2 && this.props.formType === "signup") {
       btnNext = "Accept & Continue";
@@ -72,32 +109,35 @@ class SessionForm extends React.Component {
   }
 
   render() {
-    const { formType, lastStep } = this.props;
+    const { formType, lastStep, errors } = this.props;
     const btnText = (formType === "signin") ? "Sign in" : "Get started"
     const btnSubmit = () => {
       if (this.state.currentStep === lastStep) {
         return (
           <button 
             className = "session-form-btn"
-            type="submit" >{ btnText }</button>
+            type="submit" 
+            onClick={this.handleSubmit}>{ btnText }</button>
         )
       }
     }
 
     return (
       <React.Fragment>
-        <form className="session-form" onSubmit={this.handleSubmit}>
+        <form className="session-form" >
           <Step1
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
             email={this.state.email}
             handleDemo={this.handleDemo}
+            errors={errors}
           />
           <Step2
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
             password={this.state.password}
             formType={formType}
+            errors={errors}
           />
           <Step3
             currentStep={this.state.currentStep}
@@ -110,6 +150,8 @@ class SessionForm extends React.Component {
             {btnSubmit()}
           </div>
         </form>
+
+
       </React.Fragment>
     );
   }

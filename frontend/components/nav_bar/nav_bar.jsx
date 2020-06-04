@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import NavBarMenu from './nav_bar_menu';
+
 class NavBar extends React.Component {
   render() {
     const { currentUser, openModal, signout } = this.props;
@@ -18,7 +20,6 @@ class NavBar extends React.Component {
         </>
       )
     }
-    const signoutBtn = () => currentUser ? <button onClick={signout}>Sign out</button> : null
 
     return (
       <div className="nav-bar">
@@ -33,9 +34,14 @@ class NavBar extends React.Component {
 
         {sessionBtns()}
 
+        <div className="nav-bar-userNav">
+
+        </div>
         {/* <ProfileDropDown />  */}
 
-        {signoutBtn()}
+        <NavBarMenu 
+          currentUser={currentUser}
+          signout={signout} />
       </div>
     )
   }
