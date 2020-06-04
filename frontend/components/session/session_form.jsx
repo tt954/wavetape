@@ -3,12 +3,14 @@ import React from 'react';
 import Step1 from './step_1_email';
 import Step2 from './step_2_password';
 import Step3 from './step_3_username';
+import { clearErrors } from '../../actions/session_actions';
 
 class SessionForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       currentStep: 1,
+      count: 0,
       email: '',
       password: '',
       username: '',
@@ -28,6 +30,7 @@ class SessionForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    this.state.count = 0;
     const { email, password, username } = this.state;
     const user = Object.assign({}, { email, password, username });
     this.props.processForm(user).then(this.props.closeModal);
@@ -61,27 +64,26 @@ class SessionForm extends React.Component {
   _next() {
     let currentStep = this.state.currentStep;
     const { setErrors } = this.props;
-    let count = 0;
-    currentStep = currentStep >= 2 ? 3 : currentStep + 1;
-
-    if (currentStep === 1) {
-      debugger;
-      if (!this.checkEmail(this.state.email)) {
-        currentStep = 1;
-        setErrors(["Enter a valid email address."])
-      } 
+    if (this.state.count !== 1) {
+      currentStep = currentStep >= 2 ? 3 : currentStep + 1;
     }
 
+    if (!this.checkEmail(this.state.email)) {
+      currentStep = 1;
+      setErrors(["Enter a valid email address."])
+    } 
+
     if (currentStep === 2) {
-      debugger;
-      count = count + 1;
-      if (!this.checkPassword(this.state.password) && count !== 1) {
-        currentStep = 2;
-        setErrors(["Please lengthen password to 6 characters or more"])
+      setErrors([])
+      this.state.count = this.state.count + 1;
+      if (this.state.count > 1) {
+        if (!this.checkPassword(this.state.password)) {
+          currentStep = 2;
+          setErrors(["Please lengthen password to 6 characters or more"])
+        }
       }
     }
 
-    debugger;
     this.setState({
       currentStep: currentStep
     })
@@ -150,8 +152,6 @@ class SessionForm extends React.Component {
             {btnSubmit()}
           </div>
         </form>
-
-
       </React.Fragment>
     );
   }

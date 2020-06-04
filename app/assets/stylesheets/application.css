@@ -109,6 +109,10 @@ input {
   text-shadow: none;
 }
 
+a.not-allowed {
+  color: white;
+}
+
 /* SPLASH */
 
 .splash-main {
@@ -138,7 +142,6 @@ input {
 }
 
 .session-btn {
-  border: 1px solid #e5e5e5;
   border-radius: 3px;
   color: white;
   cursor: pointer;
@@ -146,10 +149,6 @@ input {
   font-weight: 100px;
   padding: 5px 15px;
   margin-right: 10px;
-}
-
-.splash-top > .splash-top-main {
-  background: transparent;
 }
 
 .splash-music {
@@ -185,10 +184,12 @@ input {
 
 .signup {
   background: #FF5604; /* SoundCloud orange */
+  border: 1px solid #FF5604;
 }
 
 .signin {
   background: transparent;
+  border: 1px solid #e5e5e5;
 }
 
 .not-allowed {

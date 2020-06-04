@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Playlist from '../tracks/playlist_container';
 import SideBar from '../sidebar/sidebar_container';
 
 class Discover extends React.Component {
@@ -10,10 +11,10 @@ class Discover extends React.Component {
   render() {
     return (
       <div className="discover-main">
-        <div className="discover-main-music">
-          {/* <Playlist /> */}
-          {/* <Playlist /> */}
-          {/* <Playlist /> */}
+        <div className="discover-main-content">
+          <Playlist /> 
+          <Playlist /> 
+          <Playlist />
 
         </div>
         

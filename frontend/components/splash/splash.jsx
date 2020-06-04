@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import Playlist from '../tracks/playlist_container';
+
 class Splash extends React.Component {
  render() {
    const { openModal } = this.props;
@@ -10,18 +12,14 @@ class Splash extends React.Component {
         <div className="splash-top-session">
           <button className="session-btn signin" onClick={() => openModal('login')}>Sign in</button>
           <button className="session-btn signup" onClick={() => openModal('signup')}>Create account</button>
-          <Link className="not-allowed">For Creators</Link>
-        </div>
-
-        <div className="splash-top-main">
-          <div className="st-main-carousel">
-            <h2>Discover more with WaveTape Go+</h2>
-            <p>WaveTape Go+ lets you listen offline, ad-free, with over 150 million tracks — and growing.</p>
-          </div>
-        </div>
+          <a className="not-allowed" href="">For Creators</a>
+        </div>    
       </section>
 
+
       <section className="splash-music">
+        <Playlist />
+        <Playlist />
       </section>
 
       <section className="splash-devices">

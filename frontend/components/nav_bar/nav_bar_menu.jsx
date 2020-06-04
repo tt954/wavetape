@@ -20,7 +20,7 @@ class NavBarMenu extends React.Component {
 
   render() {
     const { currentUser, signout } = this.props;
-    const signoutBtn = () => (currentUser) ? <a href="" onClick={() => signout()}>Sign out</a> : null;
+    const signoutBtn = () => (currentUser) ? <button onClick={signout}>Sign out</button> : null;
 
     return (
       <div className="nav-bar-menu-container">
