@@ -65,6 +65,7 @@ button {
 button,
 input[type="submit"] {
   cursor: pointer;
+  border-radius: 3px;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -110,31 +111,45 @@ table {
   background: url('splash-top-01.jpg');
   background-size: 100%;
   border-top: 5px solid #FF5604;
-  color: white;
   height: 455px;
   position: relative;
 }
 
 .splash-top-nav {
   display: flex;
+  color: #FED766;
   justify-content: space-between;
   margin: 0 auto;
   padding: 40px 50px 0;
 }
 
+img.stnl-logo {
+  background: #FED766;
+  width: 23px;
+  padding: 3px;
+}
+
 .splash-top-main {
   margin: 0 auto;
+  color: white;
   text-align: center;
   padding: 125px;
 }
 
+.splash-top-main p {
+  background: rgba(0,0,0, 0.80);
+}
+
 p.stm-tagline {
-  max-width: 530px;
+  max-width: 580px;
   margin: 0 auto;
   font-size: 18px;
 }
 
 p.stm-title {
+  font-style: italic;
+  max-width: 750px;
+  margin: 0 auto;
   margin-bottom: 8px;
   font-size: 38px;
 }
@@ -158,10 +173,49 @@ button.signup {
 }
 
 .splash-music {
-  background-color: white;
+  background: white;
+  color: #333;
   display: flex;
-  /* height: 830px; */
-  margin: 0 auto;
+  flex-direction: column;
+  align-items: center;
+  height: 830px;
+  padding: 30px 0;
+}
+
+.splash-music-search {
+  display: flex;
+  margin: 49px 0 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.sms-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 824px;
+}
+
+.sms-searchbar {
+  background: #f2f2f2;
+  border-radius: 3px;
+  padding: 0 16px;
+  height: 46px;
+  width: 500px;
+}
+
+.sms-searchbar-form {
+  position: relative;
+}
+
+.sms-searchbar-button {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+}
+
+.sms-container span {
+  margin: 0 14px;
 }
 
 .splash-devices {
@@ -229,6 +283,120 @@ p.sdi-content {
   background-image: url('google-play-icon.png');
   width: 135px;
 }
+
+.splash-creative {
+  background: url('splash-creative-geronimo-giqueaux.png');
+  background-size: cover;
+  display: flex;
+  height: 350px;
+  align-items: center;
+}
+
+.splash-creative-content {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  max-width: 520px;
+  padding: 0 570px 0 70px;
+}
+
+p.scc-title {
+  font-size: 36px;
+}
+
+p.scc-tagline {
+  font-size: 24px;
+  line-height: 1.35;
+  margin: 11px 0 39px;
+}
+
+.scc-button {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 18px;
+  padding: 13px 24px;
+  height: 46px;
+}
+
+.scc-button:hover, .signin:hover {
+  border: 1px solid white;
+}
+
+.splash-botttom-session {
+  background: white;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 375px;
+}
+
+.sbs-title {
+  font-size: 38px;
+}
+
+.sbs-tagline {
+  font-size: 24px;
+  margin: 15px 0 15px 0;
+}
+
+.sbs-alternative.font-light {
+  font-size: 14px;
+}
+
+.sbs-signup, .sms-upload {
+  background-color: #f50;
+  border-color: #f50;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 17px;
+  padding: 13px 23px;
+}
+
+.sbs-signin {
+  border: 1px solid #e5e5e5;
+  font-size: 15px;
+  margin: 10px 0 0 10px;
+  padding: 10px 15px;
+}
+
+.sbs-signin:hover {
+  border-color: grey;
+  transition: opacity .5s linear;
+}
+
+.splash-footer {
+  height: 78px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  line-height: 20px;
+  padding: 0 30px 75px;
+}
+
+.splash-footer-links {
+  padding: 15px 0 5px 0;
+  color: #ccc;
+  border-top: 1.2px solid #f2f2f2;
+  font-size: 14px;
+}
+
+.splash-footer-links>a:hover {
+  color: grey;
+}
+
+.splash-footer-lang {
+  color: #333;
+  font-size: 15px;
+}
+
+.splash-footer-lang:hover .sfl-link {
+  color: #3388DD;
+}
+
 
 /* MODAL */
 
