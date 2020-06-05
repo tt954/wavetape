@@ -23,9 +23,8 @@ class NavBarMenu extends React.Component {
     const signoutBtn = () => (currentUser) ? <button onClick={signout}>Sign out</button> : null;
 
     return (
-      <div className="nav-bar-menu-container">
-        <button className="nav-bar-menu-btn" onClick={this.clicker}>
-        </button> 
+      <>
+        <a className="nav-bar-menu-click" onClick={this.clicker}>...</a>
         <ul className={`nav-bar-menu-dropdown ${(this.state.drop) ? "revealed" : "hidden"}`}>
           <li>About us</li>
           <li>Legal right</li>
@@ -39,7 +38,7 @@ class NavBarMenu extends React.Component {
 
           <li>{signoutBtn()}</li>
         </ul>
-      </div>
+      </>
     );
   }
 }

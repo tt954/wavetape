@@ -14,19 +14,27 @@
  *= require_self
  */
 
-html, body, div, span, h1, h2, h3, h4, 
-a, p, ol, ul, li, form, label, article, aside, 
-figure, figcaption, footer, header, nav {
+/* RESET */
+
+html, body, header, nav, h1, h2, h3, h4, h5, h6, 
+a, ol, ul, li, strong, main, button, i,
+section, img, div, p, form,
+fieldset, label, input, textarea,
+span, article, footer, time, small {
   margin: 0;
   padding: 0;
   border: 0;
-  background-color: #F2F2F2; /* background: whitesmoke */
-  font-family: 'Overpass', sans-serif;
-  font-size: 100%;
+  outline: 0;
   font: inherit;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 100%;
+  font-weight: 100;
+  color: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
   vertical-align: baseline;
-  text-decoration: none;
-  box-sizing: border-box;
+  box-sizing: inherit;
+  background: transparent;
 }
 
 ol, ul {
@@ -34,20 +42,193 @@ ol, ul {
 }
 
 img {
+  display: block;
   width: 100%;
+  height: auto;
 }
 
-/* input[type='submit'] {
-  border: none;
-  background-color: white;
-  font-size: 100%;
+input[type="password"],
+input[type="email"],
+input[type="text"],
+input[type="submit"],
+textarea,
+button {
+  /*
+  Get rid of native styling. Read more here:
+  http://css-tricks.com/almanac/properties/a/appearance/
+  */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+button,
+input[type="submit"] {
   cursor: pointer;
 }
 
-input {
-  outline: none;
-  border: none;
-} */
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.not-allowed {
+  cursor: not-allowed;
+}
+
+/* SPLASH */
+
+#root {
+  background-color: #f2f2f2;
+}
+
+.splash-main {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 1240px;
+}
+
+.splash-top {
+  background: url('splash-top-01.jpg');
+  background-size: 100%;
+  border-top: 5px solid #FF5604;
+  color: white;
+  height: 455px;
+  position: relative;
+}
+
+.splash-top-nav {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 40px 50px 0;
+}
+
+.splash-top-main {
+  margin: 0 auto;
+  text-align: center;
+  padding: 125px;
+}
+
+p.stm-tagline {
+  max-width: 530px;
+  margin: 0 auto;
+  font-size: 18px;
+}
+
+p.stm-title {
+  margin-bottom: 8px;
+  font-size: 38px;
+}
+
+button.session-btn {
+  color: white;
+  font-size: 14px;
+  padding: 5px 15px;
+  margin-right: 10px;
+  border-radius: 3px;
+}
+
+button.signin {
+  background: transparent;
+  border: 1px solid #e5e5e5;
+}
+
+button.signup {
+  background: #FF5604;
+  border: 1px solid #FF5604;
+}
+
+.splash-music {
+  background-color: white;
+  display: flex;
+  /* height: 830px; */
+  margin: 0 auto;
+}
+
+.splash-devices {
+  background-color: #f2f2f2;
+  display: flex;
+  height: 450px;
+  margin-top: 60px;
+  padding: 0 70px;
+}
+
+.splash-devices-teaser {
+  background: url('devices-mockup.jpg');
+  flex-grow: 1;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 100%;
+}
+
+.splash-devices-info {
+  width: 325px;
+  margin-left: 50px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+
+p.sdi-header {
+  line-height: 1.2;
+  font-size: 34px;
+  margin-bottom: 17px;
+}
+
+p.sdi-header:after {
+  content: "";
+  display: block;
+  width: 70px;
+  height: 3px;
+  background-image: linear-gradient(90deg,#7d01a1,#f30 50%,#f50);
+  margin-top: 15px;
+}
+
+p.sdi-content {
+  font-size: 24px;
+}
+
+.sdi-links {
+  margin-top: 28px;
+}
+
+.sdi-links a {
+  background-size: 100%;
+  background-repeat: no-repeat;
+  display: inline-block;
+  margin-top: 14px;
+  margin-right: 8px;
+  height: 40px;
+}
+
+.app-store {
+  background-image: url('app-store-icon.png');
+  width: 120px;
+}
+
+.google-play {
+  background-image: url('google-play-icon.png');
+  width: 135px;
+}
 
 /* MODAL */
 
@@ -79,182 +260,159 @@ input {
   to { top: 0; }
 }
 
-.session-form, .provider-btns {
+.session-form-providerButtons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.session-form-providerButtons a {
+    margin: 10px 15px;
+    color: white;
+    background: grey;
+    line-height: 18px;
+    height: 40px;
+    width: 100%;
+    text-align: center;
+    border-radius: 3px;
+}
+
+form.session-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-height: 500px;
   width: 400px;
-}
+  margin: auto;}
 
 .auth-separator {
+  margin: 1em auto;
   text-align: center;
-}
-
-.form-control {
-  border: 1px solid #e5e5e5;
-  border-radius: 5px;
-  font-size: 18px;
-  padding: 7px 8px;
-}
-
-.session-form-btn {
-  background-color: #f50;
-  border: 1px solid #e5e5e5;
-  border-color: #f50;
-  border-radius: 3px;
-  color: #fff;
   font-size: 16px;
+  font-weight: 400;
+}
+
+
+.session-form-input input {
+  width: auto;
+  font-size: 18px;
+  line-height: 24px;
+  padding: 7px 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.session-form-errors {
+  margin: .5em 0;
+  color: #cf0000;
+  font-size: 12px;
+  transition: margin .12s;
+}
+
+.session-form-button {
+  background-color: #f50;
+  border-color: #f50;
+  color: #fff;
+  font-size: 18px;
+  line-height: 18px;
+  text-align: center;
   padding: 10px 15px;
-  height: 40px;
-  text-shadow: none;
-}
-
-a.not-allowed {
-  color: white;
-}
-
-/* SPLASH */
-
-.splash-main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  color: white;
-}
-
-.splash-top {
-  background: url('splash-top-01.jpg');
-  background-size: 100%;
-  display: flex;
-  border-top: 5px solid #FF5604;
-  height: 455px;
-  position: relative;
-  width: 1240px;
-}
-
-.splash-top-session {
-  background: transparent;
-  right: 50px;
-  top: 25px;
-  position: absolute;
-  z-index: 900;
-}
-
-.session-btn {
+  height: 25px;
   border-radius: 3px;
-  color: white;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 100px;
-  padding: 5px 15px;
-  margin-right: 10px;
-}
-
-.splash-music {
-  background: white;
-  height: 830px;
-  width: 1240px;
-}
-
-.splash-devices {
-  height: 450px;
-  width: 1240px;
-}
-
-.splash-creative {
-  background: url('splash-creative-raphael-schaller.jpg');
-  background-size: 100%;
-  height: 350px;
-  width: 1240px;
-}
-
-.splash-creative-content p {
-  background: transparent;
-  color: white;
-  float: right;
-  /* flex-wrap: column; */
-}
-
-.splash-bottom {
-  background: white;
-  height: 500px;
-  width: 1240px;
-}
-
-.signup {
-  background: #FF5604; /* SoundCloud orange */
-  border: 1px solid #FF5604;
-}
-
-.signin {
-  background: transparent;
-  border: 1px solid #e5e5e5;
-}
-
-.not-allowed {
-  background: transparent;  
-  cursor: not-allowed;
-}
-
-.devices-mockup {
-  height: auto;
-  max-width: 800px;
-  padding: 75px 0 0 100px;
 }
 
 /* NAV BAR */
 
+.banner {
+  background: #333;
+  height: 46px;
+}
+
 .nav-bar {
+  align-items: center;
+  color: white;
+  font-size: 14px;
   display: flex;
-  justify-content: center;
-  width: 100%;
+  height: 46px;
+  margin: 0 auto;
+  width: 1240px;
+}
+
+.nav-bar-left {
+  display: flex;
+}
+
+.nbl-logo {
+  background: linear-gradient(#f70,#f30);
+  display: block;
+  width: 180px;
+}
+
+ul.nbl-nav-list {
+  display: flex;
+  align-items: center;
+}
+
+ul.nbl-nav-list > li > a {
+  display: block;
+  align-items: center;
+  padding: 12px 0;
+  width: 104px;
   height: 46px;
   border-right: 1px solid #111;
   box-sizing: border-box;
   text-align: center;
-  background: #333;
-  transition: height .2s ease-in-out;
-}
-
-.nav-bar a {
-  background: #333;
-  color: #ccc;
-  text-decoration: none;
-  display: block;
-  width: 104px;
-}
-
-.nb-left {
-  background: #333;
-  border: 0;
-  border-right: 1px solid #111;
 }
 
 .nav-bar-search {
-  background: #333;
   padding: 9px 10px 8px;
   position: relative;
+  width: 412px;
 }
 
 .nav-bar-search input {
-  background: #e5e5e5;
-  border: 0;
-  border-radius: 4px;
   color: #666;
-  cursor: text;
   outline: 0;
+  border: 0;
   padding: 5px 7px;
-  width: 390px;
+  background: #e5e5e5;
+  border-radius: 3px;
+  width: 394px;
 }
 
-.nav-bar-menu-container {
+.nav-bar-search button {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  right: 55px;
+  top: 15px;
+  border: 0;
+  padding: 0;
+}
+
+.nav-bar-right {
+  display: flex;
+  align-items: center;
+}
+
+.nav-bar-menu {
+  width: 46px;
+}
+
+.nav-bar-menu-click {
+  background: url('meatball-icon.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.nav-bar-menu {
   position: relative;
   display: inline-block;
 }
 
 ul.nav-bar-menu-dropdown.revealed {
   display: block;
+  color: black;
   position: absolute;
   top:  100%;
   left: 0;
@@ -270,6 +428,6 @@ ul.nav-bar-menu-dropdown.hidden {
 .discover-main {
   background: white;
   display: flex;
-  align-content: center;
+  margin: 0 auto;
   width: 1240px;
 }

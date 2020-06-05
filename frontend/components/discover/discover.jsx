@@ -12,13 +12,17 @@ class Discover extends React.Component {
     return (
       <div className="discover-main">
         <div className="discover-main-content">
-          <Playlist /> 
-          <Playlist /> 
-          <Playlist />
+          <ul className="dmc-content">
+            <li><Playlist /> </li>
+            <li><Playlist /> </li>
+            <li><Playlist /> </li>
+          </ul>
 
         </div>
         
-        <SideBar />
+        <div className="discover-main-sidebar">
+          <SideBar />
+        </div>
       </div>
     )
   }

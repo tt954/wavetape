@@ -3,7 +3,6 @@ import React from 'react';
 import Step1 from './step_1_email';
 import Step2 from './step_2_password';
 import Step3 from './step_3_username';
-import { clearErrors } from '../../actions/session_actions';
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -17,17 +16,12 @@ class SessionForm extends React.Component {
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
     this.handleDemo = this.handleDemo.bind(this);
+    this.update = this.update.bind(this);
     this._next = this._next.bind(this);
-    this.nextButton = this.nextButton.bind(this);
+    this._prev = this._prev.bind(this);
   }
-
-  handleChange(e) {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
-  }
-
+  
   handleSubmit(e) {
     e.preventDefault();
     this.state.count = 0;
@@ -36,31 +30,28 @@ class SessionForm extends React.Component {
     this.props.processForm(user).then(this.props.closeModal);
   }
 
-  // signins with below info for demo user
   handleDemo(e) {
     e.preventDefault();
     const user = Object.assign({
-      email: "tt@gmail.com",
+      email: "tt@demo.com",
       password: "strawberries",
     });
     this.props.signin(user).then(this.props.closeModal);
   }
 
+  update(e) {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  }
+
   checkEmail(email) {
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) { 
-      // regular expression (@ must be present, cannot begin with a dot, no double dots, 
-      // no special characters(only digits, characters, underscore or dash))
-      return true;
-    } else {
-      return false;
-    }
+    return (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) ? true : false;
   }
 
   checkPassword(pw) {
-    return (pw.length < 6) ? false : true;
+    return (pw.length >= 6) ? true : false;
   }
 
-  // handling NEXT through multistage form
   _next() {
     let currentStep = this.state.currentStep;
     const { setErrors } = this.props;
@@ -70,89 +61,91 @@ class SessionForm extends React.Component {
 
     if (!this.checkEmail(this.state.email)) {
       currentStep = 1;
-      setErrors(["Enter a valid email address."])
+      setErrors(["Enter a valid email address."]);
     } 
 
     if (currentStep === 2) {
       setErrors([])
       this.state.count = this.state.count + 1;
-      if (this.state.count > 1) {
-        if (!this.checkPassword(this.state.password)) {
-          currentStep = 2;
-          setErrors(["Please lengthen password to 6 characters or more"])
-        }
+      if (!this.checkPassword(this.state.password) && this.state.count > 1) {
+        currentStep = 2;
+        setErrors(["Please lengthen password to 6 characters or more"]);
       }
     }
 
-    this.setState({
-      currentStep: currentStep
-    })
+    this.setState({ currentStep: currentStep });
   }
 
-  nextButton() {
-    let currentStep = this.state.currentStep;
-    let btnNext;
-    if (currentStep === 2 && this.props.formType === "signup") {
-      btnNext = "Accept & Continue";
-    } else {
-      btnNext = "Continue";
-    }
-  
-    if (currentStep < this.props.lastStep) {
-      return (
-        <button
-          className="session-form-btn"
-          type="button" onClick={this._next}>
-          {btnNext}
-        </button>
-      )
-    }
-    return null;
+  _prev() {
+    this.props.setErrors([]);
+    let currentStep = this.state.currentStep
+    currentStep = currentStep <= 1 ? 1 : currentStep - 1
+    this.setState({ currentStep: currentStep })
   }
 
   render() {
     const { formType, lastStep, errors } = this.props;
-    const btnText = (formType === "signin") ? "Sign in" : "Get started"
-    const btnSubmit = () => {
-      if (this.state.currentStep === lastStep) {
-        return (
-          <button 
-            className = "session-form-btn"
-            type="submit" 
-            onClick={this.handleSubmit}>{ btnText }</button>
-        )
-      }
-    }
+    const currentStep = this.state.currentStep;
+    
+    const providerButtons = (this.state.currentStep === 1) ? (
+      <>
+        <a onClick={this.handleDemo}>Demo User</a>
+        <a>Continue with Google</a>
+        <a>Continue with Apple</a>
+        <div className="auth-separator"><span>or</span></div>
+      </>
+    ) : null;
+
+    const buttonText = (currentStep === 2 && this.props.formType === "signup") ? "Accept & Continue" : "Continue";
+    const nextButton = (currentStep < this.props.lastStep) ? (
+      <button type="button" onClick={this._next}>{buttonText}</button>
+    ) : null;
+
+    const prevButton = (currentStep === 2) ? (
+      <button type="button" className="" onClick={this._prev}>Back</button>
+    ) : null;
+
+    const submitButton = (this.state.currentStep === lastStep) ? (
+      <button type="submit">{(formType === "signin") ? "Sign in" : "Get started" }</button>
+    ) : null;
 
     return (
-      <React.Fragment>
-        <form className="session-form" >
-          <Step1
-            currentStep={this.state.currentStep}
-            handleChange={this.handleChange}
-            email={this.state.email}
-            handleDemo={this.handleDemo}
-            errors={errors}
-          />
-          <Step2
-            currentStep={this.state.currentStep}
-            handleChange={this.handleChange}
-            password={this.state.password}
-            formType={formType}
-            errors={errors}
-          />
-          <Step3
-            currentStep={this.state.currentStep}
-            handleChange={this.handleChange}
-            password={this.state.password}
-            formType={formType}
-          />
-          <div className="session-form-btn-container">
-            {this.nextButton()}
-            {btnSubmit()}
+      <form className="session-form" onSubmit={this.handleSubmit}>
+          <div className="session-form-providerButtons">
+            {providerButtons}
+          </div>
+
+          <div className="session-form-connect">
+            <div className="session-form-input">
+            <Step1
+              currentStep={this.state.currentStep}
+              update={this.update}
+              email={this.state.email}
+            />
+            <Step2
+              currentStep={this.state.currentStep}
+              update={this.update}
+              password={this.state.password}
+              formType={formType}
+            />
+            <Step3
+              currentStep={this.state.currentStep}
+              update={this.update}
+              password={this.state.password}
+              formType={formType}
+            />
+            </div>
+
+            <div className="session-form-errors">
+              <p>{errors}</p>
+            </div>
+
+            <div className="session-form-button">
+              {nextButton}
+              {submitButton}
+            </div>
           </div>
         </form>
-      </React.Fragment>
     );
   }
 }

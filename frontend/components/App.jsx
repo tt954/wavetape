@@ -10,15 +10,15 @@ import Modal from './modal/modal';
 const App = () => (
   <>
     <Modal />
-    <header>
-      <AuthRoute exact path="/" component={Splash} />
-      <Route path="/discover" render={props =>
-        <div>
+    <AuthRoute exact path="/" component={Splash} />
+    <Route path="/discover" render={props =>
+      <>
+        <header className="banner">
           <NavBar />
-          <Discover />
-        </div>
-        } />
-    </header>
+        </header>
+        <Discover />
+      </>
+    } />
 
   </>
 );

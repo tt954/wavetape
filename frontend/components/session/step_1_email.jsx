@@ -1,28 +1,19 @@
 import React from 'react';
 
 const Step1 = props => {
-  if (props.currentStep !== 1) {
+  if (props.currentStep !== 1 && props.currentStep !== 2) {
     return null
   }
+
   return (
-    <div className="form-group">
-      <div className="provider-btns">
-        <button onClick={props.handleDemo}>Demo User</button>
-        <button>Continue with Google</button>
-        <button>Continue with Apple</button>
-      </div>
-      <div className="auth-separator"><span>or</span></div>
-      <p>{props.errors}</p>
-      <input
-        className="form-control"
-        id="email"
-        name="email"
-        type="text"
-        placeholder="Your email address"
-        value={props.email}
-        onChange={props.handleChange} 
-      />
-    </div>
+    <input
+      className="form-control"
+      type="text"
+      name="email"
+      placeholder="Your email address"
+      value={props.email}
+      onChange={props.update} 
+    />
   )
 }
 
