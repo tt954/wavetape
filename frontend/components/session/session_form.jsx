@@ -66,8 +66,9 @@ class SessionForm extends React.Component {
 
     if (currentStep === 2) {
       setErrors([])
-      this.state.count = this.state.count + 1;
+      this.state.count++;
       if (!this.checkPassword(this.state.password) && this.state.count > 1) {
+        this.state.count--;
         currentStep = 2;
         setErrors(["Please lengthen password to 6 characters or more"]);
       }
@@ -78,22 +79,43 @@ class SessionForm extends React.Component {
 
   _prev() {
     this.props.setErrors([]);
-    let currentStep = this.state.currentStep
-    currentStep = currentStep <= 1 ? 1 : currentStep - 1
-    this.setState({ currentStep: currentStep })
+    let currentStep = this.state.currentStep;
+    currentStep = currentStep <= 1 ? 1 : currentStep - 1;
+    this.setState({ currentStep: currentStep });
+    this.state.count--;
   }
 
   render() {
     const { formType, lastStep, errors } = this.props;
     const currentStep = this.state.currentStep;
+
+    const signupGreeting = (currentStep == 2 && formType === "signup") ? (
+      <div className="sign-up-greeting">Create your WaveTape account</div>
+    ) : null;
     
-    const providerButtons = (this.state.currentStep === 1) ? (
-      <>
-        <a onClick={this.handleDemo}>Demo User</a>
-        <a>Continue with Google</a>
-        <a>Continue with Apple</a>
+    const providerButtons = (currentStep === 1) ? (
+      <div className="session-form-providers">
+        <a className="demo-user" onClick={this.handleDemo}>Demo User</a>
+        <a className="connect-google not-allowed">Continue with Google</a>
+        <a className="connect-apple not-allowed">Continue with Apple</a>
         <div className="auth-separator"><span>or</span></div>
-      </>
+      </div>
+    ) : null;
+
+    const signupTerms = (currentStep == 2 && formType === "signup") ? (
+      <div className="signup-terms">By signing up I accept the <a>Terms of Use</a>. I have read and understood the <a>Privacy Policy</a> and <a>Cookies Policy</a>.</div>
+    ) : null;
+
+    const step1Footer = (currentStep === 1) ? (
+      <div className="step1-footer">
+        <div className="need-help-wrapper">
+          <a className="need-help not-allowed">Need help?</a>
+        </div>
+        <div className="step1-footer-content">
+          <p>We may use your email and devices for updates and tips on WaveTape's products and services, and for activities notifications. You can unsubscribe for free at any time in your notification settings.</p>
+          <p>We may use information you provide us in order to show you targeted ads as described in our <a className="not-allowed">Privacy Policy</a>.</p>
+        </div>
+      </div>
     ) : null;
 
     const buttonText = (currentStep === 2 && this.props.formType === "signup") ? "Accept & Continue" : "Continue";
@@ -102,7 +124,7 @@ class SessionForm extends React.Component {
     ) : null;
 
     const prevButton = (currentStep === 2) ? (
-      <button type="button" className="" onClick={this._prev}>Back</button>
+      <button type="button" className="session-form-back" onClick={this._prev}>◀︎</button>
     ) : null;
 
     const submitButton = (this.state.currentStep === lastStep) ? (
@@ -111,10 +133,9 @@ class SessionForm extends React.Component {
 
     return (
       <form className="session-form" onSubmit={this.handleSubmit}>
-          <div className="session-form-providerButtons">
-            {providerButtons}
-          </div>
-
+          {providerButtons}
+          {signupGreeting}
+        
           <div className="session-form-connect">
             <div className="session-form-input">
             <Step1
@@ -122,6 +143,7 @@ class SessionForm extends React.Component {
               update={this.update}
               email={this.state.email}
             />
+            {prevButton}
             <Step2
               currentStep={this.state.currentStep}
               update={this.update}
@@ -140,10 +162,14 @@ class SessionForm extends React.Component {
               <p>{errors}</p>
             </div>
 
-            <div className="session-form-button">
+            {signupTerms}
+
+            <div className="session-form-next">
               {nextButton}
               {submitButton}
             </div>
+
+            {step1Footer}
           </div>
         </form>
     );

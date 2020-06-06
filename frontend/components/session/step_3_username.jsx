@@ -14,12 +14,11 @@ const Step3 = props => {
           id="username"
           name="username"
           type="text"
-          placeholder="Enter username"
           value={props.username}
           onChange={props.update}
         />
       </label>
-      <p>Your display name can be anything you like. Your name or artist name are good choices.</p>
+      <p className="step3-msg">Your display name can be anything you like. Your name or artist name are good choices.</p>
     </>
   );
 }

@@ -1,18 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import NavBarMenu from './nav_bar_menu';
+import { FaSearch } from 'react-icons/fa';
+import Dropdown from './dropdown';
 
 class NavBar extends React.Component {
   render() {
     const { currentUser, openModal, signout } = this.props;
     const sessionBtns = () => {
       return currentUser ? (
-        <>
-          <div className="nbl-upgrade">
-            <button><Link to="/upgrade">Upgrade</Link></button>
-          </div>
-        </>
+          <button className="nbr-upgrade not-allowed">Upgrade</button>
       ) : (
         <>
           <div className="nbl-session">
@@ -33,44 +30,48 @@ class NavBar extends React.Component {
     }
 
     return (
-      <div className="nav-bar">
-        <div className="nav-bar-left">
-          <div className="nbl-logo">
-            <a href="#/discover"><img src="" alt="logo" /></a>
+      <header className="banner">
+        <div className="nav-bar">
+          <div className="nav-bar-left">
+            <div className="nbl-logo">
+              <a href="/"><img src="" alt="logo" /></a>
+            </div>
+            
+              <ul className="nbl-nav-list">
+                <li><Link to="/discover">Home</Link></li>
+                <li><Link className="not-allowed" to="/discover">Stream</Link></li>
+                <li><a href="https://github.com/tt954/wavetape" target="_blank">Library</a></li>
+              </ul>
+            
           </div>
           
-            <ul className="nbl-nav-list">
-              <li><Link to="/discover">Home</Link></li>
-              <li><Link className="not-allowed" to="/discover">Stream</Link></li>
-              <li><a className="not-allowed" href="https://github.com/tt954/wavetape" target="_blank">Library</a></li>
-            </ul>
-          
-        </div>
-        
-        <div className="nav-bar-middle">
-          <form className="nav-bar-search">
-            <input type="search" />
-            <button type="submit">Search</button>
-          </form>
-        </div>
-
-        <div className="nav-bar-right">
-          {sessionBtns()}
-
-          <div className="nbr-upload">
-            <button><Link to="/upload">Upload</Link></button>
+          <div className="nav-bar-middle">
+            <form className="nav-bar-search">
+              <input type="search" />
+              <button type="submit"><FaSearch /></button>
+            </form>
           </div>
 
-          <div className="nbr nav-bar-menu">
-            <NavBarMenu
+          <div className="nav-bar-right">
+            {sessionBtns()}
+
+            <button className="nbr-upload"><Link to="/upload">Upload</Link></button>
+           
+            <Dropdown 
               currentUser={currentUser}
-              signout={signout} />
+              signout={signout}
+              profile={true}/>
+
+            <Dropdown
+              currentUser={currentUser}
+              signout={signout}
+              menu={true} />
           </div>
+
+          {/* <ProfileDropDown />  */}
+
         </div>
-
-        {/* <ProfileDropDown />  */}
-
-      </div>
+      </header>
     )
   }
 }
