@@ -39,7 +39,6 @@ class Dropdown extends React.Component {
 
   render() {
     const { currentUser, signout, profile, menu } = this.props;
-    debugger;
     const signoutButton = (currentUser) ? (
       <li className="dropdown-signout" onClick={signout}>Sign out</li>
     ) : null;

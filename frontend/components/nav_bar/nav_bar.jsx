@@ -7,6 +7,8 @@ import Dropdown from './dropdown';
 class NavBar extends React.Component {
   render() {
     const { currentUser, openModal, signout } = this.props;
+    const logoWidth = (currentUser) ? "width: 80px;" : "width: 150px;";
+
     const sessionBtns = () => {
       return currentUser ? (
           <button className="nbr-upgrade not-allowed">Upgrade</button>
@@ -47,8 +49,8 @@ class NavBar extends React.Component {
           
           <div className="nav-bar-middle">
             <form className="nav-bar-search">
-              <input type="search" />
-              <button type="submit"><FaSearch /></button>
+              <input type="search" placeholder="Search"/>
+              <button type="submit"><FaSearch size={15}/></button>
             </form>
           </div>
 

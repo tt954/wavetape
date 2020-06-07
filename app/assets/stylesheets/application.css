@@ -602,12 +602,13 @@ p.scc-tagline {
   display: flex;
 }
 
+.nbl-session {
+  padding-left: 15px;
+}
+
 .nbl-logo {
   background: linear-gradient(#f70,#f30);
-  display: flex; 
-  align-items: center;
-  justify-content: center;
-  height: 46px;
+  width: 80px;
 }
 
 ul.nbl-nav-list {
@@ -630,7 +631,6 @@ ul.nbl-nav-list li a {
 .nav-bar-search {
   padding: 9px 10px 8px;
   position: relative;
-  width: 412px;
 }
 
 .nav-bar-search input {
@@ -640,17 +640,14 @@ ul.nbl-nav-list li a {
   padding: 5px 7px;
   background: #e5e5e5;
   border-radius: 3px;
-  width: 394px;
+  width: 396px;
 }
 
 .nav-bar-search button {
+  color: #333;
   position: absolute;
-  width: 15px;
-  height: 15px;
-  right: 55px;
-  top: 15px;
-  border: 0;
-  padding: 0;
+  top: 16px;
+  right: 20px;
 }
 
 .nav-bar-right {
@@ -728,7 +725,8 @@ li.dropdown-signout {
 }
 
 .profile-pic-dropdown {
-  background-image: linear-gradient(135deg,#e6846e,#70929c);
+  background: url('demo-profile.jpg');
+  background-size: cover;
   border-radius: 50%;
   height: 26px;
   width: 26px;
@@ -742,3 +740,84 @@ li.dropdown-signout {
   margin: 0 auto;
   width: 1240px;
 }
+
+/* PROFILE */
+
+.user-profile-banner {
+  background: linear-gradient(324deg, rgba(221,223,245,1) 0%, rgba(221,223,245,1) 11%, rgba(254,215,102,1) 91%);
+  height: 260px;
+  width: 1240px;
+}
+
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.upb-content {
+  display: flex;
+}
+
+.upb-avatar {
+  background: url('demo-profile.jpg');
+  background-size: cover;
+  border-radius: 50%;
+  margin: 30px;
+  height: 200px;
+  width: 200px;
+}
+
+.upb-info {
+  margin: 30px 0;
+}
+
+.upb-info p {
+  background: black;
+  color: white;
+  font-size: 24px;
+  font-weight: 400;
+  padding: 8px;
+}
+
+.upn-tabs {
+  display: flex;
+  align-items: flex-end;
+}
+
+.upn-tabs-list {
+  display: flex;
+}
+
+.user-profile-nav {
+  background: white;
+  border-bottom: 1px solid #f2f2f2;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 30px 10px;
+  width: 1180px;
+}
+
+.upn-tabs-list li {
+  padding-right: 20px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.upn-buttons button {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 4px 11px 4px 10px;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  margin-left: 10px;
+}
+
+.upn-buttons button:hover {
+  border: 1px solid #333;
+}
+
+.upn-buttons span {
+  padding-right: 5px;
+}
+

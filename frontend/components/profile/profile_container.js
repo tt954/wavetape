@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import Profile from './profile';
 import { fetchUser } from '../../actions/user_actions';
 
-const mSTP = ({entities: { users }}, ownProps) => {
-  // debugger;
+const mSTP = ({ session, entities: { users }}, ownProps) => {
   const user = users[ownProps.match.params.userId];
 
   return {
     user,
+    currentUser: users[session.id],
   };
 }
 

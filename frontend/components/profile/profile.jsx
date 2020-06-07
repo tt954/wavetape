@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { GrShare, GrMail } from 'react-icons/gr';
+import { FaPencilAlt, FaUserPlus } from 'react-icons/fa';
+import { FiRadio } from 'react-icons/fi';
+import { BsThreeDots } from 'react-icons/bs';
 import NavBar from '../nav_bar/nav_bar_container';
 
 class Profile extends React.Component {
@@ -7,11 +11,28 @@ class Profile extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
+  componentWillMount() {
   }
 
   render() {
+    const { currentUser } = this.props;
     const user = this.props.user;
+    // debugger;
+
+    const upnButtons = (currentUser) ? (
+      <>
+        <button><span><GrShare /></span>Share</button>
+        <button><span><FaPencilAlt /></span>Edit</button>
+      </>
+    ) : (
+      <>
+        <button><span><FiRadio /></span>Station</button>
+        <button><span><FaUserPlus /></span>Follow</button>
+        <button><span><GrShare /></span>Share</button>
+        <button><span><GrMail /></span></button>
+        <button><span><BsThreeDots /></span></button>
+      </>
+    )
 
     return (
       <>
@@ -20,7 +41,7 @@ class Profile extends React.Component {
         <div className="user-profile-banner">
           <div className="upb-content">
             <div className="upb-avatar">
-              <img src="" alt="user-profile-pic"/>
+              <img src="" alt=""/>
             </div>
             <div className="upb-info">
               <p>{user.username}</p>
@@ -39,7 +60,9 @@ class Profile extends React.Component {
               <li>Reposts</li>
             </ul>
           </div>
-          <div className="upn-buttons"></div>
+          <div className="upn-buttons">
+            {upnButtons}
+          </div>
         </div>
         
         <div className="user-profile-main">
