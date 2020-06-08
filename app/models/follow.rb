@@ -1,4 +1,5 @@
 class Follow < ApplicationRecord
+
   validates :follower, uniqueness: { scope: :followee }
 
   belongs_to :followee,
@@ -6,4 +7,5 @@ class Follow < ApplicationRecord
 
   belongs_to :follower,
     class_name: 'User'
+    
 end

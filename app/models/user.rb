@@ -23,6 +23,10 @@ class User < ApplicationRecord
     through: :out_follows,
     source: :followee
 
+  has_many :tracks, 
+    foreign_key: :uploader_id,
+    class_name: 'Track'
+
   def self.find_by_credentials(email, pw)
     user = User.find_by(email: email)
     user && user.is_password?(pw) ? user : nil
