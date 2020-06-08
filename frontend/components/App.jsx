@@ -6,7 +6,7 @@ import Modal from './modal/modal';
 import Splash from '../components/splash/splash_container';
 import NavBar from '../components/nav_bar/nav_bar_container';
 import Discover from '../components/discover/discover_container';
-import Profile from '../components/profile/profile_container';
+import ProfileShow from './profile/profile_show_container';
 
 const App = () => (
   <>
@@ -19,7 +19,7 @@ const App = () => (
 
     <ProtectedRoute
       exact path="/users/:userId"
-      component={Profile}/>
+      component={ProfileShow}/>
 
   </>
 );
