@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { signup, signin, receiveErrors } from '../../actions/session_actions';
-import { openModal, closeModal } from '../../actions/modal_actions';
+import { closeModal } from '../../actions/modal_actions';
 import SessionForm from './session_form';
 
 const mSTP = ({ errors }) => {
@@ -16,7 +16,6 @@ const mDTP = dispatch => {
   return {
     signin: user => dispatch(signin(user)),
     processForm: user => dispatch(signup(user)),
-    openModal: () => dispatch(openModal()),
     closeModal: () => dispatch(closeModal()),
     setErrors: errors => dispatch(receiveErrors(errors)),
   };

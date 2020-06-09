@@ -7,7 +7,6 @@ const mSTP = ({ session, entities: { users } }) => ({
 })
 
 const mDTP = dispatch => ({
-
 })
 
 export default connect(mSTP, mDTP)(Playlist);

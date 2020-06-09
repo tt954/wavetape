@@ -7,7 +7,6 @@ import Dropdown from './dropdown';
 class NavBar extends React.Component {
   render() {
     const { currentUser, openModal, signout } = this.props;
-    const logoWidth = (currentUser) ? "width: 80px;" : "width: 150px;";
 
     const sessionBtns = () => {
       return currentUser ? (
@@ -22,7 +21,7 @@ class NavBar extends React.Component {
       )
     }
 
-    if (currentUser) { // if logged in
+    if (currentUser) { // 
       const userNav = () => (
         <div className="nbr-userNav"> 
           <UserNavMenu
@@ -36,7 +35,7 @@ class NavBar extends React.Component {
         <div className="nav-bar">
           <div className="nav-bar-left">
             <div className="nbl-logo">
-              <a href="/"><img src="" alt="logo" /></a>
+              <button type="button"><a href="/">Logo</a></button>
             </div>
             
               <ul className="nbl-nav-list">

@@ -37,7 +37,7 @@ span, article, footer, time, small {
   background: transparent;
 }
 
-ol, ul {
+ol, ul, li {
   list-style: none;
 }
 
@@ -412,19 +412,13 @@ p.scc-tagline {
 }
 
 .modal-child {
-  animation: modal-drop-in 0.3s;
   background-color: white;
   height: 555px;
+  top: 50%;
   left: 50%;
   position: absolute;
-  top: 50%;
   transform: translate(-50%, -50%);
   width: 450px;
-}
-
-@keyframes modal-drop-in {
-  from { top: -100px; }
-  to { top: 0; }
 }
 
 .session-form-providers {
@@ -672,6 +666,14 @@ ul.nbl-nav-list li a {
   padding: 16px 10px;
 }
 
+.nbr-upgrade {
+  color: #f50;
+}
+
+button.nbr-upgrade.not-allowed:hover {
+  color: #f70;
+}
+
 .profile-dropdown-button {
   display: flex;
   align-items: center;
@@ -704,14 +706,27 @@ ul.nbl-nav-list li a {
   border-bottom: 1px solid #333;
 }
 
+.nb-menu-dropdown.revealed ul li {
+  cursor: progress;
+}
+
 .nb-menu-dropdown li, 
 .nb-profile-dropdown li {
   padding: 8px 10px;
 }
 
-.nb-profile-dropdown li {
+.nb-menu-dropdown li:hover, 
+.nb-profile-dropdown li:hover {
+  background: #333;
+}
+
+.nb-profile-dropdown a {
   display: flex;
   align-items: center;
+}
+
+.nb-profile-dropdown p {
+  padding-left: 8px;
 }
 
 li.dropdown-signout {
@@ -819,5 +834,11 @@ li.dropdown-signout {
 
 .upn-buttons span {
   padding-right: 5px;
+}
+
+/* TRACK SHOW */
+
+.tsb-artwork img {
+  width: 300px;
 }
 

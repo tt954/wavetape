@@ -5,6 +5,7 @@ import { closeModal } from '../../actions/modal_actions';
 import { clearErrors } from '../../actions/session_actions';
 import SigninFormContainer from '../session/signin_form_container';
 import SignupFormContainer from '../session/signup_form_container';
+import ProfileEditForm from '../profile/profile_edit_container';
 
 function Modal({ modal, closeModal, clearErrors }) {
   if (!modal) {
@@ -17,6 +18,9 @@ function Modal({ modal, closeModal, clearErrors }) {
       break;
     case 'signup':
       component = <SignupFormContainer />;
+      break;
+    case 'profileEdit':
+      component = <ProfileEditForm />
       break;
     default:
       return null;

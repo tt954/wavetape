@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 
 import { BsThreeDots } from 'react-icons/bs';
 import { IoIosArrowDown } from 'react-icons/io';
-import { FaBell, FaUserFriends, FaStar, FaGithub, FaUserAlt } from 'react-icons/fa';
+import { FaBell, FaUserFriends, FaStar, FaGithub, FaUserAlt, FaHeart } from 'react-icons/fa';
 import { GrMail } from 'react-icons/gr';
-import { GoHeart } from 'react-icons/go';
 import { GiSoundWaves } from 'react-icons/gi';
 import { AiTwotoneSwitcher } from 'react-icons/ai';
 
@@ -53,13 +52,13 @@ class Dropdown extends React.Component {
             <span><IoIosArrowDown size={20}/></span>
           </button>
           <ul className={`nb-profile-dropdown ${(this.state.profileDrop) ? "revealed" : "hidden"}`}>
-            <li><Link to={`/users/${currentUser.id}`}><span><FaUserAlt size={14}/></span>Profile</Link></li>
-            <li><a href="https://github.com/tt954/wavetape" target="_blank"><span><FaGithub size={16}/></span>Github</a></li>
-            <li><span><GoHeart size={20}/></span>Likes</li>
-            <li><span><AiTwotoneSwitcher size={16}/></span>Playlists</li>
-            <li><span><FaUserFriends size={18}/></span>Following</li>
-            <li><span><FaStar size={15}/></span>Try Pro</li>
-            <li><span><GiSoundWaves size={18}/></span>Tracks</li>
+            <li><Link to={`/users/${currentUser.id}`}><span><FaUserAlt size={14} /></span><p>Profile</p></Link></li>
+            <li><a href="https://github.com/tt954/wavetape" target="_blank"><span><FaGithub size={14} /></span><p>Github</p></a></li>
+            <li className="not-allowed"><a><span><FaHeart size={16} /></span><p>Likes</p></a></li>
+            <li className="not-allowed"><a><span><AiTwotoneSwitcher size={16} /></span><p>Playlists</p></a></li>
+            <li className="not-allowed"><a><span><FaUserFriends size={16} /></span><p>Following</p></a></li>
+            <li className="not-allowed"><a><span><FaStar size={16} /></span><p>Try Pro</p></a></li>
+            <li className="not-allowed"><a><span><GiSoundWaves size={18} /></span><p>Tracks</p></a></li>
           </ul>
         </div>
         <button className="nbr-user-btn"><FaBell size={18} /></button>
@@ -103,3 +102,7 @@ class Dropdown extends React.Component {
 }
 
 export default Dropdown;
+
+
+//onClick
+//onMouseDown (preventdefault)
