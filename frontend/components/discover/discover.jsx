@@ -13,9 +13,12 @@ class Discover extends React.Component {
       <div className="discover-main">
         <div className="discover-main-content">
           <ul className="dmc-content">
-            <li><Playlist /> </li>
-            <li><Playlist /> </li>
-            <li><Playlist /> </li>
+            <li><Playlist 
+              plTitle="New Music Now"
+              plTagline="The latest hits, updated at all time"/> </li>
+            <li><Playlist 
+              playlistTitle="Trending"
+              plTagline="The most played tracks on WaveTape this week"/> </li>
           </ul>
 
         </div>

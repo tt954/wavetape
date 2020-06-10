@@ -62,6 +62,13 @@ button {
   appearance: none;
 }
 
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance:none;
+}
+
 button,
 input[type="submit"] {
   cursor: pointer;
@@ -210,12 +217,39 @@ button.signup {
 
 .sms-searchbar-button {
   position: absolute;
-  right: 20px;
-  top: 15px;
+  right: 18px;
+  top: 16px;
 }
 
 .sms-container span {
   margin: 0 14px;
+}
+
+.splash-music-trending {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.smt-title {
+  font-size: 24px;
+  font-weight: 340;
+  padding-top: 20px;
+  margin-bottom: 30px;
+}
+
+.smt-li-artwork {
+  width: 190px;
+}
+
+.smt-li-title {
+  color: #333;
+  line-height: 1.4;
+  font-size: 14px;
+}
+
+.smt-playlist li {
+  padding-bottom: 40px;
 }
 
 .splash-devices {
@@ -347,7 +381,8 @@ p.scc-tagline {
   font-size: 14px;
 }
 
-.sbs-signup, .sms-upload {
+.sbs-signup, .sms-upload, 
+.smt-explore-button {
   background-color: #f50;
   border-color: #f50;
   border-radius: 3px;

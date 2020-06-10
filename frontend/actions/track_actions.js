@@ -36,6 +36,6 @@ export const fetchTrack = trackId => {
 export const fetchTracks = () => {
   return dispatch => {
     return TrackAPIUtil.fetchTracks()
-      .then(tracks => dispatch(fetchTracks(tracks)));
+      .then(tracks => dispatch(receiveTracks(tracks)));
   };
 }

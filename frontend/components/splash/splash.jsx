@@ -1,11 +1,36 @@
 import React from 'react';
 
+import { FaSearch } from 'react-icons/fa';
 import Playlist from '../tracks/playlist_container';
 
 class Splash extends React.Component {
- render() {
-   const { openModal } = this.props;
-   return (
+  componentDidMount() {
+    this.props.fetchUsers();
+    this.props.fetchTracks();
+  }
+
+  render() {
+    const { openModal, users, tracks } = this.props;
+    let trackLis;
+
+    if (Object.keys(tracks).length === 0) {
+      debugger;
+      return (
+        <button onClick={this.props.fetchTracks}>Loading...</button>
+      )
+    } else {
+      trackLis = tracks.map(track => 
+        <li>
+          <div className="smt-li-artwork"><a href={`#/tracks/${track.id}`}><img src={track.photoUrl} alt={track.title} /></a></div>
+          <div className="smt-li-description">
+            <a className="smt-li-title" href="">{track.title}</a>
+            <a className="smt-li-artist" href="">{track.uploader_id}</a>
+          </div>
+        </li>
+      )
+    }
+
+    return (
      <div className="splash-main">
       <section className="splash-top">
         <div className="splash-top-nav">
@@ -31,15 +56,23 @@ class Splash extends React.Component {
             <form className="sms-searchbar-form">
               <input className="sms-searchbar"
                 type="search"
-                placeholder="Search for artist, bands, tracks, tapes" /> 
-              <button type="button" className="sms-searchbar-button">Search</button>
+                placeholder="Search function coming soon" /> 
+              <button type="button" className="sms-searchbar-button"><FaSearch /></button>
             </form>
-             <span>or</span>
-            <a className="sms-upload">Upload your own</a>
+            <span>or</span>
+            <button className="sms-upload" onClick={() => openModal('signup')}>Upload your own</button>
           </div>
         </div>
         <div className="splash-music-trending">
-          Music coming soon
+          <div className="smt-title">Hear what’s trending for free in the WaveTape community</div>
+          <div className="smt-playlist">
+            <ul>
+              {trackLis}
+            </ul>
+          </div>
+          <div className="smt-btn-container">
+            <button className="smt-explore-button">Explore trending playlists</button>
+          </div>
         </div>
       </section>
 
@@ -96,8 +129,8 @@ class Splash extends React.Component {
         </div>
       </section>
      </div>
-   )
- }
+    )
+  }
 }
 
 export default Splash;

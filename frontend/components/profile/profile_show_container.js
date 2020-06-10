@@ -7,7 +7,6 @@ import { fetchUsers } from '../../actions/user_actions';
 const mSTP = ({ session, entities: { users }}, ownProps) => {
   const userId = ownProps.match.params.userId;
   const user = users[userId];
-  // debugger;
 
   return {
     user, 

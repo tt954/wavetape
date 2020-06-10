@@ -41,7 +41,7 @@ class NavBar extends React.Component {
               <ul className="nbl-nav-list">
                 <li><Link to="/discover">Home</Link></li>
                 <li><Link className="not-allowed" to="/discover">Stream</Link></li>
-                <li><a href="https://github.com/tt954/wavetape" target="_blank">Library</a></li>
+                <li><Link className="not-allowed">Library</Link></li>
               </ul>
             
           </div>
