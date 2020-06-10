@@ -2,7 +2,7 @@ class Api::UsersController < ApplicationController
   before_action :ensure_logged_in, only: [:edit]
 
   def index 
-    @users = User.all
+    @users = User.all #includes(:followers, :followees)
     render :index
   end 
 

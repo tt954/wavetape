@@ -5,20 +5,40 @@ import SideBar from '../sidebar/sidebar_container';
 
 class Discover extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+  }
+
+  componentDidMount() {
+    this.props.fetchUsers();
+    this.props.fetchTracks();
   }
 
   render() {
+    const { tracks, users } = this.props;
+    let playlist1, playlist2;
+
+    if (Object.keys(tracks).length === 0) {
+      return (
+        <button onClick={this.props.fetchTracks}>Loading...</button>
+      )
+    } else {
+      playlist1 = tracks.slice(0);
+    }
+
     return (
       <div className="discover-main">
         <div className="discover-main-content">
           <ul className="dmc-content">
             <li><Playlist 
               plTitle="New Music Now"
-              plTagline="The latest hits, updated at all time"/> </li>
+              plTagline="The latest hits, updated at all time"
+              tracks={playlist1}
+              users={users}/> </li>
             <li><Playlist 
-              playlistTitle="Trending"
-              plTagline="The most played tracks on WaveTape this week"/> </li>
+              plTitle="Trending"
+              plTagline="The most played tracks on WaveTape this week"
+              tracks={playlist1}
+              users={users}/></li>
           </ul>
 
         </div>

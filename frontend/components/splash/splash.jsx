@@ -1,7 +1,7 @@
 import React from 'react';
 
+import PlaylistIndex from '../tracks/playlist_index';
 import { FaSearch } from 'react-icons/fa';
-import Playlist from '../tracks/playlist_container';
 
 class Splash extends React.Component {
   componentDidMount() {
@@ -14,18 +14,15 @@ class Splash extends React.Component {
     let trackLis;
 
     if (Object.keys(tracks).length === 0) {
-      debugger;
       return (
         <button onClick={this.props.fetchTracks}>Loading...</button>
       )
     } else {
       trackLis = tracks.map(track => 
-        <li>
-          <div className="smt-li-artwork"><a href={`#/tracks/${track.id}`}><img src={track.photoUrl} alt={track.title} /></a></div>
-          <div className="smt-li-description">
-            <a className="smt-li-title" href="">{track.title}</a>
-            <a className="smt-li-artist" href="">{track.uploader_id}</a>
-          </div>
+        <li key={track.id}>
+          <PlaylistIndex 
+            track={track}
+            users={users} />
         </li>
       )
     }

@@ -84,9 +84,9 @@ class ProfileShow extends React.Component {
           
           <div className="user-profile-main">
             <div className="upm-main">
+              {/* <Playlist />
               <Playlist />
-              <Playlist />
-              <Playlist />
+              <Playlist /> */}
             </div>
             <div className="upm-sidebar">
               <article className="sidebar-info-stats">

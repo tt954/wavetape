@@ -246,10 +246,28 @@ button.signup {
   color: #333;
   line-height: 1.4;
   font-size: 14px;
+  font-weight: 400;
+  margin: 5px 0 3px;
+}
+
+.smt-playlist ul {
+  display: flex;
+  justify-content: space-between;
+  width: 1180px;
 }
 
 .smt-playlist li {
   padding-bottom: 40px;
+}
+
+.smt-li-artist {
+  color: #999;
+  font-size: 12px;
+}
+
+.smt-li-description {
+  display: flex;
+  flex-direction: column;
 }
 
 .splash-devices {
@@ -789,6 +807,35 @@ li.dropdown-signout {
   display: flex;
   margin: 0 auto;
   width: 1240px;
+}
+
+.discover-main-content {
+  border-right: 1px solid #f2f2f2;
+  margin: 30px;
+  width: 820px;
+}
+.dmc-content li {
+  margin-bottom: 34px;
+}
+
+.discover-main-sidebar {
+  margin: 30px 30px 0 0;
+  width: 420px;
+}
+
+.playlist-title {
+  margin-bottom: 24px;
+}
+
+.playlist-title h2 {
+  color: #333;
+  font-size: 22px;
+}
+
+.playlist-title p {
+  color: #999;
+  font-size: 14px;
+  margin-top: 5px;
 }
 
 /* PROFILE */

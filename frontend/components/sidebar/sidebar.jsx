@@ -1,13 +1,11 @@
 import React from 'react';
 
-class SideBar extends React.Component {
-  render() {
-    return (
-      <div className="discover-main-sidebar">
-        Sidebar here...
-      </div>
-    )
-  }
+const SideBar = props => {
+  return (
+    <>
+      Sidebar here...
+    </>
+  )
 }
 
 export default SideBar;

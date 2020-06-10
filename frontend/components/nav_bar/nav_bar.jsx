@@ -21,15 +21,6 @@ class NavBar extends React.Component {
       )
     }
 
-    if (currentUser) { // 
-      const userNav = () => (
-        <div className="nbr-userNav"> 
-          <UserNavMenu
-            currentUser={currentUser}/>
-        </div>
-      )
-    }
-
     return (
       <header className="banner">
         <div className="nav-bar">
@@ -40,8 +31,8 @@ class NavBar extends React.Component {
             
               <ul className="nbl-nav-list">
                 <li><Link to="/discover">Home</Link></li>
-                <li><Link className="not-allowed" to="/discover">Stream</Link></li>
-                <li><Link className="not-allowed">Library</Link></li>
+                <li><a className="not-allowed">Stream</a></li>
+                <li><a className="not-allowed">Library</a></li>
               </ul>
             
           </div>
@@ -68,8 +59,6 @@ class NavBar extends React.Component {
               signout={signout}
               menu={true} />
           </div>
-
-          {/* <ProfileDropDown />  */}
 
         </div>
       </header>
