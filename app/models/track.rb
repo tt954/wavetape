@@ -7,10 +7,6 @@ class Track < ApplicationRecord
     foreign_key: :uploader_id, 
     class_name: 'User'
 
-  belongs_to :genre, 
-    foreign_key: :genre_id, 
-    class_name: 'Genre'
-
   has_one_attached :photo
   has_one_attached :track
 

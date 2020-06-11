@@ -252,6 +252,7 @@ button.signup {
 
 .smt-playlist ul {
   display: flex;
+  flex-flow: wrap;
   justify-content: space-between;
   width: 1180px;
 }

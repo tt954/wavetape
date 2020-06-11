@@ -8,16 +8,18 @@ class NavBar extends React.Component {
   render() {
     const { currentUser, openModal, signout } = this.props;
 
-    const sessionBtns = () => {
+    const logoLink = currentUser ? 
+      (<a href="/"><img src="" alt="wavetape-logo"/></a>) :
+      (<a href="/"><img src="" alt="wavetape-logo"/></a>)
+
+    const sessionButtons = () => {
       return currentUser ? (
-          <button className="nbr-upgrade not-allowed">Upgrade</button>
+        <button className="nbr-upgrade not-allowed">Upgrade</button>
       ) : (
-        <>
-          <div className="nbl-session">
-            <button className="session-btn signin" onClick={() => openModal('login')}>Sign in</button>
-            <button className="session-btn signup" onClick={() => openModal('signup')}>Create account</button>
-          </div>
-        </>
+        <div className="nbl-session">
+          <button className="session-btn signin" onClick={() => openModal('login')}>Sign in</button>
+          <button className="session-btn signup" onClick={() => openModal('signup')}>Create account</button>
+        </div>
       )
     }
 
@@ -26,7 +28,7 @@ class NavBar extends React.Component {
         <div className="nav-bar">
           <div className="nav-bar-left">
             <div className="nbl-logo">
-              <button type="button"><a href="/">Logo</a></button>
+              {logoButton}
             </div>
             
               <ul className="nbl-nav-list">
@@ -45,7 +47,7 @@ class NavBar extends React.Component {
           </div>
 
           <div className="nav-bar-right">
-            {sessionBtns()}
+            {sessionButtons()}
 
             <button className="nbr-upload"><Link to="/upload">Upload</Link></button>
            

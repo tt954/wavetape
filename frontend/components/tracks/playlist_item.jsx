@@ -16,7 +16,7 @@ const PlaylistItem = props => {
       </div>
       <div className="smt-li-description">
         <a className="smt-li-title" href={`#/tracks/${track.id}`}>{track.title}</a>
-        <a className="smt-li-artist" href={`#/users/${track.uploader_id}`}>artist name</a>
+        <a className="smt-li-artist" href={`#/users/${track.uploader_id}`}>{track.uploader}</a>
       </div>
     </>
   )

@@ -5,12 +5,11 @@ import { FaSearch } from 'react-icons/fa';
 
 class Splash extends React.Component {
   componentDidMount() {
-    this.props.fetchUsers();
     this.props.fetchTracks();
   }
 
   render() {
-    const { openModal, users, tracks, receiveSelectedTrack } = this.props;
+    const { openModal, tracks, receiveSelectedTrack } = this.props;
     let trackLis;
 
     if (Object.keys(tracks).length === 0) {
@@ -22,7 +21,6 @@ class Splash extends React.Component {
         <li key={track.id}>
           <PlaylistItem 
             track={track}
-            users={users}
             receiveSelectedTrack={receiveSelectedTrack} />
         </li>
       )

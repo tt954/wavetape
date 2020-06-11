@@ -4,12 +4,11 @@ class CreateTracks < ActiveRecord::Migration[5.2]
       t.string :title, null: false
       t.text :description
       t.integer :uploader_id, null: false 
-      t.integer :genre_id
+      t.string :genre
 
       t.timestamps
     end
 
     add_index :tracks, :uploader_id
-    add_index :tracks, :genre_id
   end
 end

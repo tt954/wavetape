@@ -1,10 +1,3 @@
-export const fetchGenres = () => (
-  $.ajax({
-    method: 'GET',
-    url: '/api/genres'
-  })
-)
-
 export const fetchTrack = trackId => (
   $.ajax({
     method: 'GET',

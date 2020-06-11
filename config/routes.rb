@@ -9,7 +9,6 @@ Rails.application.routes.draw do
     end 
     resource :session, only: [:create, :destroy]
     resources :tracks, only: [:index, :show, :create, :edit, :destroy]
-    resources :genres, only: [:index]
   end 
 
 end
