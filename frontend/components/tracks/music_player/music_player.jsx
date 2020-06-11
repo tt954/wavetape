@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 import { 
   IoMdPlay, IoMdPause, IoMdSkipBackward, IoMdSkipForward,
   IoMdVolumeHigh, IoMdVolumeLow, IoMdVolumeOff,
-  IoIosShuffle,  } from 'react-icons/io';
-import { TiArrowLoop } from 'react-icons/ti';
+  IoMdHeart, IoMdList  } from 'react-icons/io';
+import { RiShuffleLine } from 'react-icons/ri';
+import { FiRepeat } from  'react-icons/fi';
 
 class MusicPlayer extends React.Component {
   constructor(props) {
@@ -52,9 +53,22 @@ class MusicPlayer extends React.Component {
     const { playing, selectedTrack, togglePlay } = this.props;
     const audioSrc = selectedTrack ? selectedTrack.trackUrl : null;
     const playControl = playing ? <IoMdPause /> : <IoMdPlay />;
+    const trackAvatar = selectedTrack ? <Link className="soundBadge-avatar" to={`/tracks/${selectedTrack.id}`}><img src={selectedTrack.photoUrl}></img></Link> : null;
+    const trackInfo = selectedTrack ? (
+      <div className="soundBadge-info">
+        <Link to={`/users/${selectedTrack.uploader_id}`}>{selectedTrack.uploader}</Link>
+        <Link to={`/tracks/${selectedTrack.id}`}>{selectedTrack.title}</Link>
+      </div>
+    ) : null;
+    const trackActions = selectedTrack ? (
+      <div className="soundBadge-actions">
+        <button><IoMdHeart /></button>
+        <button><IoMdList /></button>
+      </div>
+    ) : null;
 
     return (
-      <div className="music-player-bar">
+      <div className={`music-player-bar ${selectedTrack ? "revealed": "hidden"}`}>
         <section className="music-player">
           <audio id="audio" ref={ref => this.audio = ref} src={audioSrc} />
           <div className="music-player-controls">
@@ -68,10 +82,10 @@ class MusicPlayer extends React.Component {
 
             <button className="mpc-button skip-control controlNext"><IoMdSkipForward /></button>
 
-            <button className="mpc-button controlShuffle"><IoIosShuffle /></button>
-            <button className="mpc-button controlRepeat"><TiArrowLoop /></button>
+            <button className="mpc-button controlShuffle"><RiShuffleLine /></button>
+            <button className="mpc-button controlRepeat"><FiRepeat /></button>
 
-            <div className="mbc-progress progress-control">
+            <div className="mpc-progress progress-control">
               <div id="timeElasped">00:00</div>
               <div className="progress">
                 <div id="progressBar"></div>
@@ -80,15 +94,16 @@ class MusicPlayer extends React.Component {
               <div id="totalTime">00:00</div>
             </div>
 
-            <div className="mbc-button volume-control"></div>
-              
-            <div className="mbc-soundBadge">
-              {/* <a className="soundBadge-avatar" href=""><img src={selectedTrack.photoUrl}></img></a> */}
-              <div>
-                {/* <Link to={`/users/${selectedTrack.uploader_id}`}></Link> */}
-                <div></div>
-              </div>
+            <div className="mpc-button volume-control">
+              <IoMdVolumeHigh />
             </div>
+              
+            <div className="mpc-soundBadge">
+              {trackAvatar}
+              {trackInfo}
+              {trackActions}
+            </div>
+
           </div>
 
         </section>
