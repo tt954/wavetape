@@ -270,6 +270,32 @@ button.signup {
   flex-direction: column;
 }
 
+.track-play-container {
+  position: relative;
+}
+
+.track-play-button,
+.track-play-button-background {
+  color: transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.track-play-container:hover 
+.track-play-button {
+  color: #FF5604;
+}
+
+.track-play-container:hover 
+.track-play-button-background {
+  background: white;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+
 .splash-devices {
   background-color: #f2f2f2;
   display: flex;
@@ -814,6 +840,11 @@ li.dropdown-signout {
   margin: 30px;
   width: 820px;
 }
+
+.dmc-content {
+  margin-right: 30px;
+}
+
 .dmc-content li {
   margin-bottom: 34px;
 }
@@ -836,6 +867,15 @@ li.dropdown-signout {
   color: #999;
   font-size: 14px;
   margin-top: 5px;
+}
+
+.playlist-content {
+  display: flex;
+  overflow: auto;
+}
+
+.playlist-content li {
+  margin-right: 15px;
 }
 
 /* PROFILE */
@@ -924,3 +964,62 @@ li.dropdown-signout {
   width: 300px;
 }
 
+/* MUSIC PLAYER */
+
+.music-player-bar.hidden {
+  display: none;
+}
+
+.music-player-bar {
+  position: fixed;
+  bottom: 0;
+  z-index: 999;
+  width: 100%;
+}
+
+.music-player {
+  background-color: #f2f2f2;
+  border-top: 1px solid #cecece;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+}
+
+.music-player-controls {
+  display: flex;
+}
+
+.progress-control {
+  display: flex;
+  align-items: center;
+}
+
+.progress {
+  background: #333;
+  position: relative;
+  height: 2px;
+  width: 500px;
+}
+
+#progressBar {
+  background: #f50;
+  height: 2px;
+}
+
+#progressBall {
+  background-color: rgb(255, 85, 0);
+  border: 1px solid rgb(255, 85, 0);
+  border-radius: 100%;
+  margin-top: -6px;
+  margin-left: -4px;
+  position: absolute;
+  height: 8px;
+  width: 8px;
+}
+
+.soundBadge-avatar img {
+  height: 30px;
+  width: 30px;
+}

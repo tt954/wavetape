@@ -1,5 +1,6 @@
 import React from 'react';
 
+import NavBar from '../nav_bar/nav_bar_container';
 import Playlist from '../tracks/playlist_container';
 import SideBar from '../sidebar/sidebar_container';
 
@@ -26,27 +27,30 @@ class Discover extends React.Component {
     }
 
     return (
-      <div className="discover-main">
-        <div className="discover-main-content">
-          <ul className="dmc-content">
-            <li><Playlist 
-              plTitle="New Music Now"
-              plTagline="The latest hits, updated at all time"
-              tracks={playlist1}
-              users={users}/> </li>
-            <li><Playlist 
-              plTitle="Trending"
-              plTagline="The most played tracks on WaveTape this week"
-              tracks={playlist1}
-              users={users}/></li>
-          </ul>
+      <>
+        <NavBar />
+        <div className="discover-main">
+          <div className="discover-main-content">
+            <ul className="dmc-content">
+              <li><Playlist 
+                plTitle="New Music Now"
+                plTagline="The latest hits, updated at all time"
+                tracks={playlist1}
+                users={users}/> </li>
+              <li><Playlist 
+                plTitle="Trending"
+                plTagline="The most played tracks on WaveTape this week"
+                tracks={playlist1}
+                users={users}/></li>
+            </ul>
 
+          </div>
+          
+          <div className="discover-main-sidebar">
+            <SideBar />
+          </div>
         </div>
-        
-        <div className="discover-main-sidebar">
-          <SideBar />
-        </div>
-      </div>
+      </>
     )
   }
 }

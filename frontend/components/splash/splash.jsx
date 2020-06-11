@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PlaylistIndex from '../tracks/playlist_index';
+import PlaylistItem from '../tracks/playlist_item';
 import { FaSearch } from 'react-icons/fa';
 
 class Splash extends React.Component {
@@ -10,7 +10,7 @@ class Splash extends React.Component {
   }
 
   render() {
-    const { openModal, users, tracks } = this.props;
+    const { openModal, users, tracks, receiveSelectedTrack } = this.props;
     let trackLis;
 
     if (Object.keys(tracks).length === 0) {
@@ -20,9 +20,10 @@ class Splash extends React.Component {
     } else {
       trackLis = tracks.map(track => 
         <li key={track.id}>
-          <PlaylistIndex 
+          <PlaylistItem 
             track={track}
-            users={users} />
+            users={users}
+            receiveSelectedTrack={receiveSelectedTrack} />
         </li>
       )
     }

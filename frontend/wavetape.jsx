@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import configStore from './store/store';
 import Root from './components/root';
 
-import { fetchTrack } from './actions/track_actions';
+import { receiveSelectedTrack } from './actions/music_player_actions';
 
 document.addEventListener("DOMContentLoaded", () => {
   let store;
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.getState = store.getState;
   window.dispatch = store.dispatch;
 
-  window.fetchTrack = fetchTrack;
+  window.receiveSelectedTrack = receiveSelectedTrack;
 
   const root = document.getElementById("root");
   ReactDOM.render(<Root store={store} />, root);

@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-// import filters from './filters_reducer';
 import modal from './ui_reducers/modal_reducer';
+import musicPlayer from './ui_reducers/music_player_reducer';
 
 export default combineReducers({
-  // filters,
-  modal
+  modal,
+  musicPlayer,
 });
