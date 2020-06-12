@@ -27,6 +27,9 @@ class User < ApplicationRecord
     foreign_key: :uploader_id,
     class_name: 'Track'
 
+  has_one_attached :avatar
+  has_one_attached :header
+
   def self.find_by_credentials(email, pw)
     user = User.find_by(email: email)
     user && user.is_password?(pw) ? user : nil

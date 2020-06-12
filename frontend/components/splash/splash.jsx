@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import PlaylistItem from '../tracks/playlist_item';
-import { FaSearch } from 'react-icons/fa';
+import { FaSearch, FaLinkedin, FaGithub } from 'react-icons/fa';
 
 class Splash extends React.Component {
   componentDidMount() {
@@ -67,7 +68,7 @@ class Splash extends React.Component {
             </ul>
           </div>
           <div className="smt-btn-container">
-            <button className="smt-explore-button">Explore trending playlists</button>
+            <button className="smt-explore-button"><Link to="/discover">Explore trending playlists</Link></button>
           </div>
         </div>
       </section>
@@ -77,7 +78,7 @@ class Splash extends React.Component {
         </div>
         <div className="splash-devices-info">
           <p className="sdi-header">Never Stop Listening</p>
-          <p className="sdi-content">WaveTape is available on Web, iOS, Android, Stereo 8, Walkman, iPod Nano, and Nintendo Switch.</p>
+          <p className="sdi-content">WaveTape is only available on Web, sorry iOS, Android, Stereo 8, Walkman, iPod Nano, and Nintendo Switch.</p>
           <div className="sdi-links">
             <a className="not-allowed app-store"></a>
             <a className="not-allowed google-play"></a>
@@ -105,20 +106,26 @@ class Splash extends React.Component {
       </section>
      
       <section className="splash-footer">
-        <div className="splash-footer-links not-allowed">
-          <a>Popular searches</a>&nbsp;⁃
-          <a> Directory</a>&nbsp;⁃
-          <a> About us</a>&nbsp;⁃
-          <a> Creator Resources</a>&nbsp;⁃
-          <a> Blogs</a>&nbsp;⁃
-          <a> Jobs</a>&nbsp;⁃
-          <a> Developers</a>&nbsp;⁃
-          <a> Help</a>&nbsp;⁃
-          <a> Legal</a>&nbsp;⁃
-          <a> Privacy</a>&nbsp;⁃
-          <a> Cookies</a>&nbsp;⁃
-          <a> Imprints</a>&nbsp;⁃
-          <a> Charts</a>
+        <div className="splash-footer-links">
+          <div>
+            <a>Popular searches</a>&nbsp;⁃
+            <a> Directory</a>&nbsp;⁃
+            <a> About us</a>&nbsp;⁃
+            <a> Creator Resources</a>&nbsp;⁃
+            <a> Blogs</a>&nbsp;⁃
+            <a> Jobs</a>&nbsp;⁃
+            <a> Developers</a>&nbsp;⁃
+            <a> Help</a>&nbsp;⁃
+            <a> Legal</a>&nbsp;⁃
+            <a> Privacy</a>&nbsp;⁃
+            <a> Cookies</a>&nbsp;⁃
+            <a> Imprints</a>&nbsp;⁃
+            <a> Charts</a>
+          </div>
+          <div className="personal-links">
+            <a href="" target="_blank"><FaLinkedin /></a>
+            <a href="https://github.com/tt954" target="_blank"><FaGithub /></a>
+          </div>
         </div>
         <div className="splash-footer-lang not-allowed">
            <p><a className="sfl-link">Language: </a>English (US)</p>

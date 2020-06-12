@@ -9,8 +9,8 @@ class NavBar extends React.Component {
     const { currentUser, openModal, signout } = this.props;
 
     const logoLink = currentUser ? 
-      (<a href="/"><img src="" alt="wavetape-logo"/></a>) :
-      (<a href="/"><img src="" alt="wavetape-logo"/></a>)
+      (<Link to="/discover"><p></p></Link>) :
+      (<Link to="/"><p></p></Link>)
 
     const sessionButtons = () => {
       return currentUser ? (
@@ -27,8 +27,8 @@ class NavBar extends React.Component {
       <header className="banner">
         <div className="nav-bar">
           <div className="nav-bar-left">
-            <div className="nbl-logo">
-              {logoButton}
+            <div className={`nbl-logo ${currentUser ? "half" : "full"}`}>
+              {logoLink}
             </div>
             
               <ul className="nbl-nav-list">

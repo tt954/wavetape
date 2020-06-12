@@ -24,6 +24,42 @@ u10 = User.create!({email: "blyne@wt.com", password: "blueberries", username: "B
 u11 = User.create!({email: "kehlani@wt.com", password: "blueberries", username: "Kehlani"})
 u12 = User.create!({email: "brockhampton@wt.com", password: "blueberries", username: "BROCKHAMPTON"})
 
+u1_avatar = open("https://wavetape-seeds.s3.us-east-2.amazonaws.com/demo.jpg")
+u1.avatar.attach(io: u1_avatar, filename: 'u1_avatar.jpg')
+
+u2_avatar = open("https://wavetape-seeds.s3.us-east-2.amazonaws.com/velvet.jpg")
+u2.avatar.attach(io: u2_avatar, filename: 'u2_avatar.jpg')
+
+u3_avatar = open("https://wavetape-seeds.s3.us-east-2.amazonaws.com/ember.jpeg")
+u3.avatar.attach(io: u3_avatar, filename: 'u3_avatar.jpg')
+
+u4_avatar = open("https://wavetape-seeds.s3.us-east-2.amazonaws.com/mura.jpg")
+u4.avatar.attach(io: u4_avatar, filename: 'u4_avatar.jpg')
+
+u5_avatar = open("https://wavetape-seeds.s3.us-east-2.amazonaws.com/frank.jpg")
+u5.avatar.attach(io: u5_avatar, filename: 'u5_avatar.jpg')
+
+u6_avatar = open("https://wavetape-seeds.s3.us-east-2.amazonaws.com/jcole.jpg")
+u6.avatar.attach(io: u6_avatar, filename: 'u6_avatar.jpg')
+
+u7_avatar = open("https://wavetape-seeds.s3.us-east-2.amazonaws.com/billie.jpg")
+u7.avatar.attach(io: u7_avatar, filename: 'u7_avatar.jpg')
+
+u8_avatar = open("https://wavetape-seeds.s3.us-east-2.amazonaws.com/alina.jpeg")
+u8.avatar.attach(io: u8_avatar, filename: 'u8_avatar.jpg')
+
+u9_avatar = open("https://wavetape-seeds.s3.us-east-2.amazonaws.com/troyboi.jpg")
+u9.avatar.attach(io: u9_avatar, filename: 'u9_avatar.jpg')
+
+u10_avatar = open("https://wavetape-seeds.s3.us-east-2.amazonaws.com/blyne.jpg")
+u10.avatar.attach(io: u10_avatar, filename: 'u10_avatar.jpg')
+
+u11_avatar = open("https://wavetape-seeds.s3.us-east-2.amazonaws.com/kehlani.jpg")
+u11.avatar.attach(io: u11_avatar, filename: 'u11_avatar.jpg')
+
+u12_avatar = open("https://wavetape-seeds.s3.us-east-2.amazonaws.com/brockhampton.jpg")
+u12.avatar.attach(io: u12_avatar, filename: 'u12_avatar.jpg')
+
 Follow.create!({followee_id: u9.id, follower_id: u1.id})
 Follow.create!({followee_id: u3.id, follower_id: u1.id})
 Follow.create!({followee_id: u4.id, follower_id: u1.id})

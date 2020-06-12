@@ -47,7 +47,7 @@ class Dropdown extends React.Component {
         <div className="nbr-user">
           <button className="profile-dropdown-button" 
             onFocus={this.profileOpen} onBlur={this.profileClose}>
-            <span className="profile-pic-dropdown"></span>
+            <span className="profile-pic-dropdown"><img src={currentUser.avatarUrl} alt={currentUser.username}/></span>
             <p>{currentUser.username}</p>
             <span><IoIosArrowDown size={20}/></span>
           </button>

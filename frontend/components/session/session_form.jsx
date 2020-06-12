@@ -120,7 +120,7 @@ class SessionForm extends React.Component {
 
     const buttonText = (currentStep === 2 && this.props.formType === "signup") ? "Accept & Continue" : "Continue";
     const nextButton = (currentStep < this.props.lastStep) ? (
-      <button type="button" onClick={this._next}>{buttonText}</button>
+      <button className="session-form-next" type="button" onClick={this._next}>{buttonText}</button>
     ) : null;
 
     const prevButton = (currentStep === 2) ? (
@@ -128,7 +128,7 @@ class SessionForm extends React.Component {
     ) : null;
 
     const submitButton = (this.state.currentStep === lastStep) ? (
-      <button type="submit">{(formType === "signin") ? "Sign in" : "Get started" }</button>
+      <button className="session-form-next" type="submit">{(formType === "signin") ? "Sign in" : "Get started" }</button>
     ) : null;
 
     return (
@@ -143,7 +143,7 @@ class SessionForm extends React.Component {
               update={this.update}
               email={this.state.email}
             />
-            {prevButton}
+            {/* {prevButton} need to figure out styling */} 
             <Step2
               currentStep={this.state.currentStep}
               update={this.update}
@@ -163,11 +163,9 @@ class SessionForm extends React.Component {
             </div>
 
             {signupTerms}
-
-            <div className="session-form-next">
-              {nextButton}
-              {submitButton}
-            </div>
+            
+            {nextButton}
+            {submitButton}
 
             {step1Footer}
           </div>

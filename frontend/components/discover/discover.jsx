@@ -10,20 +10,21 @@ class Discover extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchUsers();
     this.props.fetchTracks();
   }
 
   render() {
-    const { tracks, users } = this.props;
-    let playlist1, playlist2;
+    const { tracks } = this.props;
+    let playlist1, playlist2, playlist3;
 
     if (Object.keys(tracks).length === 0) {
       return (
         <button onClick={this.props.fetchTracks}>Loading...</button>
       )
     } else {
-      playlist1 = tracks.slice(0);
+      playlist1 = tracks.slice(8);
+      playlist2 = tracks.slice(0, 4);
+      playlist3 = tracks.slice(4, 8);
     }
 
     return (
@@ -35,13 +36,18 @@ class Discover extends React.Component {
               <li><Playlist 
                 plTitle="New Music Now"
                 plTagline="The latest hits, updated at all time"
-                tracks={playlist1}
-                users={users}/> </li>
+                tracks={playlist1}/> 
+              </li>
               <li><Playlist 
                 plTitle="Trending"
                 plTagline="The most played tracks on WaveTape this week"
-                tracks={playlist1}
-                users={users}/></li>
+                tracks={playlist3}/>
+              </li>
+              <li><Playlist 
+                plTitle="Bubbling Up"
+                plTagline="Emerging new music and tomorrow's stars"
+                tracks={playlist2}/>
+              </li>
             </ul>
 
           </div>

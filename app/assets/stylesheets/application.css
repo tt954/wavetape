@@ -98,7 +98,7 @@ table {
 }
 
 .not-allowed {
-  cursor: progress;
+  cursor: not-allowed;
 }
 
 /* SPLASH */
@@ -125,9 +125,10 @@ table {
 .splash-top-nav {
   display: flex;
   color: #FED766;
+  font-size: 14px;
   justify-content: space-between;
   margin: 0 auto;
-  padding: 40px 50px 0;
+  padding: 30px 35px 0;
 }
 
 img.stnl-logo {
@@ -222,6 +223,7 @@ button.signup {
 }
 
 .sms-container span {
+  font-weight: 500;
   margin: 0 14px;
 }
 
@@ -245,7 +247,7 @@ button.signup {
 .smt-li-title {
   color: #333;
   line-height: 1.4;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
   margin: 5px 0 3px;
 }
@@ -458,14 +460,22 @@ p.scc-tagline {
 }
 
 .splash-footer-links {
-  padding: 15px 0 5px 0;
-  color: #ccc;
   border-top: 1.2px solid #f2f2f2;
+  color: #ccc;
+  display: flex;
+  justify-content: space-between;
   font-size: 14px;
+  padding-top: 15px;
 }
 
-.splash-footer-links>a:hover {
+.splash-footer-links a:hover {
   color: grey;
+}
+
+.personal-links > a {
+  font-size: 22px;
+  margin-left: 8px;
+  cursor: pointer;
 }
 
 .splash-footer-lang {
@@ -576,12 +586,6 @@ p.scc-tagline {
   width: 380px;
 }
 
-#email-input {
-  position: relative;
-  padding-left: 30px;
-  width: 358px;
-}
-
 .session-form-back {
   position: absolute;
   left: 35px;
@@ -601,9 +605,11 @@ p.scc-tagline {
   color: white;
   display: flex;
   height: 25px;
+  align-items: center;
   justify-content: center;
   padding: 10px 15px;
   margin-top: 10px;
+  width: 370px;
 }
 
 .need-help-wrapper {
@@ -640,7 +646,7 @@ p.scc-tagline {
 .signup-terms a {
   color: #4472CA;
   font-weight: 350;
-  cursor: progress;
+  cursor: not-allowed;
 }
 
 .signup-terms {
@@ -683,6 +689,32 @@ p.scc-tagline {
 .nbl-logo {
   background: linear-gradient(#f70,#f30);
   width: 80px;
+  display: flex;
+  justify-content: center;
+}
+
+.nbl-logo a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nbl-logo img {
+  position: absolute;
+  height: 30px;
+  width: 30px;
+}
+
+.nbl-logo p {
+  color: white;
+  position: relative;
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.nbl-logo.full {
+  width: 150px;
 }
 
 ul.nbl-nav-list {
@@ -787,7 +819,7 @@ button.nbr-upgrade.not-allowed:hover {
 }
 
 .nb-menu-dropdown.revealed ul li {
-  cursor: progress;
+  cursor: not-allowed;
 }
 
 .nb-menu-dropdown li, 
@@ -819,9 +851,7 @@ li.dropdown-signout {
   color: #fff;
 }
 
-.profile-pic-dropdown {
-  background: url('demo-profile.jpg');
-  background-size: cover;
+.profile-pic-dropdown img {
   border-radius: 50%;
   height: 26px;
   width: 26px;
@@ -846,7 +876,9 @@ li.dropdown-signout {
   margin-right: 30px;
 }
 
-.dmc-content li {
+.dmc-content > li {
+  border-bottom: 1.4px solid #f2f2f2;
+  padding-bottom: 48px;
   margin-bottom: 34px;
 }
 
@@ -861,12 +893,13 @@ li.dropdown-signout {
 
 .playlist-title h2 {
   color: #333;
-  font-size: 22px;
+  font-size: 24px;
 }
 
 .playlist-title p {
   color: #999;
   font-size: 14px;
+  font-weight: 300;
   margin-top: 5px;
 }
 
@@ -882,7 +915,6 @@ li.dropdown-signout {
 /* PROFILE */
 
 .user-profile-banner {
-  background: linear-gradient(324deg, rgba(221,223,245,1) 0%, rgba(221,223,245,1) 11%, rgba(254,215,102,1) 91%);
   height: 260px;
   width: 1240px;
 }
@@ -897,9 +929,7 @@ li.dropdown-signout {
   display: flex;
 }
 
-.upb-avatar {
-  background: url('demo-profile.jpg');
-  background-size: cover;
+.upb-avatar img {
   border-radius: 50%;
   margin: 30px;
   height: 200px;
@@ -957,6 +987,121 @@ li.dropdown-signout {
 
 .upn-buttons span {
   padding-right: 5px;
+}
+
+.user-profile-main {
+  display: flex;
+  background: white;
+  width: 1240px;
+}
+
+.upm-main h3 {
+  padding-top: 22px;
+  margin: 12px 0 20px;
+  font-size: 23px;
+  font-weight: 100;
+}
+
+.upm-main {
+  border-right: 1px solid #f2f2f2;
+  padding-left: 30px;
+}
+
+.soundArtwork img {
+  height: 160px;
+  width: 160px;
+  margin-right: 15px;
+}
+
+.soundContent-header {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  padding-top: 7px;
+  width: 644px;
+}
+
+.sch-play-button svg {
+  color: #f50;
+  height: 36px;
+  width: 36px;
+}
+
+.sch-play-button {
+  margin-right: 5px;
+}
+
+.sch-additional {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+.sch-title-container a {
+  color: #333;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.soundContent {
+  color: #999;
+  width: 644px;
+}
+
+.userAllList {
+  display: flex;
+  margin-right: 30px;
+  overflow: auto;
+}
+
+.upm-main-container {
+  width: 850px;
+}
+
+.upm-sidebar {
+  margin: 20px 30px;
+  width: 300px;
+}
+
+.userAllList li {
+  padding-right: 10px;
+}
+
+.info-stats-table {
+  color: #999;
+  font-size: 14px;
+  margin-bottom: 14px;
+  width: 300px;
+}
+
+.info-stats-table td {
+  border-right: 1px solid #f2f2f2;
+  width: 33.33%;
+  padding-left: 10px;
+}
+
+.info-stats-table div {
+  font-size: 20px;
+  font-weight: 300;
+  margin-right: 5px;
+}
+
+.followingsModule li {
+  margin: 10px 0;
+}
+
+.sidebarItem a {
+  color: #333;
+  display: flex;
+  font-size: 14px;
+  align-items: center;
+}
+
+.sidebarAvatar {
+  border-radius: 50%;
+  margin-right: 7px;
+  height: 50px;
+  width: 50px;
 }
 
 /* TRACK SHOW */
@@ -1025,8 +1170,6 @@ li.dropdown-signout {
 }
 
 #progressBall {
-  /* background-color: rgb(255, 85, 0);
-  border: 1px solid rgb(255, 85, 0); */
   background: #f50;
   border-radius: 100%;
   margin-top: -5px;
