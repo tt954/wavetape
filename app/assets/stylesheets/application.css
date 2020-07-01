@@ -548,14 +548,34 @@ p.scc-tagline {
   cursor: pointer;
 }
 
+.demo-user svg {
+  font-size: 14px;
+  margin-right: 8px;
+}
+
 .connect-github {
   border: 1px solid #ccc;
   color: #222;
 }
 
+.connect-github svg {
+  font-size: 17px;
+  margin-right: 8px;
+}
+
 .connect-openFridge {
   background: black;
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.connect-openFridge span {
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 700;
+  margin-right: 8px;
 }
 
 .auth-separator {
@@ -617,15 +637,9 @@ p.scc-tagline {
   width: 370px;
 }
 
-.need-help-wrapper {
-  color: #4472CA;
-  font-weight: 350;
-  margin: 15px 0 10px;
-  text-align: right;
-}
-
 .step1-footer {
   font-size: 13px;
+  font-weight: 350;
 }
 
 .step2-footer {
@@ -644,7 +658,7 @@ p.scc-tagline {
 .step1-footer-content p {
   color: #999;
   line-height: 15px;
-  margin-bottom: 8px;
+  margin: 15px 0 8px;
 }
 
 .step1-footer-content a, 

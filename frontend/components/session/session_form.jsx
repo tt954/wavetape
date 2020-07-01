@@ -4,6 +4,8 @@ import Step1 from './step_1_email';
 import Step2 from './step_2_password';
 import Step3 from './step_3_username';
 
+import { FaMusic, FaGithub } from "react-icons/fa";
+
 class SessionForm extends React.Component {
   constructor(props) {
     super(props)
@@ -95,9 +97,9 @@ class SessionForm extends React.Component {
     
     const providerButtons = (currentStep === 1) ? (
       <div className="session-form-providers">
-        <a className="demo-user" onClick={this.handleDemo}>Demo User</a>
-        <a className="connect-github" href="https://github.com/tt954/wavetape" target="_blank">Continue to Github</a>
-        <a className="connect-openFridge" href="https://open--fridge.herokuapp.com/" target="_blank">Continue to openFridge</a>
+        <a className="demo-user" onClick={this.handleDemo}><FaMusic /> Continue as Demo User</a>
+        <a className="connect-github" href="https://github.com/tt954/wavetape" target="_blank"><FaGithub /> Continue to Github</a>
+        <a className="connect-openFridge" href="https://tt954.github.io/" target="_blank"><span>TT.</span>Continue to Visit Me</a>
         <div className="auth-separator"><span>or</span></div>
       </div>
     ) : null;
@@ -108,12 +110,9 @@ class SessionForm extends React.Component {
 
     const step1Footer = (currentStep === 1) ? (
       <div className="step1-footer">
-        <div className="need-help-wrapper">
-          <a href="https://tt954.github.io/" target="_blank" className="need-help">Visit me</a>
-        </div>
         <div className="step1-footer-content">
-          <p>This project was created for learning purposes. No infringement of copyright is intended. I do not own any music used in the demo of this site. Credits to the original owners.</p>
-          <p>This site might look familiar to you because it is a clone of the music sharing platform <a href="https://soundcloud.com/" target="_blank">SoundCloud</a>.</p>
+          <p>This project was created for learning purposes. No infringement of copyright is intended. I do not own any music or photos used in the demo of this site. Credits to the original owners.</p>
+          <p>This site is a clone of the music sharing platform <a href="https://soundcloud.com/" target="_blank">SoundCloud</a>.</p>
         </div>
       </div>
     ) : null;
