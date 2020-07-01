@@ -106,29 +106,9 @@ class Splash extends React.Component {
       </section>
      
       <section className="splash-footer">
-        <div className="splash-footer-links">
-          <div>
-            <a>Popular searches</a>&nbsp;⁃
-            <a> Directory</a>&nbsp;⁃
-            <a> About us</a>&nbsp;⁃
-            <a> Creator Resources</a>&nbsp;⁃
-            <a> Blogs</a>&nbsp;⁃
-            <a> Jobs</a>&nbsp;⁃
-            <a> Developers</a>&nbsp;⁃
-            <a> Help</a>&nbsp;⁃
-            <a> Legal</a>&nbsp;⁃
-            <a> Privacy</a>&nbsp;⁃
-            <a> Cookies</a>&nbsp;⁃
-            <a> Imprints</a>&nbsp;⁃
-            <a> Charts</a>
-          </div>
-          <div className="personal-links">
-            <a href="" target="_blank"><FaLinkedin /></a>
-            <a href="https://github.com/tt954" target="_blank"><FaGithub /></a>
-          </div>
-        </div>
-        <div className="splash-footer-lang not-allowed">
-           <p><a className="sfl-link">Language: </a>English (US)</p>
+        <div className="personal-links">
+          <a href="" target="_blank"><FaLinkedin /></a>
+          <a href="https://github.com/tt954" target="_blank"><FaGithub /></a>
         </div>
       </section>
      </div>

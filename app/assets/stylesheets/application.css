@@ -16,6 +16,8 @@
 
 /* RESET */
 
+@import './api/splash.scss';
+
 html, body, header, nav, h1, h2, h3, h4, h5, h6, 
 a, ol, ul, li, strong, main, button, i,
 section, img, div, p, form,
@@ -472,11 +474,11 @@ p.scc-tagline {
   color: grey;
 }
 
-.personal-links > a {
+/* .personal-links > a {
   font-size: 22px;
   margin-left: 8px;
   cursor: pointer;
-}
+} */
 
 .splash-footer-lang {
   color: #333;
