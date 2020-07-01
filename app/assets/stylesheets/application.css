@@ -548,12 +548,12 @@ p.scc-tagline {
   cursor: pointer;
 }
 
-.connect-google {
+.connect-github {
   border: 1px solid #ccc;
   color: #222;
 }
 
-.connect-apple {
+.connect-openFridge {
   background: black;
   color: white;
 }
@@ -582,10 +582,19 @@ p.scc-tagline {
   width: 380px;
 }
 
+.email-input {
+  position: relative;
+}
+
+.email-input.step2 input {
+  padding-left: 30px;
+  width: 358px;
+}
+
 .session-form-back {
   position: absolute;
-  left: 35px;
-  top: 212px;
+  left: 10px;
+  top: 22px;
 }
 
 .session-form-errors {
@@ -616,7 +625,7 @@ p.scc-tagline {
 }
 
 .step1-footer {
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .step2-footer {
@@ -639,10 +648,9 @@ p.scc-tagline {
 }
 
 .step1-footer-content a, 
-.signup-terms a {
+.signup-terms span {
   color: #4472CA;
   font-weight: 350;
-  cursor: not-allowed;
 }
 
 .signup-terms {
@@ -653,7 +661,7 @@ p.scc-tagline {
 
 .step1-footer-content a:hover, 
 .need-help:hover,
-.signup-terms a:hover {
+.signup-terms span:hover {
   color: black;
 }
 

@@ -13,7 +13,7 @@ class Splash extends React.Component {
     const { openModal, tracks, receiveSelectedTrack } = this.props;
     let trackLis;
 
-    if (Object.keys(tracks).length === 0) {
+    if (!Object.keys(tracks).length) {
       return (
         <button onClick={this.props.fetchTracks}>Loading...</button>
       )
