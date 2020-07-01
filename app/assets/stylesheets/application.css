@@ -348,7 +348,7 @@ p.sdi-content {
   margin-top: 28px;
 }
 
-.sdi-links a {
+.sdi-links span {
   background-size: 100%;
   background-repeat: no-repeat;
   display: inline-block;
@@ -453,40 +453,34 @@ p.scc-tagline {
 }
 
 .splash-footer {
+  background: #fff;
   height: 78px;
-  background: white;
-  display: flex;
-  flex-direction: column;
-  line-height: 20px;
   padding: 0 30px 75px;
 }
 
-.splash-footer-links {
+.footer-links {
   border-top: 1.2px solid #f2f2f2;
   color: #ccc;
+}
+
+.personal-links {
+  display: flex; 
+  justify-content: flex-end;
+  margin-top: 22px;
+}
+
+.personal-links a {
+  font-size: 25px;
+  margin-left: 7px;
+}
+
+#personal-site {
   display: flex;
-  justify-content: space-between;
-  font-size: 14px;
-  padding-top: 15px;
-}
-
-.splash-footer-links a:hover {
-  color: grey;
-}
-
-/* .personal-links > a {
-  font-size: 22px;
-  margin-left: 8px;
-  cursor: pointer;
-} */
-
-.splash-footer-lang {
-  color: #333;
-  font-size: 15px;
-}
-
-.splash-footer-lang:hover .sfl-link {
-  color: #3388DD;
+  align-items: center;
+  font-size: 23px;
+  font-weight: 700;
+  font-style: italic;
+  margin-right: 5px;
 }
 
 /* MODAL */
