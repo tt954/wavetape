@@ -16,6 +16,8 @@
 
 /* RESET */
 
+@import './api/splash.scss';
+
 html, body, header, nav, h1, h2, h3, h4, h5, h6, 
 a, ol, ul, li, strong, main, button, i,
 section, img, div, p, form,
@@ -346,7 +348,7 @@ p.sdi-content {
   margin-top: 28px;
 }
 
-.sdi-links a {
+.sdi-links span {
   background-size: 100%;
   background-repeat: no-repeat;
   display: inline-block;
@@ -451,40 +453,34 @@ p.scc-tagline {
 }
 
 .splash-footer {
+  background: #fff;
   height: 78px;
-  background: white;
-  display: flex;
-  flex-direction: column;
-  line-height: 20px;
   padding: 0 30px 75px;
 }
 
-.splash-footer-links {
+.footer-links {
   border-top: 1.2px solid #f2f2f2;
   color: #ccc;
+}
+
+.personal-links {
+  display: flex; 
+  justify-content: flex-end;
+  margin-top: 22px;
+}
+
+.personal-links a {
+  font-size: 25px;
+  margin-left: 7px;
+}
+
+#personal-site {
   display: flex;
-  justify-content: space-between;
-  font-size: 14px;
-  padding-top: 15px;
-}
-
-.splash-footer-links a:hover {
-  color: grey;
-}
-
-.personal-links > a {
-  font-size: 22px;
-  margin-left: 8px;
-  cursor: pointer;
-}
-
-.splash-footer-lang {
-  color: #333;
-  font-size: 15px;
-}
-
-.splash-footer-lang:hover .sfl-link {
-  color: #3388DD;
+  align-items: center;
+  font-size: 23px;
+  font-weight: 700;
+  font-style: italic;
+  margin-right: 5px;
 }
 
 /* MODAL */
@@ -552,14 +548,34 @@ p.scc-tagline {
   cursor: pointer;
 }
 
-.connect-google {
+.demo-user svg {
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+.connect-github {
   border: 1px solid #ccc;
   color: #222;
 }
 
-.connect-apple {
+.connect-github svg {
+  font-size: 17px;
+  margin-right: 8px;
+}
+
+.connect-openFridge {
   background: black;
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.connect-openFridge span {
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 700;
+  margin-right: 8px;
 }
 
 .auth-separator {
@@ -586,10 +602,19 @@ p.scc-tagline {
   width: 380px;
 }
 
+.email-input {
+  position: relative;
+}
+
+.email-input.step2 input {
+  padding-left: 30px;
+  width: 358px;
+}
+
 .session-form-back {
   position: absolute;
-  left: 35px;
-  top: 212px;
+  left: 10px;
+  top: 22px;
 }
 
 .session-form-errors {
@@ -612,15 +637,9 @@ p.scc-tagline {
   width: 370px;
 }
 
-.need-help-wrapper {
-  color: #4472CA;
-  font-weight: 350;
-  margin: 15px 0 10px;
-  text-align: right;
-}
-
 .step1-footer {
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: 350;
 }
 
 .step2-footer {
@@ -639,14 +658,13 @@ p.scc-tagline {
 .step1-footer-content p {
   color: #999;
   line-height: 15px;
-  margin-bottom: 8px;
+  margin: 15px 0 8px;
 }
 
 .step1-footer-content a, 
-.signup-terms a {
+.signup-terms span {
   color: #4472CA;
   font-weight: 350;
-  cursor: not-allowed;
 }
 
 .signup-terms {
@@ -657,7 +675,7 @@ p.scc-tagline {
 
 .step1-footer-content a:hover, 
 .need-help:hover,
-.signup-terms a:hover {
+.signup-terms span:hover {
   color: black;
 }
 
