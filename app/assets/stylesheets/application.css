@@ -16,8 +16,6 @@
 
 /* RESET */
 
-@import './api/splash.scss';
-
 html, body, header, nav, h1, h2, h3, h4, h5, h6, 
 a, ol, ul, li, strong, main, button, i,
 section, img, div, p, form,
@@ -1195,6 +1193,58 @@ li.dropdown-signout {
   position: absolute;
   height: 8px;
   width: 8px;
+}
+
+.volume-container.hidden {
+  visibility: hidden;
+}
+
+.volume-container {
+  background-color: #f2f2f2;
+  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+  border: 1px solid #cecece;
+  height: 118px;
+  position: fixed;
+  bottom: 44px;
+  visibility: visible;
+  width: 30px;
+}
+
+.volume {
+  height: 100%;
+  position: relative;
+}
+
+.volume-extra {
+  height: 10px;
+}
+
+input[type="range"] {
+  height: 100%;
+  transform: rotate(-90deg) translateY(-35px) !important;
+  width: 100px;
+  -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  background: #f50;
+  border-radius: 100%;
+  cursor: pointer;
+  height: 8px;
+  transform: translateY(-2.75px);
+  width: 8px;
+  -webkit-appearance: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  background: #333;
+  cursor: pointer;
+  width: 100%;
+  height: 2px;
 }
 
 .mpc-soundBadge {
