@@ -16,8 +16,6 @@
 
 /* RESET */
 
-@import './api/splash.scss';
-
 html, body, header, nav, h1, h2, h3, h4, h5, h6, 
 a, ol, ul, li, strong, main, button, i,
 section, img, div, p, form,
@@ -1195,6 +1193,23 @@ li.dropdown-signout {
   position: absolute;
   height: 8px;
   width: 8px;
+}
+
+.volume {
+  background-color: #f2f2f2;
+  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+  height: 118px;
+  position: fixed;
+  bottom: 40px;
+  width: 30px;
+}
+
+input[type="range"] {
+  -webkit-appearance: slider-vertical;
+}
+
+input[type=range]::-ms-fill-upper {
+  background: #f50;
 }
 
 .mpc-soundBadge {

@@ -11,8 +11,15 @@ import { FiRepeat } from  'react-icons/fi';
 class MusicPlayer extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      muted: false,
+      volume: 1.0,
+    }
+
     this.updateProgress = this.updateProgress.bind(this);
     this.updateElapsed = this.updateElapsed.bind(this);
+    this.toggleMute = this.toggleMute.bind(this);
+    this.updateVolume = this.updateVolume.bind(this);
   }
 
   componentDidMount() {
@@ -22,6 +29,7 @@ class MusicPlayer extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    const audio = document.getElementById("audio");
     if (prevProps.playing !== this.props.playing) {
       this.props.playing ? this.audio.play() : this.audio.pause();
     }
@@ -49,8 +57,28 @@ class MusicPlayer extends React.Component {
     return new Date(s * 1000).toISOString().substr(14, 5);
   }
 
+  toggleMute() {
+    const audio = document.getElementById("audio");
+    if (audio.muted) {
+      audio.muted = false 
+      this.setState({muted: false});
+    } else {
+      audio.muted = true;
+      this.setState({ muted: true });
+    }
+  }
+
+  updateVolume(e) {
+    const audio = document.getElementById("audio");
+    const volumeBar = document.getElementById("volumeBar");
+    const volume = e.target.value;
+    audio.volume = volume;
+    this.setState({volume: volume});
+  }
+
   render() {
     const { playing, selectedTrack, togglePlay } = this.props;
+
     const audioSrc = selectedTrack ? selectedTrack.trackUrl : null;
     const playControl = playing ? <IoMdPause /> : <IoMdPlay />;
     const trackAvatar = selectedTrack ? <Link className="soundBadge-avatar" to={`/tracks/${selectedTrack.id}`}><img src={selectedTrack.photoUrl}></img></Link> : null;
@@ -66,6 +94,10 @@ class MusicPlayer extends React.Component {
         <button><IoMdList /></button>
       </div>
     ) : null;
+
+    const volumeIcon = () => {
+      return this.state.muted ? <IoMdVolumeOff /> : <IoMdVolumeHigh />
+    }
 
     return (
       <div className={`music-player-bar ${selectedTrack ? "revealed": "hidden"}`}>
@@ -95,7 +127,18 @@ class MusicPlayer extends React.Component {
             </div>
 
             <div className="mpc-button volume-control">
-              <IoMdVolumeHigh />
+              <button onClick={this.toggleMute}>
+                {volumeIcon()}
+              </button>
+              <div className="volume">
+                <div id="volumeBar"></div>
+                <input 
+                  type="range"
+                  min="0.0" max="1.0"
+                  step="any"
+                  value={this.state.muted ? 0 : this.state.volume}
+                  onChange={this.updateVolume}/>
+              </div>
             </div>
               
             <div className="mpc-soundBadge">
