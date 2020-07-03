@@ -12,12 +12,14 @@ class MusicPlayer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      volumeControl: false,
       muted: false,
-      volume: 1.0,
-    }
+      volume: 0.5,
+    };
 
     this.updateProgress = this.updateProgress.bind(this);
     this.updateElapsed = this.updateElapsed.bind(this);
+    this.handleVolMouse = this.handleVolMouse.bind(this);
     this.toggleMute = this.toggleMute.bind(this);
     this.updateVolume = this.updateVolume.bind(this);
   }
@@ -40,7 +42,7 @@ class MusicPlayer extends React.Component {
     const audio = document.getElementById("audio");
     const progressBar = document.getElementById("progressBar");
     const progressBall = document.getElementById("progressBall");
-    const percent = audio.currentTime / audio.duration * 100;
+    const percent = (audio.currentTime / audio.duration) * 100;
     progressBar.style.width = `${percent}%`;
     progressBall.style.left = `${percent}%`;
   }
@@ -57,11 +59,19 @@ class MusicPlayer extends React.Component {
     return new Date(s * 1000).toISOString().substr(14, 5);
   }
 
+  handleVolMouse() {
+    if (this.state.volumeControl) {
+      this.setState({ volumeControl: false })
+    } else {
+      this.setState({ volumeControl: true });
+    }
+  }
+
   toggleMute() {
     const audio = document.getElementById("audio");
     if (audio.muted) {
-      audio.muted = false 
-      this.setState({muted: false});
+      audio.muted = false;
+      this.setState({ muted: false });
     } else {
       audio.muted = true;
       this.setState({ muted: true });
@@ -73,7 +83,7 @@ class MusicPlayer extends React.Component {
     const volumeBar = document.getElementById("volumeBar");
     const volume = e.target.value;
     audio.volume = volume;
-    this.setState({volume: volume});
+    this.setState({ volume: volume });
   }
 
   render() {
@@ -81,41 +91,68 @@ class MusicPlayer extends React.Component {
 
     const audioSrc = selectedTrack ? selectedTrack.trackUrl : null;
     const playControl = playing ? <IoMdPause /> : <IoMdPlay />;
-    const trackAvatar = selectedTrack ? <Link className="soundBadge-avatar" to={`/tracks/${selectedTrack.id}`}><img src={selectedTrack.photoUrl}></img></Link> : null;
+    const trackAvatar = selectedTrack ? (
+      <Link className="soundBadge-avatar" to={`/tracks/${selectedTrack.id}`}>
+        <img src={selectedTrack.photoUrl}></img>
+      </Link>
+    ) : null;
     const trackInfo = selectedTrack ? (
       <div className="soundBadge-info">
-        <Link to={`/users/${selectedTrack.uploader_id}`}>{selectedTrack.uploader}</Link>
+        <Link to={`/users/${selectedTrack.uploader_id}`}>
+          {selectedTrack.uploader}
+        </Link>
         <Link to={`/tracks/${selectedTrack.id}`}>{selectedTrack.title}</Link>
       </div>
     ) : null;
     const trackActions = selectedTrack ? (
       <div className="soundBadge-actions">
-        <button><IoMdHeart /></button>
-        <button><IoMdList /></button>
+        <button>
+          <IoMdHeart />
+        </button>
+        <button>
+          <IoMdList />
+        </button>
       </div>
     ) : null;
 
     const volumeIcon = () => {
-      return this.state.muted ? <IoMdVolumeOff /> : <IoMdVolumeHigh />
-    }
+      if (this.state.volume == 0) {
+        return <IoMdVolumeOff />; 
+      } else if (this.state.volume > 0.5) {
+        return <IoMdVolumeHigh />;
+      } else if (this.state.volume <= 0.5) {
+        return <IoMdVolumeLow />;
+      }
+    };
 
     return (
-      <div className={`music-player-bar ${selectedTrack ? "revealed": "hidden"}`}>
+      <div
+        className={`music-player-bar ${selectedTrack ? "revealed" : "hidden"}`}
+      >
         <section className="music-player">
-          <audio id="audio" ref={ref => this.audio = ref} src={audioSrc} />
+          <audio id="audio" ref={(ref) => (this.audio = ref)} src={audioSrc} />
           <div className="music-player-controls">
-            <button className="mpc-button skip-control controlPrev"><IoMdSkipBackward /></button>
+            <button className="mpc-button skip-control controlPrev">
+              <IoMdSkipBackward />
+            </button>
 
-            <button 
+            <button
               className="mpc-button play-control controlPlay"
-              onClick={togglePlay}>
+              onClick={togglePlay}
+            >
               {playControl}
             </button>
 
-            <button className="mpc-button skip-control controlNext"><IoMdSkipForward /></button>
+            <button className="mpc-button skip-control controlNext">
+              <IoMdSkipForward />
+            </button>
 
-            <button className="mpc-button controlShuffle"><RiShuffleLine /></button>
-            <button className="mpc-button controlRepeat"><FiRepeat /></button>
+            <button className="mpc-button controlShuffle">
+              <RiShuffleLine />
+            </button>
+            <button className="mpc-button controlRepeat">
+              <FiRepeat />
+            </button>
 
             <div className="mpc-progress progress-control">
               <div id="timeElasped">00:00</div>
@@ -126,29 +163,31 @@ class MusicPlayer extends React.Component {
               <div id="totalTime">00:00</div>
             </div>
 
-            <div className="mpc-button volume-control">
-              <button onClick={this.toggleMute}>
-                {volumeIcon()}
-              </button>
-              <div className="volume">
-                <div id="volumeBar"></div>
-                <input 
+            <div
+              className="mpc-button volume-control"
+              onMouseEnter={this.handleVolMouse}
+              onMouseLeave={this.handleVolMouse}
+            >
+              <button onClick={this.toggleMute}>{volumeIcon()}</button>
+              <div className={`volume-container ${ this.state.volumeControl ? "" : "hidden" }`}>
+                <input
                   type="range"
-                  min="0.0" max="1.0"
+                  min="0.0"
+                  max="1.0"
                   step="any"
                   value={this.state.muted ? 0 : this.state.volume}
-                  onChange={this.updateVolume}/>
+                  onChange={this.updateVolume}
+                />
+                <div className="volume-extra"></div>
               </div>
             </div>
-              
+
             <div className="mpc-soundBadge">
               {trackAvatar}
               {trackInfo}
               {trackActions}
             </div>
-
           </div>
-
         </section>
       </div>
     );
