@@ -14,7 +14,7 @@ class MusicPlayer extends React.Component {
     this.state = {
       volumeControl: false,
       muted: false,
-      volume: 0.5,
+      volume: 1.0,
     };
 
     this.updateProgress = this.updateProgress.bind(this);
@@ -69,18 +69,18 @@ class MusicPlayer extends React.Component {
 
   toggleMute() {
     const audio = document.getElementById("audio");
+    const volume = audio.volume;
     if (audio.muted) {
       audio.muted = false;
-      this.setState({ muted: false });
+      this.setState({ muted: false, volume: volume });
     } else {
       audio.muted = true;
-      this.setState({ muted: true });
+      this.setState({ muted: true, volume: 0 });
     }
   }
 
   updateVolume(e) {
     const audio = document.getElementById("audio");
-    const volumeBar = document.getElementById("volumeBar");
     const volume = e.target.value;
     audio.volume = volume;
     this.setState({ volume: volume });
@@ -170,15 +170,17 @@ class MusicPlayer extends React.Component {
             >
               <button onClick={this.toggleMute}>{volumeIcon()}</button>
               <div className={`volume-container ${ this.state.volumeControl ? "" : "hidden" }`}>
-                <input
-                  type="range"
-                  min="0.0"
-                  max="1.0"
-                  step="any"
-                  value={this.state.muted ? 0 : this.state.volume}
-                  onChange={this.updateVolume}
-                />
-                <div className="volume-extra"></div>
+                <div className="volume">
+                  <input
+                    type="range"
+                    min="0.0"
+                    max="1.0"
+                    step="any"
+                    value={this.state.muted ? 0 : this.state.volume}
+                    onChange={this.updateVolume}
+                  />
+                  <div className="volume-extra"></div>
+                </div>
               </div>
             </div>
 

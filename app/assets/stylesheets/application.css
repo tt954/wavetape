@@ -1210,9 +1210,13 @@ li.dropdown-signout {
   width: 30px;
 }
 
+.volume {
+  height: 100%;
+  position: relative;
+}
+
 .volume-extra {
   height: 10px;
-  position: relative;
 }
 
 input[type="range"] {
@@ -1220,6 +1224,10 @@ input[type="range"] {
   transform: rotate(-90deg) translateY(-35px) !important;
   width: 100px;
   -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+  outline: none;
 }
 
 input[type=range]::-webkit-slider-thumb {
@@ -1233,17 +1241,10 @@ input[type=range]::-webkit-slider-thumb {
 }
 
 input[type=range]::-webkit-slider-runnable-track {
+  background: #333;
+  cursor: pointer;
   width: 100%;
   height: 2px;
-  background: #333;
-}
-
-input[type=range]::-ms-fill-lower {
-  background: #f50;
-}
-
-input[type=range]:focus::-ms-fill-lower {
-  background: #f50;
 }
 
 .mpc-soundBadge {
