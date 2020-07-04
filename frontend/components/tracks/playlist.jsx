@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PlaylistItem from './playlist_item';
+import PlaylistItem from './playlist_item'
 
 class Playlist extends React.Component {
   render() {
@@ -13,16 +13,16 @@ class Playlist extends React.Component {
           <p>{this.props.plTagline}</p>
         </div>
         <ul className="playlist-content">
-          {tracks.map(track => 
+          {tracks.map((track) => (
             <li key={track.id}>
-              <PlaylistItem
+              <PlaylistItem 
                 track={track}
-                receiveSelectedTrack={receiveSelectedTrack}/>
+                receiveSelectedTrack={receiveSelectedTrack} />
             </li>
-          )}
+          ))}
         </ul>
       </>
-    )
+    );
   }
 }
 

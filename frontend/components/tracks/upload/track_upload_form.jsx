@@ -3,12 +3,17 @@ import React from 'react';
 class TrackUploadForm extends React.Component {
   render() {
     return (
-      <>
-      <input
-        type="file"
-        onChange={this.props.handleFile} />
-      </>
-    )
+      <div className="ulm-dropzone">
+        <span>Drag and drop your track here</span>
+        <input
+          type="file"
+          id="trackUpload"
+          className="inputfile"
+          onChange={this.props.handleFile}
+        />
+        <label for="trackUpload">or choose file to upload</label>
+      </div>
+    );
   }
 }
 

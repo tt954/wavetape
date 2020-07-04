@@ -9,6 +9,8 @@ class TrackUpload extends React.Component {
     this.state = {
       title: '',
       description: '',
+      genre: '',
+      privacy: '',
       trackFile: null,
     }
 
@@ -38,16 +40,20 @@ class TrackUpload extends React.Component {
         <NavBar />
         <div className="upload">
           <div className="upload-nav"></div>
+
           <div className="upload-main">
-            <TrackUploadForm 
+            <div className="ulm-tryPro"></div>
+            <TrackUploadForm
               update={this.update}
               handleFile={this.handleFile}
-              />
+            />
+            <div className="ulm-footer"></div>
           </div>
+
           <div className="upload-footer"></div>
         </div>
       </>
-    )
+    );
   }
 
 }
