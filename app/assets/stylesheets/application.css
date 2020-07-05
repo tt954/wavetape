@@ -1275,6 +1275,7 @@ input[type=range]::-webkit-slider-runnable-track {
 /* TRACK UPLOAD */
 
 .upload {
+  color: #333;
   margin: 0 auto;
   width: 1240px;
 }
@@ -1292,6 +1293,7 @@ input[type=range]::-webkit-slider-runnable-track {
 .ulm-tryPro {
   background-color: #fff;
   border-radius: 2px;
+  display: flex;
   height: 56px;
   padding: 20px;
   width: 760px;
@@ -1315,14 +1317,89 @@ input[type=range]::-webkit-slider-runnable-track {
   margin-bottom: 10px;
 }
 
+.ulm-dropzone-top {
+  display: flex;
+  flex-direction: column;
+  margin: 135px 0;
+}
+
+.ulm-dropzone-bottom {
+  font-size: 12.5px;
+  margin-bottom: 20px;
+}
+
+.upload-limit {
+  display: flex;
+  justify-content: space-between;
+}
+
+.upload-limit p {
+  font-weight: 500;
+}
+
+.ulm-tryPro-left {
+  font-size: 14px;
+}
+
+.upload-limit-meter {
+  background: #999;
+  height: 4px;
+  margin: 10px 0;
+  width: 410px;
+}
+
+.ulm-tryPro-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.ulm-tryPro-right button {
+  background: #fff;
+  border: 1px solid #f50;
+  color: #f50;
+  font-size: 15px;
+  height: 20px;
+  padding: 10px 15px;
+}
+
+.ulm-tryPro-right button:hover {
+  background: #f50;
+  color: #fff;
+}
+
 .ulm-footer {
   background-color: hsla(0,0%,94.9%,.9);
-  border-color: #f2f2f2;
+  border: 1px solid #fff;
   border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 12.5px;
   height: 112px;
   padding: 20px;
   margin-top: 7px;
   width: 760px;
+}
+
+.ulm-footer-top {
+  padding-bottom: 10px;
+}
+
+.ulm-footer-top p:nth-child(1) {
+  color: #4472CA;
+  padding-bottom: 8px;
+}
+
+.ulm-footer-bottom {
+  border-top: 1px solid #fff;
+  padding-top: 10px;
+}
+
+.ulm-footer-bottom p:nth-child(2) {
+  color: #4472CA;
+  padding-top: 8px;
 }
 
 .inputfile {
@@ -1338,9 +1415,11 @@ input[type=range]::-webkit-slider-runnable-track {
   background: #f50;
   border-radius: 3px;
   color: #fff;
+  cursor: pointer;
   font-size: 16px;
   line-height: 18px;
   padding: 10px 15px;
   text-align: center;
   width: 250px;
 }
+
