@@ -191,7 +191,7 @@ class ProfileShow extends React.Component {
                       </td>
                       <td>
                         <h3>Tracks</h3>
-                        <div>0</div> {/* number of user uploaded tracks */}
+                        <div>{user.track_ids.length}</div>
                       </td>
                     </tr>
                   </tbody>
