@@ -26,7 +26,7 @@ class TrackUpload extends React.Component {
     const track = e.currentTarget.files[0];
 
     if (track) {
-
+      console.log(track)
     }
   }
 
