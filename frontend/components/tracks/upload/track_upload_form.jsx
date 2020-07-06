@@ -8,32 +8,11 @@ class TrackUploadForm extends React.Component {
       dragCounter: 0,
       files: [],
     };
-    this.dropRef = React.createRef();
-    this.handleDrag = this.handleDrag.bind(this);
     this.handleDragIn = this.handleDragIn.bind(this);
     this.handleDragOut = this.handleDragOut.bind(this);
+    this.handleDrag = this.handleDrag.bind(this);
     this.handleDrop = this.handleDrop.bind(this);
-  }
-
-  componentDidMount() {
-    let div = this.dropRef.current;
-    div.addEventListener("dragenter", this.handleDragIn);
-    div.addEventListener("dragleave", this.handleDragOut);
-    div.addEventListener("dragover", this.handleDrag);
-    div.addEventListener("drop", this.handleDrop);
-  }
-
-  componentWillUnmount() {
-    let div = this.dropRef.current;
-    div.removeEventListener("dragenter", this.handleDragIn);
-    div.removeEventListener("dragleave", this.handleDragOut);
-    div.removeEventListener("dragover", this.handleDrag);
-    div.removeEventListener("drop", this.handleDrop);
-  }
-
-  handleDrag(e) {
-    e.preventDefault();
-    e.stopPropagation();
+    this.handleChoose = this.handleChoose.bind(this);
   }
 
   handleDragIn(e) {
@@ -46,49 +25,51 @@ class TrackUploadForm extends React.Component {
   }
 
   handleDragOut(e) {
+    debugger
     e.preventDefault();
     e.stopPropagation();
     this.state.dragCounter--;
-    if (this.state.dragCounter === 0) {
-      this.setState({ drag: false });
-    }
+    if (this.state.dragCounter > 0) return;
+    this.setState({ drag: false });
+  }
+
+  handleDrag(e) {
+    e.preventDefault();
+    e.stopPropagation();
   }
 
   handleDrop(e) {
-    console.log(e)
     e.preventDefault();
     e.stopPropagation();
     this.setState({ drag: false });
     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-      debugger
-      // this.handleFileDrop(e.dataTransfer.files);
       this.props.handleFile(e.dataTransfer.files[0]);
-      e.dataTransfer.clearData();
       this.state.dragCounter = 0;
     }
   }
 
-  // handleFileDrop(files) {
-  //   let fileList = this.state.files;
-  //   for (var i = 0; i < files.length; i++) {
-  //     debugger
-  //     if (!files[i].name) return;
-  //     fileList.push(files[i].name);
-  //     this.props.handleFile(files[i]);
-  //   }
-  //   this.setState({ files: fileList });
-  // };
+  handleChoose(e) {
+    const track = e.currentTarget.files[0];
+    this.props.handleFile(track);
+  }
 
   render() {
     return (
-      <div className="ulm-dropzone" ref={this.dropRef}>
+      <div
+        className="ulm-dropzone"
+        draggable
+        onDragOver={this.handleDrag}
+        onDragEnter={this.handleDragIn}
+        onDragLeave={this.handleDragOut}
+        onDrop={this.handleDrop}
+      >
         <div className="ulm-dropzone-top">
           <span>Drag and drop your track here</span>
           <input
             type="file"
             id="trackUpload"
             className="inputfile"
-            onChange={this.props.handleFile}
+            onChange={this.handleChoose}
           />
           <label htmlFor="trackUpload">or choose file to upload</label>
         </div>

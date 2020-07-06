@@ -22,9 +22,7 @@ class TrackUpload extends React.Component {
   componentDidMount() {
   }
 
-  handleFile(e) {
-    const track = e.currentTarget.files[0];
-
+  handleFile(track) {
     if (track) {
       console.log(track)
     }
