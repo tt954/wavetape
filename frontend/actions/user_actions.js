@@ -1,4 +1,5 @@
 import * as UserAPIUtil from '../util/user_api_util';
+import * as FollowAPIUtil from "../util/follow_api_util";
 
 export const RECEIVE_USER = 'RECEIVE_USER';
 export const RECEIVE_USERS = 'RECEIVE_USERS';

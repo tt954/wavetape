@@ -13,10 +13,9 @@ const usersReducer = (state = {}, action) => {
       return Object.assign({}, state, action.users);
     case RECEIVE_USER:
       return Object.assign({}, state, { [action.user.id]: action.user });
-    case RECEIVE_FOLLOW:
-      debugger;
-      return Object.assign()
-    case REMOVE_FOLLOW:
+    // case RECEIVE_FOLLOW:
+    //   debugger;
+    // case REMOVE_FOLLOW:
     default:
       return state;
   }
