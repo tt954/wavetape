@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import ProfileShow from './profile_show'; 
 import { openModal } from '../../actions/modal_actions';
-import { fetchUsers } from '../../actions/user_actions';
+import { fetchUser, fetchUsers } from '../../actions/user_actions';
 import { fetchTracks } from '../../actions/track_actions';
 import { receiveSelectedTrack, togglePlay } from '../../actions/music_player_actions';
 
@@ -19,6 +19,7 @@ const mSTP = ({ session, ui, entities: { users, tracks }}, ownProps) => {
 
 const mDTP = dispatch => ({
   openModal: modal => dispatch(openModal(modal)),
+  fetchUser: userId => dispatch(fetchUser(userId)),
   fetchUsers: () => dispatch(fetchUsers()),
   fetchTracks: () => dispatch(fetchTracks()),
   receiveSelectedTrack: track => dispatch(receiveSelectedTrack(track)),
