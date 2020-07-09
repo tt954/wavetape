@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import configStore from './store/store';
 import Root from './components/root';
 
-import { follow, unfollow } from './util/follow_api_util';
 import { createFollow, destroyFollow } from './actions/user_actions';
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -25,8 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
   window.getState = store.getState;
   window.dispatch = store.dispatch;
 
-  window.follow = follow;
-  window.unfollow = unfollow;
+  window.createFollow = createFollow;
+  window.destroyFollow = destroyFollow;
 
   const root = document.getElementById("root");
   ReactDOM.render(<Root store={store} />, root);

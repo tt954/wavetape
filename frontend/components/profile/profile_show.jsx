@@ -9,13 +9,12 @@ import { BsThreeDots } from 'react-icons/bs';
 import NavBar from '../nav_bar/nav_bar_container';
 import PlaylistItem from '../tracks/playlist_item';
 import Playlist from '../tracks/playlist';
-import { follow, unfollow } from "../../util/follow_api_util";
 
 class ProfileShow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      test: "",
+      follow: "",
     }
     this.handleFollowing = this.handleFollowing.bind(this);
   }
@@ -26,13 +25,12 @@ class ProfileShow extends React.Component {
   }
 
   handleFollowing() {
-    const { user, currentUser, fetchUser } = this.props;
+    const { user, currentUser, createFollow, destroyFollow } = this.props;
     if (currentUser.followee_ids.includes(user.id)) {
-      unfollow(user.id);
+      destroyFollow(user.id);
     } else {
-      follow(user.id);
+      createFollow(user.id);
     }
-    fetchUser(user.id);
   }
 
   generateBackground() {
