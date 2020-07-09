@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { GrShare, GrMail } from 'react-icons/gr';
-import { FaPencilAlt, FaUserPlus, FaPlayCircle, FaPauseCircle } from 'react-icons/fa';
+import { FaPencilAlt, FaUserPlus, FaUserMinus, FaPlayCircle, FaPauseCircle } from 'react-icons/fa';
 import { FiRadio } from 'react-icons/fi';
 import { BsThreeDots } from 'react-icons/bs';
+
 import NavBar from '../nav_bar/nav_bar_container';
 import PlaylistItem from '../tracks/playlist_item';
 import Playlist from '../tracks/playlist';
@@ -12,11 +13,24 @@ import Playlist from '../tracks/playlist';
 class ProfileShow extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      follow: "",
+    }
+    this.handleFollowing = this.handleFollowing.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchUsers();
     this.props.fetchTracks();
+  }
+
+  handleFollowing() {
+    const { user, currentUser, createFollow, destroyFollow } = this.props;
+    if (currentUser.followee_ids.includes(user.id)) {
+      destroyFollow(user.id);
+    } else {
+      createFollow(user.id);
+    }
   }
 
   generateBackground() {
@@ -41,7 +55,8 @@ class ProfileShow extends React.Component {
     const { openModal, currentUser, user, users, 
       tracks, selectedTrack, playing, togglePlay,
       receiveSelectedTrack } = this.props;
-    let avatarImg, followingsModule, playButton, playAction;
+    let avatarImg, followingsModule, playButton, playAction, 
+      followIcon, followText;
 
     if (Object.keys(users).length === 1) {
       return (
@@ -62,6 +77,14 @@ class ProfileShow extends React.Component {
       );
     };
 
+    if (currentUser.followee_ids.includes(user.id)) {
+      followIcon = <FaUserMinus />;
+      followText = "Unfollow";
+    } else {
+      followIcon = <FaUserPlus />;
+      followText = "Follow";
+    }
+
     const upnButtons = (currentUser.id === user.id) ? (
       <>
         <button className="not-allowed"><span><GrShare /></span>Share</button>
@@ -70,7 +93,9 @@ class ProfileShow extends React.Component {
     ) : (
       <>
         <button><span><FiRadio /></span>Station</button>
-        <button><span><FaUserPlus /></span>Follow</button>
+        <button onClick={this.handleFollowing}>
+          <span>{followIcon}</span>{followText}
+        </button>
         <button><span><GrShare /></span>Share</button>
         <button><span><GrMail /></span></button>
         <button><span><BsThreeDots /></span></button>

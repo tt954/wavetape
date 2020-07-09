@@ -1,4 +1,5 @@
 import * as UserAPIUtil from '../util/user_api_util';
+import * as FollowAPIUtil from "../util/follow_api_util";
 
 export const RECEIVE_USER = 'RECEIVE_USER';
 export const RECEIVE_USERS = 'RECEIVE_USERS';
@@ -26,3 +27,17 @@ export const fetchUsers = () => {
       .then(users => dispatch(receiveUsers(users)));
   };
 }
+
+export const createFollow = (userId) => {
+  return dispatch => {
+    return FollowAPIUtil.follow(userId)
+      .then(user => dispatch(receiveUser(user)));
+  };
+};
+
+export const destroyFollow = (userId) => {
+  return dispatch => {
+    return FollowAPIUtil.unfollow(userId)
+      .then(user => dispatch(receiveUser(user)));
+  };
+};

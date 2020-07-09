@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import configStore from './store/store';
 import Root from './components/root';
 
-import { receiveSelectedTrack } from './actions/music_player_actions';
+import { createFollow, destroyFollow } from './actions/user_actions';
 
 document.addEventListener("DOMContentLoaded", () => {
   let store;
@@ -24,7 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
   window.getState = store.getState;
   window.dispatch = store.dispatch;
 
-  window.receiveSelectedTrack = receiveSelectedTrack;
+  window.createFollow = createFollow;
+  window.destroyFollow = destroyFollow;
 
   const root = document.getElementById("root");
   ReactDOM.render(<Root store={store} />, root);
