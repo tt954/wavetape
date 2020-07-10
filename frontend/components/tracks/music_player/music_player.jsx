@@ -19,9 +19,11 @@ class MusicPlayer extends React.Component {
 
     this.updateProgress = this.updateProgress.bind(this);
     this.updateElapsed = this.updateElapsed.bind(this);
-    this.handleVolMouse = this.handleVolMouse.bind(this);
+    this.toggleVolDisplay = this.toggleVolDisplay.bind(this);
     this.toggleMute = this.toggleMute.bind(this);
     this.updateVolume = this.updateVolume.bind(this);
+    this.handlePrev = this.handlePrev.bind(this);
+    this.handleNext = this.handleNext.bind(this);
   }
 
   componentDidMount() {
@@ -31,7 +33,6 @@ class MusicPlayer extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const audio = document.getElementById("audio");
     if (prevProps.playing !== this.props.playing) {
       this.props.playing ? this.audio.play() : this.audio.pause();
     }
@@ -59,7 +60,7 @@ class MusicPlayer extends React.Component {
     return new Date(s * 1000).toISOString().substr(14, 5);
   }
 
-  handleVolMouse() {
+  toggleVolDisplay() {
     if (this.state.volumeControl) {
       this.setState({ volumeControl: false })
     } else {
@@ -86,16 +87,38 @@ class MusicPlayer extends React.Component {
     this.setState({ volume: volume });
   }
 
+  handlePrev() {
+    const audio = document.getElementById("audio");
+    const { tracks, selectedTrack, receiveSelectedTrack } = this.props;
+    const currentIdx = tracks.indexOf(selectedTrack);
+    const prevIdx = currentIdx == 0 ? tracks.length - 1 : currentIdx - 1;
+
+    if (audio.currentTime <= 10) {
+      audio.currentTime = 0;
+    } else {
+      receiveSelectedTrack(tracks[prevIdx]);
+    }
+  }
+
+  handleNext() {
+    const { tracks, selectedTrack, receiveSelectedTrack } = this.props;
+    const currentIdx = tracks.indexOf(selectedTrack);
+    const nextIdx = currentIdx == tracks.length - 1 ? 0 : currentIdx + 1;
+    receiveSelectedTrack(tracks[nextIdx]);
+  }
+
   render() {
     const { playing, selectedTrack, togglePlay } = this.props;
 
     const audioSrc = selectedTrack ? selectedTrack.trackUrl : null;
     const playControl = playing ? <IoMdPause /> : <IoMdPlay />;
+
     const trackAvatar = selectedTrack ? (
       <Link className="soundBadge-avatar" to={`/tracks/${selectedTrack.id}`}>
         <img src={selectedTrack.photoUrl}></img>
       </Link>
     ) : null;
+
     const trackInfo = selectedTrack ? (
       <div className="soundBadge-info">
         <Link to={`/users/${selectedTrack.uploader_id}`}>
@@ -104,14 +127,11 @@ class MusicPlayer extends React.Component {
         <Link to={`/tracks/${selectedTrack.id}`}>{selectedTrack.title}</Link>
       </div>
     ) : null;
+
     const trackActions = selectedTrack ? (
       <div className="soundBadge-actions">
-        <button>
-          <IoMdHeart />
-        </button>
-        <button>
-          <IoMdList />
-        </button>
+        <button><IoMdHeart /></button>
+        <button><IoMdList /></button>
       </div>
     ) : null;
 
@@ -132,18 +152,21 @@ class MusicPlayer extends React.Component {
         <section className="music-player">
           <audio id="audio" ref={(ref) => (this.audio = ref)} src={audioSrc} />
           <div className="music-player-controls">
-            <button className="mpc-button skip-control controlPrev">
+            <button 
+              className="mpc-button skip-control controlPrev"
+              onClick={this.handlePrev}>
               <IoMdSkipBackward />
             </button>
 
             <button
               className="mpc-button play-control controlPlay"
-              onClick={togglePlay}
-            >
+              onClick={togglePlay}>
               {playControl}
             </button>
 
-            <button className="mpc-button skip-control controlNext">
+            <button 
+              className="mpc-button skip-control controlNext"
+              onClick={this.handleNext}>
               <IoMdSkipForward />
             </button>
 
@@ -165,8 +188,8 @@ class MusicPlayer extends React.Component {
 
             <div
               className="mpc-button volume-control"
-              onMouseEnter={this.handleVolMouse}
-              onMouseLeave={this.handleVolMouse}
+              onMouseEnter={this.toggleVolDisplay}
+              onMouseLeave={this.toggleVolDisplay}
             >
               <button onClick={this.toggleMute}>{volumeIcon()}</button>
               <div className={`volume-container ${ this.state.volumeControl ? "" : "hidden" }`}>
