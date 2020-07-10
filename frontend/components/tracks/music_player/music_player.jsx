@@ -5,8 +5,8 @@ import {
   IoMdPlay, IoMdPause, IoMdSkipBackward, IoMdSkipForward,
   IoMdVolumeHigh, IoMdVolumeLow, IoMdVolumeOff,
   IoMdHeart, IoMdList  } from 'react-icons/io';
-import { RiShuffleLine } from 'react-icons/ri';
-import { FiRepeat } from  'react-icons/fi';
+// import { RiShuffleLine } from 'react-icons/ri';
+// import { FiRepeat } from  'react-icons/fi';
 
 class MusicPlayer extends React.Component {
   constructor(props) {
@@ -128,12 +128,12 @@ class MusicPlayer extends React.Component {
       </div>
     ) : null;
 
-    const trackActions = selectedTrack ? (
-      <div className="soundBadge-actions">
-        <button><IoMdHeart /></button>
-        <button><IoMdList /></button>
-      </div>
-    ) : null;
+    // const trackActions = selectedTrack ? (
+    //   <div className="soundBadge-actions">
+    //     <button><IoMdHeart /></button>
+    //     <button><IoMdList /></button>
+    //   </div>
+    // ) : null;
 
     const volumeIcon = () => {
       if (this.state.volume == 0) {
@@ -170,12 +170,12 @@ class MusicPlayer extends React.Component {
               <IoMdSkipForward />
             </button>
 
-            <button className="mpc-button controlShuffle">
+            {/* <button className="mpc-button controlShuffle">
               <RiShuffleLine />
             </button>
             <button className="mpc-button controlRepeat">
               <FiRepeat />
-            </button>
+            </button> */}
 
             <div className="mpc-progress progress-control">
               <div id="timeElasped">00:00</div>
@@ -210,7 +210,11 @@ class MusicPlayer extends React.Component {
             <div className="mpc-soundBadge">
               {trackAvatar}
               {trackInfo}
-              {trackActions}
+              
+              <div className="soundBadge-actions">
+                <button><IoMdHeart /></button>
+                <button><IoMdList /></button>
+              </div>
             </div>
           </div>
         </section>
