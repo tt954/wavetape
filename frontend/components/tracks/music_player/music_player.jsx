@@ -83,8 +83,9 @@ class MusicPlayer extends React.Component {
   updateVolume(e) {
     const audio = document.getElementById("audio");
     const volume = e.target.value;
+    audio.muted = false;
     audio.volume = volume;
-    this.setState({ volume: volume });
+    this.setState({ muted: false, volume: volume });
   }
 
   handlePrev() {
