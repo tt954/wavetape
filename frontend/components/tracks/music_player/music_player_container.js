@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import MusicPlayer from './music_player';
 import { togglePlay, receiveSelectedTrack } from '../../../actions/music_player_actions';
 
-const mSTP = (state, ownProps) => {
+const mSTP = state => {
   return {
     playing: state.ui.musicPlayer.playing,
     selectedTrack: state.ui.musicPlayer.selectedTrack,
+    tracks: Object.values(state.entities.tracks),
   }
 }
 
