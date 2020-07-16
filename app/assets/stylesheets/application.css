@@ -1104,23 +1104,102 @@ li.dropdown-signout {
   margin-right: 5px;
 }
 
-.followingsModule li {
+.profile-followings li,
+.profile-followers li {
   margin: 10px 0;
 }
 
-.sidebarItem a {
+.followingItem a {
   color: #333;
-  display: flex;
   font-size: 14px;
+  display: flex;
   align-items: center;
 }
 
-.sidebarAvatar {
+.sb-followingAvatar {
   border-radius: 50%;
-  margin-right: 7px;
+  margin-right: 8px;
   height: 50px;
   width: 50px;
 }
+
+.sb-followerAvatar {
+  box-sizing: border-box;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+
+.followingsModule span,
+.followersModule span {
+  border-bottom: 1px solid #f2f2f2;
+  display: flex;
+  align-items: center;
+  color: #999;
+  font-size: 14px;
+  padding: 5px 0;
+}
+
+.followingsModule span svg {
+  font-size: 18px;
+  margin-right: 4px;
+}
+
+.followersModule span svg {
+  font-size: 14px;
+  margin-right: 4px;
+}
+
+.profile-followers {
+  display: flex;
+}
+
+.followingItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sb-followingDetail {
+  width: 100%;
+}
+
+.sb-followingStats {
+  color: #999;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.sb-followingStats p {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.sb-followingStats p svg {
+  margin-right: 3px;
+}
+
+.followButton {
+  box-sizing: border-box;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+  height: 22px;
+  line-height: 16px;
+  padding: 2px 9px 2px 8px;
+}
+
+.followButton svg {
+  font-size: 12px;
+  margin-right: 5px;
+}
+
 
 /* TRACK SHOW */
 

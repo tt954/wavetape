@@ -2,7 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { GrShare, GrMail } from 'react-icons/gr';
-import { FaPencilAlt, FaUserPlus, FaUserMinus, FaPlayCircle, FaPauseCircle } from 'react-icons/fa';
+import { FaPencilAlt, FaUser, FaUserPlus, FaUserMinus, 
+  FaUserFriends, FaPlayCircle, FaPauseCircle } from 'react-icons/fa';
+import { GiSoundWaves } from 'react-icons/gi';
 import { FiRadio } from 'react-icons/fi';
 import { BsThreeDots } from 'react-icons/bs';
 
@@ -55,27 +57,10 @@ class ProfileShow extends React.Component {
     const { openModal, currentUser, user, users, 
       tracks, selectedTrack, playing, togglePlay,
       receiveSelectedTrack } = this.props;
-    let avatarImg, followingsModule, playButton, playAction, 
+    let avatarImg, followingsModule, followersModule, 
+      followingLis, followerLis,
+      playButton, playAction, 
       followIcon, followText;
-
-    if (Object.keys(users).length === 1) {
-      return (
-        <button onClick={this.props.fetchUsers}>Loading...</button>
-      )
-    } else {
-      avatarImg = <img src={user.avatarUrl} alt="" />
-      followingsModule = user.followee_ids.map(followee_id => {
-        const followee = users[followee_id];
-        return (
-          <li className="sidebarItem" key={followee_id}>
-            <Link to={`/users/${followee_id}`}>
-              <img className="sidebarAvatar" src={followee.avatarUrl} alt={followee.username}/>
-              <p>{followee.username}</p>
-            </Link>
-          </li>
-        )}
-      );
-    };
 
     if (currentUser.followee_ids.includes(user.id)) {
       followIcon = <FaUserMinus />;
@@ -84,6 +69,60 @@ class ProfileShow extends React.Component {
       followIcon = <FaUserPlus />;
       followText = "Follow";
     }
+
+    if (Object.keys(users).length === 1) {
+      return (
+        <button onClick={this.props.fetchUsers}>Loading...</button>
+      )
+    } else {
+      avatarImg = <img src={user.avatarUrl} alt="" />
+      followingLis = user.followee_ids.map(followee_id => {
+        const followee = users[followee_id];
+        return (
+          <li className="followingItem" key={followee_id}>
+            <Link to={`/users/${followee_id}`}>
+              <img className="sb-followingAvatar" src={followee.avatarUrl} alt={followee.username}/>
+              <div className="sb-followingDetail">
+                <h3>{followee.username}</h3>
+                <div className="sb-followingStats">
+                  <p><FaUserFriends />{followee.follower_ids.length}</p>
+                  <p><GiSoundWaves />{followee.track_ids.length}</p>
+                </div>
+              </div>
+            </Link>
+            <button className="followButton" onClick={this.handleFollowing}>
+              {followIcon}{followText}
+            </button>
+          </li>
+        )}
+      );
+      followingsModule = (
+        <div className="followingsModule">
+          <span><FaUserFriends />{user.followee_ids.length} following</span>
+          <ul className="profile-followings">
+            {followingLis}
+          </ul> 
+        </div>
+      )
+      followerLis = user.follower_ids.map(follower_id => {
+        const follower = users[follower_id];
+        return (
+          <li className="followerItem" key={follower_id}>
+            <Link to={`/users/${follower_id}`}>
+              <img className="sb-followerAvatar" src={follower.avatarUrl} alt={follower.username} />
+            </Link>
+          </li>
+        )
+      })
+      followersModule = (
+        <div className="followersModule">
+          <span><FaUser />{user.follower_ids.length} followers</span>
+          <ul className="profile-followers">
+            {followerLis}
+          </ul>
+        </div>
+      )
+    };
 
     const upnButtons = (currentUser.id === user.id) ? (
       <>
@@ -223,9 +262,8 @@ class ProfileShow extends React.Component {
                 </table>
               </article>
               <article className="sidebar-followModule">
-                <ul className="followingsModule">
-                  {followingsModule}
-                </ul>
+                {followersModule}
+                {followingsModule}
               </article>
             </div>
           </div>
