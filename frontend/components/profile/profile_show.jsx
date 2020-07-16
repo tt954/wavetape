@@ -17,6 +17,7 @@ class ProfileShow extends React.Component {
     super(props);
     this.state = {
       follow: "",
+      followerPreview: false,
     }
     this.handleFollowing = this.handleFollowing.bind(this);
   }
@@ -108,7 +109,7 @@ class ProfileShow extends React.Component {
         const follower = users[follower_id];
         return (
           <li className="followerItem" key={follower_id}>
-            <Link to={`/users/${follower_id}`}>
+            <Link to={`/users/${follower_id}`} title={follower.username}>
               <img className="sb-followerAvatar" src={follower.avatarUrl} alt={follower.username} />
             </Link>
           </li>

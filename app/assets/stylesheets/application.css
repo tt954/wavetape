@@ -1104,8 +1104,8 @@ li.dropdown-signout {
   margin-right: 5px;
 }
 
-.profile-followings li,
-.profile-followers li {
+.followingItem,
+.followerItem {
   margin: 10px 0;
 }
 
