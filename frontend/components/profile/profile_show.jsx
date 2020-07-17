@@ -27,12 +27,12 @@ class ProfileShow extends React.Component {
     this.props.fetchTracks();
   }
 
-  handleFollowing() {
-    const { user, currentUser, createFollow, destroyFollow } = this.props;
-    if (currentUser.followee_ids.includes(user.id)) {
-      destroyFollow(user.id);
+  handleFollowing(followId) {
+    const { currentUser, createFollow, destroyFollow } = this.props;
+    if (currentUser.followee_ids.includes(followId)) {
+      destroyFollow(followId);
     } else {
-      createFollow(user.id);
+      createFollow(followId);
     }
   }
 
@@ -63,14 +63,6 @@ class ProfileShow extends React.Component {
       playButton, playAction, 
       followIcon, followText;
 
-    if (currentUser.followee_ids.includes(user.id)) {
-      followIcon = <FaUserMinus />;
-      followText = "Unfollow";
-    } else {
-      followIcon = <FaUserPlus />;
-      followText = "Follow";
-    }
-
     if (Object.keys(users).length === 1) {
       return (
         <button onClick={this.props.fetchUsers}>Loading...</button>
@@ -91,8 +83,11 @@ class ProfileShow extends React.Component {
                 </div>
               </div>
             </Link>
-            <button className="followButton" onClick={this.handleFollowing}>
-              {followIcon}{followText}
+            <button 
+              className={`followButton ${(currentUser.followee_ids.includes(followee.id)) ? "followed" : ""}`}
+              onClick={() => this.handleFollowing(followee.id)}>
+                {(currentUser.followee_ids.includes(followee.id)) ? <FaUserMinus /> : <FaUserPlus />}
+                {(currentUser.followee_ids.includes(followee.id)) ? "Unfollow" : "Follow"}
             </button>
           </li>
         )}
@@ -127,18 +122,21 @@ class ProfileShow extends React.Component {
 
     const upnButtons = (currentUser.id === user.id) ? (
       <>
-        <button className="not-allowed"><span><GrShare /></span>Share</button>
-        <button onClick={() => openModal('profileEdit')}><span><FaPencilAlt /></span>Edit</button>
+        <button className="not-allowed"><GrShare size={12}/>Share</button>
+        <button onClick={() => openModal('profileEdit')}><FaPencilAlt size={12}/>Edit</button>
       </>
     ) : (
       <>
-        <button><span><FiRadio /></span>Station</button>
-        <button onClick={this.handleFollowing}>
-          <span>{followIcon}</span>{followText}
+        <button><FiRadio />Station</button>
+        <button 
+          className={`profileFollowButton ${(currentUser.followee_ids.includes(user.id)) ? "followed" : ""}`}
+          onClick={() => this.handleFollowing(user.id)}>
+            {(currentUser.followee_ids.includes(user.id)) ? <FaUserMinus /> : <FaUserPlus />}
+            {(currentUser.followee_ids.includes(user.id)) ? "Unfollow" : "Follow"}
         </button>
-        <button><span><GrShare /></span>Share</button>
-        <button><span><GrMail /></span></button>
-        <button><span><BsThreeDots /></span></button>
+        <button><GrShare size={12}/>Share</button>
+        <button><GrMail size={16}/></button>
+        <button><BsThreeDots /></button>
       </>
     );
 
@@ -149,51 +147,6 @@ class ProfileShow extends React.Component {
       playButton = <FaPlayCircle />;
       playAction = track => receiveSelectedTrack(track);
     }
-      
-    // const userAllListLis = tracks.map(track => (
-    //   <li className="soundBody" key={track.id}>
-    //     <div className="soundArtwork">
-    //       <Link to={`/tracks/${track.id}`}><img src={track.photoUrl} alt={track.title}/></Link>
-    //     </div>
-    //     <div className="soundContent">
-    //       <div className="soundContent-header">
-    //         <button className="sch-play-button" 
-    //           onClick={() => playAction(track)}>
-    //           {playButton}
-    //         </button>
-    //         <div className="sch-title-container">
-    //           <p>{track.uploader}</p>
-    //           <Link to={`/tracks/${track.id}`}>{track.title}</Link>
-    //         </div>
-    //         <div className="sch-additional">
-    //           <time>2 weeks ago</time>
-    //           <a>{track.genre}</a>
-    //         </div>
-    //       </div>
-    //       <div className="soundContent-waveform"></div>
-    //       <div className="soundContent-comment">
-    //         <img src="" alt=""/>
-    //         <form className="scc-commentForm">
-    //           <input type="text" placeholder="Write a comment"/>
-    //         </form>
-    //       </div>
-    //       <div className="soundContent-footer">
-    //         <div className="scf-actions">
-    //           <button></button>
-    //           <button></button>
-    //           <button></button>
-    //           <button></button>
-    //         </div>
-    //         <div className="scf-footerRight">
-    //           <ul>
-    //             <li></li>
-    //             <li></li>
-    //           </ul>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </li>
-    // ))
 
     return (
       <>
