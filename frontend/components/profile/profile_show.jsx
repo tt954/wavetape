@@ -2,7 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { GrShare, GrMail } from 'react-icons/gr';
-import { FaPencilAlt, FaUserPlus, FaUserMinus, FaPlayCircle, FaPauseCircle } from 'react-icons/fa';
+import { FaPencilAlt, FaUser, FaUserPlus, FaUserMinus, 
+  FaUserFriends, FaPlayCircle, FaPauseCircle } from 'react-icons/fa';
+import { GiSoundWaves } from 'react-icons/gi';
 import { FiRadio } from 'react-icons/fi';
 import { BsThreeDots } from 'react-icons/bs';
 
@@ -15,6 +17,7 @@ class ProfileShow extends React.Component {
     super(props);
     this.state = {
       follow: "",
+      followerPreview: false,
     }
     this.handleFollowing = this.handleFollowing.bind(this);
   }
@@ -24,12 +27,12 @@ class ProfileShow extends React.Component {
     this.props.fetchTracks();
   }
 
-  handleFollowing() {
-    const { user, currentUser, createFollow, destroyFollow } = this.props;
-    if (currentUser.followee_ids.includes(user.id)) {
-      destroyFollow(user.id);
+  handleFollowing(followId) {
+    const { currentUser, createFollow, destroyFollow } = this.props;
+    if (currentUser.followee_ids.includes(followId)) {
+      destroyFollow(followId);
     } else {
-      createFollow(user.id);
+      createFollow(followId);
     }
   }
 
@@ -55,7 +58,9 @@ class ProfileShow extends React.Component {
     const { openModal, currentUser, user, users, 
       tracks, selectedTrack, playing, togglePlay,
       receiveSelectedTrack } = this.props;
-    let avatarImg, followingsModule, playButton, playAction, 
+    let avatarImg, followingsModule, followersModule, 
+      followingLis, followerLis,
+      playButton, playAction, 
       followIcon, followText;
 
     if (Object.keys(users).length === 1) {
@@ -64,41 +69,74 @@ class ProfileShow extends React.Component {
       )
     } else {
       avatarImg = <img src={user.avatarUrl} alt="" />
-      followingsModule = user.followee_ids.map(followee_id => {
+      followingLis = user.followee_ids.map(followee_id => {
         const followee = users[followee_id];
         return (
-          <li className="sidebarItem" key={followee_id}>
+          <li className="followingItem" key={followee_id}>
             <Link to={`/users/${followee_id}`}>
-              <img className="sidebarAvatar" src={followee.avatarUrl} alt={followee.username}/>
-              <p>{followee.username}</p>
+              <img className="sb-followingAvatar" src={followee.avatarUrl} alt={followee.username}/>
+              <div className="sb-followingDetail">
+                <h3>{followee.username}</h3>
+                <div className="sb-followingStats">
+                  <p><FaUserFriends />{followee.follower_ids.length}</p>
+                  <p><GiSoundWaves />{followee.track_ids.length}</p>
+                </div>
+              </div>
             </Link>
+            <button 
+              className={`followButton ${(currentUser.followee_ids.includes(followee.id)) ? "followed" : ""}`}
+              onClick={() => this.handleFollowing(followee.id)}>
+                {(currentUser.followee_ids.includes(followee.id)) ? <FaUserMinus /> : <FaUserPlus />}
+                {(currentUser.followee_ids.includes(followee.id)) ? "Unfollow" : "Follow"}
+            </button>
           </li>
         )}
       );
+      followingsModule = (
+        <div className="followingsModule">
+          <span><FaUserFriends />{user.followee_ids.length} following</span>
+          <ul className="profile-followings">
+            {followingLis}
+          </ul> 
+        </div>
+      )
+      followerLis = user.follower_ids.map(follower_id => {
+        const follower = users[follower_id];
+        return (
+          <li className="followerItem" key={follower_id}>
+            <Link to={`/users/${follower_id}`} title={follower.username}>
+              <img className="sb-followerAvatar" src={follower.avatarUrl} alt={follower.username} />
+            </Link>
+          </li>
+        )
+      })
+      followersModule = (
+        <div className="followersModule">
+          <span><FaUser />{user.follower_ids.length} followers</span>
+          <ul className="profile-followers">
+            {followerLis}
+          </ul>
+        </div>
+      )
     };
-
-    if (currentUser.followee_ids.includes(user.id)) {
-      followIcon = <FaUserMinus />;
-      followText = "Unfollow";
-    } else {
-      followIcon = <FaUserPlus />;
-      followText = "Follow";
-    }
 
     const upnButtons = (currentUser.id === user.id) ? (
       <>
-        <button className="not-allowed"><span><GrShare /></span>Share</button>
-        <button onClick={() => openModal('profileEdit')}><span><FaPencilAlt /></span>Edit</button>
+        <button className="not-allowed"><GrShare size={12}/>Share</button>
+        <button onClick={() => openModal('profileEdit')}><FaPencilAlt size={12}/>Edit</button>
       </>
     ) : (
       <>
-        <button><span><FiRadio /></span>Station</button>
-        <button onClick={this.handleFollowing}>
-          <span>{followIcon}</span>{followText}
+        <button><FiRadio />Station</button>
+        <button 
+          className={`profileFollowButton ${(currentUser.followee_ids.includes(user.id)) ? "followed" : ""}`}
+          onClick={() => this.handleFollowing(user.id)}>
+            {(currentUser.followee_ids.includes(user.id)) ? <FaUserMinus /> : <FaUserPlus />}
+            {(currentUser.followee_ids.includes(user.id)) ? "Unfollow" : "Follow"}
         </button>
-        <button><span><GrShare /></span>Share</button>
-        <button><span><GrMail /></span></button>
-        <button><span><BsThreeDots /></span></button>
+        <button><GrShare size={12}/>Share</button>
+        <button><GrMail size={16}/></button>
+        <button><BsThreeDots /></button>
       </>
     );
 
@@ -109,51 +147,6 @@ class ProfileShow extends React.Component {
       playButton = <FaPlayCircle />;
       playAction = track => receiveSelectedTrack(track);
     }
-      
-    // const userAllListLis = tracks.map(track => (
-    //   <li className="soundBody" key={track.id}>
-    //     <div className="soundArtwork">
-    //       <Link to={`/tracks/${track.id}`}><img src={track.photoUrl} alt={track.title}/></Link>
-    //     </div>
-    //     <div className="soundContent">
-    //       <div className="soundContent-header">
-    //         <button className="sch-play-button" 
-    //           onClick={() => playAction(track)}>
-    //           {playButton}
-    //         </button>
-    //         <div className="sch-title-container">
-    //           <p>{track.uploader}</p>
-    //           <Link to={`/tracks/${track.id}`}>{track.title}</Link>
-    //         </div>
-    //         <div className="sch-additional">
-    //           <time>2 weeks ago</time>
-    //           <a>{track.genre}</a>
-    //         </div>
-    //       </div>
-    //       <div className="soundContent-waveform"></div>
-    //       <div className="soundContent-comment">
-    //         <img src="" alt=""/>
-    //         <form className="scc-commentForm">
-    //           <input type="text" placeholder="Write a comment"/>
-    //         </form>
-    //       </div>
-    //       <div className="soundContent-footer">
-    //         <div className="scf-actions">
-    //           <button></button>
-    //           <button></button>
-    //           <button></button>
-    //           <button></button>
-    //         </div>
-    //         <div className="scf-footerRight">
-    //           <ul>
-    //             <li></li>
-    //             <li></li>
-    //           </ul>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </li>
-    // ))
 
     return (
       <>
@@ -223,9 +216,8 @@ class ProfileShow extends React.Component {
                 </table>
               </article>
               <article className="sidebar-followModule">
-                <ul className="followingsModule">
-                  {followingsModule}
-                </ul>
+                {followersModule}
+                {followingsModule}
               </article>
             </div>
           </div>

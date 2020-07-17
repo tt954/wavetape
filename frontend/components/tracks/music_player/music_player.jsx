@@ -62,7 +62,7 @@ class MusicPlayer extends React.Component {
 
   toggleVolDisplay() {
     if (this.state.volumeControl) {
-      this.setState({ volumeControl: false })
+      this.setState({ volumeControl: false });
     } else {
       this.setState({ volumeControl: true });
     }
@@ -94,7 +94,7 @@ class MusicPlayer extends React.Component {
     const currentIdx = tracks.indexOf(selectedTrack);
     const prevIdx = currentIdx == 0 ? tracks.length - 1 : currentIdx - 1;
 
-    if (audio.currentTime <= 10) {
+    if (audio.currentTime >= 10) {
       audio.currentTime = 0;
     } else {
       receiveSelectedTrack(tracks[prevIdx]);
@@ -128,13 +128,6 @@ class MusicPlayer extends React.Component {
         <Link to={`/tracks/${selectedTrack.id}`}>{selectedTrack.title}</Link>
       </div>
     ) : null;
-
-    // const trackActions = selectedTrack ? (
-    //   <div className="soundBadge-actions">
-    //     <button><IoMdHeart /></button>
-    //     <button><IoMdList /></button>
-    //   </div>
-    // ) : null;
 
     const volumeIcon = () => {
       if (this.state.volume == 0) {
