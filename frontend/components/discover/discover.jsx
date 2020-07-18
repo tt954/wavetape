@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-import { FaUserFriends, FaLinkedin, FaGithub, FaAngellist } from 'react-icons/fa'
+import { FaUserFriends, FaLinkedin, FaGithub, FaAngellist } from 'react-icons/fa';
+import { GiSoundWaves } from 'react-icons/gi';
 import NavBar from '../nav_bar/nav_bar_container';
 import Playlist from '../tracks/playlist_container';
 
@@ -10,6 +12,7 @@ class Discover extends React.Component {
   }
 
   componentDidMount() {
+    this.props.fetchUsers();
     this.props.fetchTracks();
   }
 
@@ -23,8 +26,48 @@ class Discover extends React.Component {
       )
     } else {
       playlist1 = tracks.slice(8); playlist2 = tracks.slice(0, 4); playlist3 = tracks.slice(4, 8);
-
     }
+
+    let artistList;
+    if (currentUser) {
+      artistList = Object.keys(users).filter(id => { 
+        debugger; 
+        !currentUser.followee_ids.includes(id) || currentUser.id !== id })
+    } else {
+      artistList = Object.keys(users);
+    }
+      // (Object.keys(users).filter(id => {debugger; return !currentUser.followee_ids.includes(id)})) : 
+      // (Object.keys(users));
+
+    const followButton = (currentUser) ? 
+      (<button
+        className={`followButton ${(currentUser.followee_ids.includes(artist.id)) ? "followed" : ""}`}
+        onClick={() => this.handleFollowing(artist.id)}>
+        {(currentUser.followee_ids.includes(artist.id)) ? <FaUserMinus /> : <FaUserPlus />}
+        {(currentUser.followee_ids.includes(artist.id)) ? "Unfollow" : "Follow"}
+      </button>) : null;
+
+    const artistLis = artistList.map(id => {
+      debugger
+      const artist = users[id];
+      return (
+        <li>
+          <li className="followingItem" key={id}>
+            <Link to={`/users/${id}`}>
+              <img className="sb-followingAvatar" src={artist.avatarUrl} alt={artist.username} />
+              <div className="sb-followingDetail">
+                <h3>{artist.username}</h3>
+                <div className="sb-followingStats">
+                  <p><FaUserFriends />{artist.follower_ids.length}</p>
+                  <p><GiSoundWaves />{artist.track_ids.length}</p>
+                </div>
+              </div>
+            </Link>
+            {followButton}
+          </li>
+        </li>
+      )
+    })
 
     return (
       <>
@@ -67,22 +110,14 @@ class Discover extends React.Component {
             </div>
 
             <div className="dms-whotofollow followingsModule">
-              <span><FaUserFriends />Who to follow</span>
+              <span><FaUserFriends />{(currentUser) ? "Who to follow" : "Explore artists"}</span>
               <ul className="profile-followings">
-                {/* {followingLis} */}
+                {artistLis}
               </ul>
             </div>
 
-            <div className="dms-goMobile">
-              <p>Go mobile</p>
-              <div className="sdi-links">
-                <span className="app-store not-allowed"></span>
-                <span className="google-play not-allowed"></span>
-              </div>
-            </div>
-
-            <div className="dms-social personal-links">
-              <a id="personal-site" href="https://tt954.github.io/" target="_blank">TT.</a>
+            <div className="dms-social">
+              <a id="personal-site-discover" href="https://tt954.github.io/" target="_blank">TT.</a>
               <a href="https://www.linkedin.com/in/tieulam-thai-01bb3112b/" target="_blank"><FaLinkedin /></a>
               <a href="https://angel.co/u/tieulam-thai" target="_blank"><FaAngellist /></a>
               <a href="https://github.com/tt954" target="_blank"><FaGithub /></a>

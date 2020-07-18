@@ -17,7 +17,7 @@ const App = () => (
     <AuthRoute exact path="/" component={Splash} />
     <Route path="/discover" component={Discover} />
 
-    <ProtectedRoute
+    <Route
       exact path="/users/:userId"
       component={ProfileShow}/>
 

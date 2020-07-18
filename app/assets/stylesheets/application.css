@@ -935,6 +935,7 @@ li.dropdown-signout {
   border: 1px solid #e5e5e5;
   box-sizing: border-box;
   padding: 38px;
+  margin-bottom: 25px;
   height: 250px;
   width: 100%;
 }
@@ -975,6 +976,24 @@ li.dropdown-signout {
   height: 113px;
 }
 
+.dms-social {
+  border-top: 1px solid #f2f2f2;
+  color: #999;
+  display: flex;
+  padding-top: 11px;
+}
+
+.dms-social a {
+  font-size: 16px;
+  margin-left: 5px;
+}
+
+#personal-site-discover {
+  font-size: 18px;
+  font-weight: 700;
+  font-style: italic;
+  margin-right: 5px;
+}
 
 /* PROFILE */
 
