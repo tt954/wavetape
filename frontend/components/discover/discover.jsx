@@ -1,8 +1,8 @@
 import React from 'react';
 
+import { FaUserFriends } from 'react-icons/fa'
 import NavBar from '../nav_bar/nav_bar_container';
 import Playlist from '../tracks/playlist_container';
-import SideBar from '../sidebar/sidebar_container';
 
 class Discover extends React.Component {
   constructor(props) {
@@ -14,17 +14,16 @@ class Discover extends React.Component {
   }
 
   render() {
-    const { tracks } = this.props;
+    const { currentUser, users, tracks } = this.props;
     let playlist1, playlist2, playlist3;
 
-    if (Object.keys(tracks).length === 0) {
+    if (!Object.keys(tracks).length) {
       return (
         <button onClick={this.props.fetchTracks}>Loading...</button>
       )
     } else {
-      playlist1 = tracks.slice(8);
-      playlist2 = tracks.slice(0, 4);
-      playlist3 = tracks.slice(4, 8);
+      playlist1 = tracks.slice(8); playlist2 = tracks.slice(0, 4); playlist3 = tracks.slice(4, 8);
+
     }
 
     return (
@@ -53,7 +52,26 @@ class Discover extends React.Component {
           </div>
           
           <div className="discover-main-sidebar">
-            <SideBar />
+            <div className="dms-openFridge">
+              <a href="" target="_blank">
+                <div className="dms-of-text">
+                  <img className="hey-hey" src="https://va.sndcdn.com/db/fff903a22d5c7466ce86e0690f420e23e75f7f88.png" alt="hey-hey"/>
+                  <div className="dms-of-tagline">
+                    <p>Check out</p>
+                    <p>my other project</p>
+                    <p><span>openFridge</span> | No ingredients left behind. Make something new today.</p>
+                  </div>
+                </div>
+              </a>
+              <div className="of-demo-pic"></div>
+            </div>
+
+            {/* <div className="dms-whotofollow followingsModule">
+              <span><FaUserFriends />Who to follow</span>
+              <ul className="profile-followings">
+                {followingLis}
+              </ul>
+            </div> */}
           </div>
         </div>
       </>

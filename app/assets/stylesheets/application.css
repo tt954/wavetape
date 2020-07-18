@@ -930,6 +930,52 @@ li.dropdown-signout {
   margin-right: 15px;
 }
 
+.dms-openFridge {
+  background: #f2f2f2;
+  border: 1px solid #e5e5e5;
+  box-sizing: border-box;
+  padding: 38px;
+  height: 250px;
+  width: 100%;
+}
+
+.dms-of-text {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.dms-of-text:hover 
+.dms-of-tagline p:nth-child(3) span {
+  color: #333;
+  font-weight: 400;
+  transition: ease-in 0.5ms;
+}
+
+.dms-of-tagline p:nth-child(1),
+.dms-of-tagline p:nth-child(2) {
+  line-height: 18px;
+  font-weight: 400;
+}
+
+.dms-of-tagline p:nth-child(3) {
+  color: #999;
+  font-size: 12px;
+  line-height: 14px;
+  margin-top: 3px;
+}
+
+.hey-hey {
+  margin-right: 15px;
+  width: 78px;
+}
+
+.of-demo-pic {
+  background: url('openFridge-home.png');
+  background-size: cover;
+  height: 113px;
+}
+
+
 /* PROFILE */
 
 .user-profile-banner {
@@ -1168,7 +1214,7 @@ li.dropdown-signout {
 
 .followingsModule span svg {
   font-size: 18px;
-  margin-right: 4px;
+  margin-right: 5px;
 }
 
 .followersModule span svg {
