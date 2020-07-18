@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { FaUserFriends } from 'react-icons/fa'
+import { FaUserFriends, FaLinkedin, FaGithub, FaAngellist } from 'react-icons/fa'
 import NavBar from '../nav_bar/nav_bar_container';
 import Playlist from '../tracks/playlist_container';
 
@@ -53,7 +53,7 @@ class Discover extends React.Component {
           
           <div className="discover-main-sidebar">
             <div className="dms-openFridge">
-              <a href="" target="_blank">
+              <a href="https://open--fridge.herokuapp.com/" target="_blank">
                 <div className="dms-of-text">
                   <img className="hey-hey" src="https://va.sndcdn.com/db/fff903a22d5c7466ce86e0690f420e23e75f7f88.png" alt="hey-hey"/>
                   <div className="dms-of-tagline">
@@ -66,12 +66,27 @@ class Discover extends React.Component {
               <div className="of-demo-pic"></div>
             </div>
 
-            {/* <div className="dms-whotofollow followingsModule">
+            <div className="dms-whotofollow followingsModule">
               <span><FaUserFriends />Who to follow</span>
               <ul className="profile-followings">
-                {followingLis}
+                {/* {followingLis} */}
               </ul>
-            </div> */}
+            </div>
+
+            <div className="dms-goMobile">
+              <p>Go mobile</p>
+              <div className="sdi-links">
+                <span className="app-store not-allowed"></span>
+                <span className="google-play not-allowed"></span>
+              </div>
+            </div>
+
+            <div className="dms-social personal-links">
+              <a id="personal-site" href="https://tt954.github.io/" target="_blank">TT.</a>
+              <a href="https://www.linkedin.com/in/tieulam-thai-01bb3112b/" target="_blank"><FaLinkedin /></a>
+              <a href="https://angel.co/u/tieulam-thai" target="_blank"><FaAngellist /></a>
+              <a href="https://github.com/tt954" target="_blank"><FaGithub /></a>
+            </div>
           </div>
         </div>
       </>
