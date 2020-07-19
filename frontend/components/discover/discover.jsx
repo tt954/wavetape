@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { FaUserFriends, FaLinkedin, FaGithub, FaAngellist } from 'react-icons/fa';
+import { FaUserFriends, FaLinkedin, FaGithub, FaAngellist,
+  FaUserPlus, FaUserMinus } from 'react-icons/fa';
 import { GiSoundWaves } from 'react-icons/gi';
 import NavBar from '../nav_bar/nav_bar_container';
 import Playlist from '../tracks/playlist_container';
@@ -9,11 +10,21 @@ import Playlist from '../tracks/playlist_container';
 class Discover extends React.Component {
   constructor(props) {
     super(props);
+    this.handleFollowing = this.handleFollowing.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchUsers();
     this.props.fetchTracks();
+  }
+
+  handleFollowing(followId) {
+    const { currentUser, createFollow, destroyFollow } = this.props;
+    if (currentUser.followee_ids.includes(followId)) {
+      destroyFollow(followId);
+    } else {
+      createFollow(followId);
+    }
   }
 
   render() {
@@ -30,25 +41,23 @@ class Discover extends React.Component {
 
     let artistList;
     if (currentUser) {
-      artistList = Object.keys(users).filter(id => { 
-        debugger; 
-        !currentUser.followee_ids.includes(id) || currentUser.id !== id })
+      let allUsers = Object.keys(users).map(num => parseInt(num));
+      artistList = allUsers.filter(id => !currentUser.followee_ids.includes(id));
+      artistList = artistList.filter(id => id !== currentUser.id);
     } else {
       artistList = Object.keys(users);
     }
-      // (Object.keys(users).filter(id => {debugger; return !currentUser.followee_ids.includes(id)})) : 
-      // (Object.keys(users));
 
-    const followButton = (currentUser) ? 
-      (<button
+    const followButton = artist => {
+      return (<button
         className={`followButton ${(currentUser.followee_ids.includes(artist.id)) ? "followed" : ""}`}
         onClick={() => this.handleFollowing(artist.id)}>
         {(currentUser.followee_ids.includes(artist.id)) ? <FaUserMinus /> : <FaUserPlus />}
         {(currentUser.followee_ids.includes(artist.id)) ? "Unfollow" : "Follow"}
-      </button>) : null;
+      </button>);
+    }
 
     const artistLis = artistList.map(id => {
-      debugger
       const artist = users[id];
       return (
         <li>
@@ -63,7 +72,7 @@ class Discover extends React.Component {
                 </div>
               </div>
             </Link>
-            {followButton}
+            {(currentUser) ? followButton(artist) : null}
           </li>
         </li>
       )

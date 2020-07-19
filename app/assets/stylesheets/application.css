@@ -305,7 +305,6 @@ button.signup {
   background-color: #f2f2f2;
   display: flex;
   height: 450px;
-  margin-top: 60px;
   padding: 0 70px;
 }
 
@@ -976,6 +975,10 @@ li.dropdown-signout {
   height: 113px;
 }
 
+.dms-whotofollow {
+  margin-bottom: 20px;
+}
+
 .dms-social {
   border-top: 1px solid #f2f2f2;
   color: #999;
@@ -1191,6 +1194,7 @@ li.dropdown-signout {
 
 .profile-followings {
   height: 180px;
+  margin-top: 5px;
   overflow: scroll;
 }
 
