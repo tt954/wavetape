@@ -9,8 +9,13 @@ class NavBar extends React.Component {
     const { currentUser, openModal, signout } = this.props;
 
     const logoLink = currentUser ? 
-      (<Link to="/discover"><p></p></Link>) :
-      (<Link to="/"><p></p></Link>)
+      (<Link className="nbl-logo-link" to="/discover">
+        <img className="discover-logo" src="assets/wt-icon-white.png" alt="wt-logo"/>
+      </Link>) :
+      (<Link className="nbl-logo-link" to="/">
+        <img className="discover-logo" src="assets/wt-icon-white.png" alt="wt-logo" />
+        <p>WAVETAPE</p>
+      </Link>)
 
     const sessionButtons = () => {
       return currentUser ? (

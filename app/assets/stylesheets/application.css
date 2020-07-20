@@ -717,17 +717,22 @@ p.scc-tagline {
 }
 
 .nbl-logo img {
-  position: absolute;
-  height: 30px;
-  width: 30px;
+  height: 20px;
+  width: 20px;
+}
+
+.nbl-logo.half img {
+  height: 25px;
+  width: 25px;
 }
 
 .nbl-logo p {
   color: white;
-  position: relative;
-  font-size: 16px;
-  font-style: italic;
-  font-weight: 500;
+  font-family: Inconsolata;
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 1.5px;
+  margin-left: 8px;
 }
 
 .nbl-logo.full {
