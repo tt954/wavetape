@@ -305,7 +305,6 @@ button.signup {
   background-color: #f2f2f2;
   display: flex;
   height: 450px;
-  margin-top: 60px;
   padding: 0 70px;
 }
 
@@ -718,17 +717,22 @@ p.scc-tagline {
 }
 
 .nbl-logo img {
-  position: absolute;
-  height: 30px;
-  width: 30px;
+  height: 20px;
+  width: 20px;
+}
+
+.nbl-logo.half img {
+  height: 25px;
+  width: 25px;
 }
 
 .nbl-logo p {
   color: white;
-  position: relative;
-  font-size: 16px;
-  font-style: italic;
-  font-weight: 500;
+  font-family: Inconsolata;
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 1.5px;
+  margin-left: 8px;
 }
 
 .nbl-logo.full {
@@ -930,6 +934,75 @@ li.dropdown-signout {
   margin-right: 15px;
 }
 
+.dms-openFridge {
+  background: #f2f2f2;
+  border: 1px solid #e5e5e5;
+  box-sizing: border-box;
+  padding: 38px;
+  margin-bottom: 25px;
+  height: 250px;
+  width: 100%;
+}
+
+.dms-of-text {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.dms-of-text:hover 
+.dms-of-tagline p:nth-child(3) span {
+  color: #333;
+  font-weight: 400;
+  transition: ease-in 0.5ms;
+}
+
+.dms-of-tagline p:nth-child(1),
+.dms-of-tagline p:nth-child(2) {
+  line-height: 18px;
+  font-weight: 400;
+}
+
+.dms-of-tagline p:nth-child(3) {
+  color: #999;
+  font-size: 12px;
+  line-height: 14px;
+  margin-top: 3px;
+}
+
+.hey-hey {
+  margin-right: 15px;
+  width: 78px;
+}
+
+.of-demo-pic {
+  background: url('openFridge-home.png');
+  background-size: cover;
+  height: 113px;
+}
+
+.dms-whotofollow {
+  margin-bottom: 20px;
+}
+
+.dms-social {
+  border-top: 1px solid #f2f2f2;
+  color: #999;
+  display: flex;
+  padding-top: 11px;
+}
+
+.dms-social a {
+  font-size: 16px;
+  margin-left: 5px;
+}
+
+#personal-site-discover {
+  font-size: 18px;
+  font-weight: 700;
+  font-style: italic;
+  margin-right: 5px;
+}
+
 /* PROFILE */
 
 .user-profile-banner {
@@ -1126,6 +1199,7 @@ li.dropdown-signout {
 
 .profile-followings {
   height: 180px;
+  margin-top: 5px;
   overflow: scroll;
 }
 
@@ -1168,7 +1242,7 @@ li.dropdown-signout {
 
 .followingsModule span svg {
   font-size: 18px;
-  margin-right: 4px;
+  margin-right: 5px;
 }
 
 .followersModule span svg {

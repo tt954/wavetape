@@ -112,8 +112,8 @@ class Splash extends React.Component {
               Walkman, iPod Nano, and Nintendo Switch.
             </p>
             <div className="sdi-links">
-              <span className="app-store"></span>
-              <span className="google-play"></span>
+              <span className="app-store not-allowed"></span>
+              <span className="google-play not-allowed"></span>
             </div>
           </div>
         </section>
@@ -126,7 +126,7 @@ class Splash extends React.Component {
               waves. Darling, what are you waiting for?
             </p>
             <div>
-              <span className="scc-button">Find out more</span>
+              <span className="scc-button not-allowed">Find out more</span>
             </div>
           </div>
         </section>

@@ -10,7 +10,6 @@ import { BsThreeDots } from 'react-icons/bs';
 
 import NavBar from '../nav_bar/nav_bar_container';
 import PlaylistItem from '../tracks/playlist_item';
-import Playlist from '../tracks/playlist';
 
 class ProfileShow extends React.Component {
   constructor(props) {
