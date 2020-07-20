@@ -25,7 +25,6 @@ class TrackUploadForm extends React.Component {
   }
 
   handleDragOut(e) {
-    debugger
     e.preventDefault();
     e.stopPropagation();
     this.state.dragCounter--;

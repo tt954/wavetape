@@ -29,7 +29,6 @@ const NavBar = props => {
   }
 
   const signOut = () => {
-    debugger
     signout();
     history.push("/");
   }
