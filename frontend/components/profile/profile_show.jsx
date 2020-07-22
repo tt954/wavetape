@@ -9,7 +9,7 @@ import { FiRadio } from 'react-icons/fi';
 import { BsThreeDots } from 'react-icons/bs';
 
 import NavBar from '../nav_bar/nav_bar_container';
-import PlaylistItem from '../tracks/playlist_item';
+import TrackItem from '../tracks/track_item';
 
 class ProfileShow extends React.Component {
   constructor(props) {
@@ -59,8 +59,7 @@ class ProfileShow extends React.Component {
       receiveSelectedTrack } = this.props;
     let avatarImg, followingsModule, followersModule, 
       followingLis, followerLis,
-      playButton, playAction, 
-      followIcon, followText;
+      playButton, playAction;
 
     if (Object.keys(users).length === 1) {
       return (
@@ -119,6 +118,14 @@ class ProfileShow extends React.Component {
       )
     };
 
+    if (selectedTrack) {
+      playButton = playing ? <FaPauseCircle /> : <FaPlayCircle />;
+      playAction = () => togglePlay();
+    } else {
+      playButton = <FaPlayCircle />;
+      playAction = track => receiveSelectedTrack(track);
+    }
+
     const upnButtons = (currentUser.id === user.id) ? (
       <>
         <button className="not-allowed"><GrShare size={12}/>Share</button>
@@ -138,14 +145,6 @@ class ProfileShow extends React.Component {
         <button><BsThreeDots /></button>
       </>
     );
-
-    if (selectedTrack) {
-      playButton = playing ? <FaPauseCircle /> : <FaPlayCircle />;
-      playAction = () => togglePlay();
-    } else {
-      playButton = <FaPlayCircle />;
-      playAction = track => receiveSelectedTrack(track);
-    }
 
     return (
       <>
@@ -184,11 +183,10 @@ class ProfileShow extends React.Component {
               <div className="upm-main-container">
                 <ul className="userAllList">
                   {tracks.map(track => 
-                    <li key={track.id}>
-                      <PlaylistItem
-                        track={track}
-                        receiveSelectedTrack={receiveSelectedTrack} />
-                    </li>
+                    <TrackItem
+                      track={track}
+                      playButton={playButton}
+                      playAction={playAction} />
                   )}
                 </ul>
               </div>

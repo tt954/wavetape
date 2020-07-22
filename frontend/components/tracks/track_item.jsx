@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { IoMdHeart } from 'react-icons/io';
+import { RiRepeatLine } from 'react-icons/ri';
+
 const TrackItem = props => {
-  const { track } = props;
+  const { track, playButton, playAction } = props;
 
   return (
     <li className="soundBody" key={track.id}>
@@ -16,25 +19,27 @@ const TrackItem = props => {
             {playButton}
           </button>
           <div className="sch-title-container">
-            <p>{track.uploader}</p>
-            <Link to={`/tracks/${track.id}`}>{track.title}</Link>
-          </div>
-          <div className="sch-additional">
-            <time>2 weeks ago</time>
-            <a>{track.genre}</a>
+            <div className="sch-title">
+              <p>{track.uploader}</p>
+              <Link to={`/tracks/${track.id}`}>{track.title}</Link>
+            </div>
+            <div className="sch-additional">
+              <time>2 weeks ago</time>
+              <a># {track.genre}</a>
+            </div>
           </div>
         </div>
         <div className="soundContent-waveform"></div>
         <div className="soundContent-comment">
-          <img src="" alt=""/>
+          <img className="scc-commentAvatar" src="" alt=""/>
           <form className="scc-commentForm">
             <input type="text" placeholder="Write a comment"/>
           </form>
         </div>
         <div className="soundContent-footer">
           <div className="scf-actions">
-            <button></button>
-            <button></button>
+            <button><IoMdHeart /> 315</button>
+            <button><RiRepeatLine /> 68</button>
             <button></button>
             <button></button>
           </div>

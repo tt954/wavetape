@@ -1118,7 +1118,26 @@ li.dropdown-signout {
   padding-left: 30px;
 }
 
+.upm-main-container {
+  width: 850px;
+}
+
+.upm-sidebar {
+  margin: 20px 30px;
+  width: 300px;
+}
+
+.userAllList {
+  display: flex;
+  flex-direction: column;
+}
+
+.userAllList li {
+  margin-bottom: 36px;
+}
+
 .soundArtwork img {
+  border: 0.5px solid rgba(0,0,0,.1);
   height: 160px;
   width: 160px;
   margin-right: 15px;
@@ -1127,9 +1146,18 @@ li.dropdown-signout {
 .soundContent-header {
   display: flex;
   align-items: center;
-  font-size: 12px;
-  padding-top: 7px;
+  font-size: 12px;    
+  margin: 6px 0;
   width: 644px;
+}
+
+.soundContent-comment {
+  background: #f2f2f2;
+  border: 1px solid #e5e5e5;
+  box-sizing: border-box;
+  height: 20px;
+  padding: 5px;
+  margin: 22px 0 10px 0;
 }
 
 .sch-play-button svg {
@@ -1142,16 +1170,41 @@ li.dropdown-signout {
   margin-right: 5px;
 }
 
+.sch-title-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.sch-title p {
+  line-height: 16px;
+}
+
+.sch-title a {
+  color: #333;
+  font-size: 15px;
+  font-weight: 400;
+}
+
 .sch-additional {
   display: flex;
   align-items: flex-end;
   flex-direction: column;
+  line-height: 16px;
 }
 
-.sch-title-container a {
-  color: #333;
-  font-size: 15px;
-  font-weight: 400;
+.sch-additional a {
+  background: #999;
+  border: 1px solid #999;
+  border-radius: 20px;
+  color: #fff;
+  height: 16px;
+  padding: 0 6px;
+  margin-top: 1px;
+}
+
+.soundBody {
+  display: flex;
 }
 
 .soundContent {
@@ -1159,23 +1212,10 @@ li.dropdown-signout {
   width: 644px;
 }
 
-.userAllList {
-  display: flex;
-  margin-right: 30px;
-  overflow: auto;
-}
-
-.upm-main-container {
-  width: 850px;
-}
-
-.upm-sidebar {
-  margin: 20px 30px;
-  width: 300px;
-}
-
-.userAllList li {
-  padding-right: 10px;
+.soundContent-waveform {
+  background: #999;
+  height: 60px;
+  width: 100%;
 }
 
 .info-stats-table {
