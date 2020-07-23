@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { GrShare, GrMail } from 'react-icons/gr';
+import { GrMail } from 'react-icons/gr';
 import { FaPencilAlt, FaUser, FaUserPlus, FaUserMinus, 
-  FaUserFriends, FaPlayCircle, FaPauseCircle } from 'react-icons/fa';
+  FaUserFriends, FaPlayCircle, FaPauseCircle, FaShareSquare } from 'react-icons/fa';
 import { GiSoundWaves } from 'react-icons/gi';
 import { FiRadio } from 'react-icons/fi';
 import { BsThreeDots } from 'react-icons/bs';
@@ -128,7 +128,7 @@ class ProfileShow extends React.Component {
 
     const upnButtons = (currentUser.id === user.id) ? (
       <>
-        <button className="not-allowed"><GrShare size={12}/>Share</button>
+        <button className="not-allowed"><FaShareSquare size={14}/>Share</button>
         <button onClick={() => openModal('profileEdit')}><FaPencilAlt size={12}/>Edit</button>
       </>
     ) : (
@@ -140,7 +140,7 @@ class ProfileShow extends React.Component {
             {(currentUser.followee_ids.includes(user.id)) ? <FaUserMinus /> : <FaUserPlus />}
             {(currentUser.followee_ids.includes(user.id)) ? "Unfollow" : "Follow"}
         </button>
-        <button><GrShare size={12}/>Share</button>
+        <button><FaShareSquare size={14}/>Share</button>
         <button><GrMail size={16}/></button>
         <button><BsThreeDots /></button>
       </>
@@ -186,7 +186,8 @@ class ProfileShow extends React.Component {
                     <TrackItem
                       track={track}
                       playButton={playButton}
-                      playAction={playAction} />
+                      playAction={playAction}
+                      currentUser={currentUser} />
                   )}
                 </ul>
               </div>

@@ -1151,15 +1151,6 @@ li.dropdown-signout {
   width: 644px;
 }
 
-.soundContent-comment {
-  background: #f2f2f2;
-  border: 1px solid #e5e5e5;
-  box-sizing: border-box;
-  height: 20px;
-  padding: 5px;
-  margin: 22px 0 10px 0;
-}
-
 .sch-play-button svg {
   color: #f50;
   height: 36px;
@@ -1217,6 +1208,66 @@ li.dropdown-signout {
   height: 60px;
   width: 100%;
 }
+
+.soundContent-comment {
+  background: #f2f2f2;
+  border: 1px solid #e5e5e5;
+  display: flex;
+  height: 20px;
+  padding: 5px;
+  margin: 22px 0 10px 0;
+}
+
+.scc-commentAvatar {
+  height: 20px;
+  width: 20px;
+}
+
+.scc-commentForm {
+  background: #fff;
+  border-radius: 0 4px 4px 0;
+  color: #333;
+  display: flex;
+  font-size: 12px;
+  font-weight: 400;
+  height: 20px;
+  width: 100%;
+  padding: 0 9px;
+}
+
+.soundContent-footer {
+  display: flex;
+  justify-content: space-between;
+  color: #333;
+  font-size: 12px;
+  min-height: 30px;
+}
+
+.scf-footerRight {
+  display: flex;
+}
+
+.scf-actions {
+  display: flex;
+}
+
+.scf-actions button {
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 22px;
+  line-height: 16px;
+  padding: 2px 9px 2px 8px;
+  margin-right: 5px;
+}
+
+.scf-actions button svg {
+  margin-right: 3px;
+}
+
 
 .info-stats-table {
   color: #999;
