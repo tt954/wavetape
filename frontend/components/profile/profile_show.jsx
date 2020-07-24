@@ -185,9 +185,11 @@ class ProfileShow extends React.Component {
                   {tracks.map(track => 
                     <TrackItem
                       track={track}
+                      selectedTrack={selectedTrack}
                       playButton={playButton}
                       playAction={playAction}
-                      currentUser={currentUser} />
+                      currentUser={currentUser}
+                      receiveSelectedTrack={receiveSelectedTrack} />
                   )}
                 </ul>
               </div>
