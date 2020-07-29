@@ -60,20 +60,18 @@ class Discover extends React.Component {
     const artistLis = artistList.map(id => {
       const artist = users[id];
       return (
-        <li>
-          <li className="followingItem" key={id}>
-            <Link to={`/users/${id}`}>
-              <img className="sb-followingAvatar" src={artist.avatarUrl} alt={artist.username} />
-              <div className="sb-followingDetail">
-                <h3>{artist.username}</h3>
-                <div className="sb-followingStats">
-                  <p><FaUserFriends />{artist.follower_ids.length}</p>
-                  <p><GiSoundWaves />{artist.track_ids.length}</p>
-                </div>
+        <li className="followingItem" key={id}>
+          <Link to={`/users/${id}`}>
+            <img className="sb-followingAvatar" src={artist.avatarUrl} alt={artist.username} />
+            <div className="sb-followingDetail">
+              <h3>{artist.username}</h3>
+              <div className="sb-followingStats">
+                <p><FaUserFriends />{artist.follower_ids.length}</p>
+                <p><GiSoundWaves />{artist.track_ids.length}</p>
               </div>
-            </Link>
-            {(currentUser) ? followButton(artist) : null}
-          </li>
+            </div>
+          </Link>
+          {(currentUser) ? followButton(artist) : null}
         </li>
       )
     })

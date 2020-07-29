@@ -1113,7 +1113,7 @@ li.dropdown-signout {
   font-weight: 100;
 }
 
-.upm-main {
+.upm-main, .tsb-main {
   border-right: 1px solid #f2f2f2;
   padding-left: 30px;
 }
@@ -1122,7 +1122,8 @@ li.dropdown-signout {
   width: 850px;
 }
 
-.upm-sidebar {
+.upm-sidebar,
+.tsb-sidebar {
   margin: 20px 30px;
   width: 300px;
 }
@@ -1484,10 +1485,197 @@ li.dropdown-signout {
   width: 340px;
 }
 
-.tsb-waveform {
+#tsb-waveform {
   background: aliceblue;
   height: 100px;
 }
+
+.tsb-main-container {
+  width: 880px; }
+  .tsb-main {
+    padding: 0 0 50px 30px; }
+
+.track-show-body {
+  background: #fff;
+  padding-top: 20px;
+  margin: 0 auto;
+  width: 1240px;
+}
+
+.tac-commentAvatar {
+  height: 40px;
+  width: 40px;
+}
+
+.tsb-actions {
+  padding-right: 30px;
+  margin-bottom: 10px;
+}
+
+.tsb-actions-comment,
+.tab-actions-left,
+.tab-actions-right {
+  display: flex;
+}
+
+.tac-commentForm {
+  background: #f2f2f2;
+  border: 1px solid #e5e5e5;
+  box-sizing: border-box;
+  height: 40px;
+  padding: 5px;
+  width: 100%;
+}
+
+.tac-commentForm input {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  height: 27px;
+  font-size: 14px;
+  padding: 0 9px;
+  width: 100%;
+}
+
+.tsb-actions-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.tab-actions-left button {
+  border: 1px solid #e5e5e5;
+  box-sizing: border-box;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 26px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  padding: 2px 11px 2px 10px;
+  margin-right: 5px;
+}
+
+.tab-actions-left button svg {
+  margin-right: 6px;
+}
+
+.tab-actions-right {
+  color: #999;
+  display: flex;
+  font-size: 12px;
+}
+
+.tab-actions-right div {
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  margin-left: 10px;
+}
+
+.tab-actions-right svg {
+  font-size: 10px;
+  margin-right: 4px;
+}
+
+.tsb-about {
+  border-top: 1px solid #f2f2f2;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  margin-right: 30px;
+}
+
+.tal-artistAvatar {
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+}
+
+.tal-artistInfo h3 {
+  font-weight: 400;
+  margin: 8px 0 6px;
+}
+
+.tal-artistStats {
+  color: #999;
+  display: flex;
+  font-size: 12px;
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+
+.tal-artistStats p {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.tal-artistStats p svg {
+  font-size: 14px;
+  margin-right: 3px;
+}
+
+.tsb-about-right {
+  width: 670px;
+}
+
+.tar-description {
+  font-size: 14px;
+}
+
+.tar-commentHeader {
+  border-bottom: 1px solid #f2f2f2;
+  color: #999;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 400;
+  padding-bottom: 7px; }
+  .tar-commentHeader svg {
+    font-size: 12px;
+    margin-right: 5px; }
+  .tar-commentHeader span {
+    font-weight: 400; }
+
+.tar-commentItem {
+  display: flex;
+  align-items: center;
+  margin: 10px 10px 10px 0; }
+  .tar-commentItem img {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px; }
+    .tar-showMore {
+      color: #999;
+      font-size: 12px;
+      font-weight: 400;
+      margin: 16px 0 20px; }
+    .tar-ci-body {
+      display: flex;
+      font-size: 12px; 
+      width: 100%; }
+      .tcb-leftComment {
+        color: #999;
+        margin: 0 10px; 
+        width: 100%; }
+        .tcb-leftComment > p:first-child span {
+          font-weight: 400; }
+        .tcb-leftComment > p:nth-child(2) {
+          color: #333;
+          font-size: 12.25px;
+          font-weight: 400;
+          margin-top: 4px; }
+      .tcb-rightTime {
+        color: #999;
+        font-size: 11px;
+        font-weight: 400;
+        text-align: right;
+        width: 90px; }
 
 /* MUSIC PLAYER */
 
