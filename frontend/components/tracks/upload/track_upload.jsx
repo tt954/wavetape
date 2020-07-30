@@ -1,31 +1,50 @@
 import React from 'react';
 
 import NavBar from  '../../nav_bar/nav_bar_container';
-import TrackUploadForm from './track_upload_form';
-import { FaChevronDown } from 'react-icons/fa';
+import UploadForm from './upload_form';
+import UploadDetails from './upload_details';
+import { GrShare } from 'react-icons/gr';
 
 class TrackUpload extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentStep: 1,
       title: '',
       description: '',
       genre: '',
-      privacy: '',
       trackFile: null,
+      photoFile: null,
+      trackUrl: '',
+      photoUrl: '',
     }
 
-    this.handleFile = this.handleFile.bind(this);
+    this.handleTrackFile = this.handleTrackFile.bind(this);
+    this.handlePhotoFile = this.handlePhotoFile.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
+    this.cancel = this.cancel.bind(this);
   }
 
   componentDidMount() {
   }
 
-  handleFile(track) {
-    if (track) {
-      console.log(track)
+  handleTrackFile(track) {
+    if (track && track.type === 'audio/mpeg') {
+      this.setState({
+        currentStep: 2,
+        title: track.name.split(".")[0],
+        trackFile: track,
+      });
     }
+  }
+
+  handlePhotoFile(e) {
+    console.log(e);
+  }
+
+  handleSubmit() {
+
   }
 
   update(e) {
@@ -33,52 +52,50 @@ class TrackUpload extends React.Component {
     this.setState({ [name]: value });
   }
 
+  cancel() {
+    this.setState({
+      title: '',
+      description: '',
+      genre: '',
+      privacy: '',
+      trackFile: null,
+      photoFile: null,
+    });
+  }
+
   render() {
     return (
       <>
         <NavBar />
         <div className="upload">
-          <div className="upload-nav"></div>
-
-          <div className="upload-main">
-            <div className="ulm-tryPro">
-              <div className="ulm-tryPro-left">
-                <div className="upload-limit">
-                  <p>0% of free uploads used</p>
-                  <FaChevronDown />
-                </div>
-                <div className="upload-limit-meter"></div>
-                <p>Try Pro for unlimited uploads.</p>
-              </div>
-              <div className="ulm-tryPro-right">
-                <button>Try Pro Unlimited</button>
-              </div>
-            </div>
-            <TrackUploadForm
-              update={this.update}
-              handleFile={this.handleFile}
-            />
-            <div className="ulm-footer">
-              <div className="ulm-footer-top">
-                <p>
-                  Supported file types and sizes ⁃ Upload troubleshooting tips ⁃
-                  Copyright FAQs
-                </p>
-                <p>
-                  By uploading, you confirm that your sounds comply with the
-                  <span> Copyright Terms</span> and you don't infringe anyone
-                  else's rights.
-                </p>
-              </div>
-              <div className="ulm-footer-bottom">
-                <p>
-                  Legal ⁃ Privacy ⁃ Cookies ⁃ Imprint ⁃ Creator Resources ⁃ Blog
-                  ⁃ Charts ⁃ Popular searches
-                </p>
-                <p>Visit site's Github page</p>
-              </div>
-            </div>
+          <div className="upload-nav">
+            <ul className="upload-nav-left">
+              <li>Upload</li>
+              <li>Mastering</li>
+              <li>Your Tracks</li>
+              <li>Stats</li>
+              <li>Pro Plans</li>
+              <li>Pulse</li>
+            </ul>
+            <a className="upload-nav-right not-allowed" href="#">
+              <GrShare /><span>Creators on SoundCloud</span>
+            </a>
           </div>
+
+          <UploadForm
+            currentStep={this.state.currentStep}
+            update={this.update}
+            handleTrackFile={this.handleTrackFile}
+          />
+
+          <UploadDetails
+            currentStep={this.state.currentStep}
+            update={this.update}
+            cancel={this.cancel}
+            handlePhotoFile={this.handlePhotoFile}
+            handleSubmit={this.handleSubmit}
+            title={this.state.title}
+          />
 
           <div className="upload-footer"></div>
         </div>

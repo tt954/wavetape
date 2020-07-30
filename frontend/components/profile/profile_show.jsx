@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { GrShare, GrMail } from 'react-icons/gr';
+import { GrMail } from 'react-icons/gr';
 import { FaPencilAlt, FaUser, FaUserPlus, FaUserMinus, 
-  FaUserFriends, FaPlayCircle, FaPauseCircle } from 'react-icons/fa';
+  FaUserFriends, FaPlayCircle, FaPauseCircle, FaShareSquare } from 'react-icons/fa';
 import { GiSoundWaves } from 'react-icons/gi';
 import { FiRadio } from 'react-icons/fi';
 import { BsThreeDots } from 'react-icons/bs';
 
 import NavBar from '../nav_bar/nav_bar_container';
-import PlaylistItem from '../tracks/playlist_item';
+import TrackItem from '../tracks/track_item';
+import { generateBackground } from '../../util/misc_api_util';
 
 class ProfileShow extends React.Component {
   constructor(props) {
@@ -35,32 +36,13 @@ class ProfileShow extends React.Component {
     }
   }
 
-  generateBackground() {
-    const hexValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e"];
-
-    function populate(a) {
-      for (var i = 0; i < 6; i++) {
-        var x = Math.round(Math.random() * 14);
-        var y = hexValues[x];
-        a += y;
-      }
-      return a;
-    }
-
-    const c1 = populate('#');
-    const c2 = populate('#');
-    const angle = Math.round(Math.random() * 360);
-    return {background: "linear-gradient(" + angle + "deg, " + c1 + ", " + c2 + ")"};
-  }
-
   render() {
     const { openModal, currentUser, user, users, 
       tracks, selectedTrack, playing, togglePlay,
       receiveSelectedTrack } = this.props;
     let avatarImg, followingsModule, followersModule, 
       followingLis, followerLis,
-      playButton, playAction, 
-      followIcon, followText;
+      playButton, playAction;
 
     if (Object.keys(users).length === 1) {
       return (
@@ -119,9 +101,17 @@ class ProfileShow extends React.Component {
       )
     };
 
+    if (selectedTrack) {
+      playButton = playing ? <FaPauseCircle /> : <FaPlayCircle />;
+      playAction = () => togglePlay();
+    } else {
+      playButton = <FaPlayCircle />;
+      playAction = track => receiveSelectedTrack(track);
+    }
+
     const upnButtons = (currentUser.id === user.id) ? (
       <>
-        <button className="not-allowed"><GrShare size={12}/>Share</button>
+        <button className="not-allowed"><FaShareSquare size={14}/>Share</button>
         <button onClick={() => openModal('profileEdit')}><FaPencilAlt size={12}/>Edit</button>
       </>
     ) : (
@@ -133,25 +123,17 @@ class ProfileShow extends React.Component {
             {(currentUser.followee_ids.includes(user.id)) ? <FaUserMinus /> : <FaUserPlus />}
             {(currentUser.followee_ids.includes(user.id)) ? "Unfollow" : "Follow"}
         </button>
-        <button><GrShare size={12}/>Share</button>
+        <button><FaShareSquare size={14}/>Share</button>
         <button><GrMail size={16}/></button>
         <button><BsThreeDots /></button>
       </>
     );
 
-    if (selectedTrack) {
-      playButton = playing ? <FaPauseCircle /> : <FaPlayCircle />;
-      playAction = () => togglePlay();
-    } else {
-      playButton = <FaPlayCircle />;
-      playAction = track => receiveSelectedTrack(track);
-    }
-
     return (
       <>
         <NavBar />
         <div className="user-profile">
-          <div className="user-profile-banner" style={this.generateBackground()}>
+          <div className="user-profile-banner" style={generateBackground()}>
             <div className="upb-content">
               <div className="upb-avatar">
                 {avatarImg}
@@ -184,11 +166,13 @@ class ProfileShow extends React.Component {
               <div className="upm-main-container">
                 <ul className="userAllList">
                   {tracks.map(track => 
-                    <li key={track.id}>
-                      <PlaylistItem
-                        track={track}
-                        receiveSelectedTrack={receiveSelectedTrack} />
-                    </li>
+                    <TrackItem
+                      track={track}
+                      selectedTrack={selectedTrack}
+                      playButton={playButton}
+                      playAction={playAction}
+                      currentUser={currentUser}
+                      receiveSelectedTrack={receiveSelectedTrack} />
                   )}
                 </ul>
               </div>
