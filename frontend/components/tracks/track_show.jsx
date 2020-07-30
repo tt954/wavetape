@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { uploadedAt } from '../../util/misc_api_util';
-import WaveSurfer from 'wavesurfer.js';
 
 import { FaPlayCircle, FaPauseCircle, FaHeart, FaPlay,
   FaShareSquare, FaEllipsisH, FaCommentAlt, FaUserFriends,
@@ -112,7 +111,7 @@ class TrackShow extends React.Component {
                     <p>Description goes here</p>
                   </div>
 
-                  <button class="tar-showMore">Show more</button>
+                  <button className="tar-showMore">Show more</button>
 
                   <div className="tal-comments">
                     <div className="tar-commentHeader"><FaCommentAlt /><span>495 comments</span></div>
@@ -134,7 +133,22 @@ class TrackShow extends React.Component {
             </div>
           </div>
 
-          <div className="tsb-sidebar"></div>
+          <div className="tsb-sidebar">
+            <div className="dms-openFridge">
+              <a href="https://open--fridge.herokuapp.com/" target="_blank">
+                <div className="dms-of-text">
+                  <img className="hey-hey" src="https://va.sndcdn.com/db/fff903a22d5c7466ce86e0690f420e23e75f7f88.png" alt="hey-hey" />
+                  <div className="dms-of-tagline">
+                    <p>Check out</p>
+                    <p>my other project</p>
+                    <p><span>openFridge</span> | No ingredients left behind. Make something new today.</p>
+                  </div>
+                </div>
+              </a>
+              <div className="of-demo-pic trackShow"></div>
+            </div>
+
+          </div>
         </div>
       </>
     ) : null;

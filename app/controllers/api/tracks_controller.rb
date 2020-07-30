@@ -26,7 +26,7 @@ class Api::TracksController < ApplicationController
     end 
   end 
 
-  def edit 
+  def udpate
     @track = Track.find_by(id: params[:id])
 
     if @track && @track.update(track_params)

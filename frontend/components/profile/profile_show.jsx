@@ -10,6 +10,7 @@ import { BsThreeDots } from 'react-icons/bs';
 
 import NavBar from '../nav_bar/nav_bar_container';
 import TrackItem from '../tracks/track_item';
+import { generateBackground } from '../../util/misc_api_util';
 
 class ProfileShow extends React.Component {
   constructor(props) {
@@ -33,24 +34,6 @@ class ProfileShow extends React.Component {
     } else {
       createFollow(followId);
     }
-  }
-
-  generateBackground() {
-    const hexValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e"];
-
-    function populate(a) {
-      for (var i = 0; i < 6; i++) {
-        var x = Math.round(Math.random() * 14);
-        var y = hexValues[x];
-        a += y;
-      }
-      return a;
-    }
-
-    const c1 = populate('#');
-    const c2 = populate('#');
-    const angle = Math.round(Math.random() * 360);
-    return {background: "linear-gradient(" + angle + "deg, " + c1 + ", " + c2 + ")"};
   }
 
   render() {
@@ -150,7 +133,7 @@ class ProfileShow extends React.Component {
       <>
         <NavBar />
         <div className="user-profile">
-          <div className="user-profile-banner" style={this.generateBackground()}>
+          <div className="user-profile-banner" style={generateBackground()}>
             <div className="upb-content">
               <div className="upb-avatar">
                 {avatarImg}
