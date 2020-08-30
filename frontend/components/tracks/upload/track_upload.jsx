@@ -26,9 +26,6 @@ class TrackUpload extends React.Component {
     this.cancel = this.cancel.bind(this);
   }
 
-  componentDidMount() {
-  }
-
   handleTrackFile(track) {
     if (track && track.type === 'audio/mpeg') {
       this.setState({
@@ -40,11 +37,37 @@ class TrackUpload extends React.Component {
   }
 
   handlePhotoFile(e) {
-    console.log(e);
+    const photo = e.target.files[0];
+    const fr = new FileReader();
+    
+    if (photo) {
+      fr.onload = e => {
+        this.setState({
+          photoFile: photo,
+          photoUrl: fr.result,
+        });
+      }
+      fr.readAsDataURL(photo);
+    }
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
+    e.preventDefault();
+    const { title, description, genre, trackFile, photoFile } = this.state;
+    const fd = new FormData();
 
+    fd.append('track[title', title);
+    fd.append('track[description]', description);
+    fd.append('track[genre]', genre);
+    fd.append('track[uploader_id]', this.props.currentUser.id);
+    fd.append('track[track]', trackFile);
+    fd.append('track[photo]', photoFile);
+    console.log(fd)
+    debugger
+
+    this.props.createTrack(fd).then(
+      console.log("successful")
+    )
   }
 
   update(e) {
@@ -54,6 +77,7 @@ class TrackUpload extends React.Component {
 
   cancel() {
     this.setState({
+      currentStep: 1,
       title: '',
       description: '',
       genre: '',
@@ -93,6 +117,7 @@ class TrackUpload extends React.Component {
             update={this.update}
             cancel={this.cancel}
             handlePhotoFile={this.handlePhotoFile}
+            photoUrl={this.state.photoUrl}
             handleSubmit={this.handleSubmit}
             title={this.state.title}
           />

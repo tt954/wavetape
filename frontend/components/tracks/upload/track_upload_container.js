@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import TrackUpload from './track_upload';
 import { createTrack } from '../../../actions/track_actions';
 
-const mSTP = state => {
+const mSTP = ( { session, entities: { users }} ) => {
   return {
-
+    currentUser: users[session.id],
   }
 }
 

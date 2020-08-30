@@ -1505,6 +1505,7 @@ li.dropdown-signout {
   padding-top: 20px;
   display: flex;
   margin: 0 auto;
+  height: 100vh;
   width: 1240px;
 }
 
@@ -1849,7 +1850,7 @@ input[type=range]::-webkit-slider-runnable-track {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 800px;
+  height: 100vh;
 }
 
 .ulm-tryPro {
@@ -2026,6 +2027,7 @@ input[type=range]::-webkit-slider-runnable-track {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100vh;
 }
 
 .uld-main {
