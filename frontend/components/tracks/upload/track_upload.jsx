@@ -40,7 +40,19 @@ class TrackUpload extends React.Component {
   }
 
   handlePhotoFile(e) {
-    console.log(e);
+    const photo = e.currentTarget.files[0];
+    
+    if (file) {
+      const fr = new FileReader();
+      fr.readAsDataURL(photo);
+      fr.onloadend = () => {
+        this.setState({
+          photoFile: photo,
+          photoUrl: fr.result,
+        });
+        debugger
+      }
+    }
   }
 
   handleSubmit() {
