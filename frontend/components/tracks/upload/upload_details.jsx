@@ -5,7 +5,7 @@ import { generateBackground } from '../../../util/misc_api_util';
 
 const UploadDetails = props => {
   const { currentStep, update, cancel, 
-    handlePhotoFile, handleSubmit } = props;
+    handlePhotoFile, handleSubmit, photoUrl } = props;
   
   const uploadPhotoBtn = (
     <>
@@ -14,10 +14,13 @@ const UploadDetails = props => {
       id="photoUpload"
       className="inputfile"
       onChange={handlePhotoFile}
+      accept='image/*'
       />
     <label htmlFor="photoUpload"><FaCamera /><span>Upload image</span></label>
     </>
   )
+
+  const photo = photoUrl ? <img className="track-photo-preview" src={photoUrl} /> : null;
 
   if (currentStep === 2) {
     return (
@@ -30,7 +33,8 @@ const UploadDetails = props => {
           </ul>
 
           <div className="udm-detailsForm">
-            <div className="track-photo" style={generateBackground()}>
+            <div className="track-photo">
+              {photo}
               {uploadPhotoBtn}
             </div>
 
