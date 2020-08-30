@@ -41,9 +41,9 @@ class TrackUpload extends React.Component {
 
   handlePhotoFile(e) {
     const photo = e.currentTarget.files[0];
+    const fr = new FileReader();
     
     if (photo) {
-      const fr = new FileReader();
       fr.readAsDataURL(photo);
       fr.onloadend = () => {
         this.setState({
@@ -52,6 +52,7 @@ class TrackUpload extends React.Component {
         });
       }
     }
+    debugger
   }
 
   handleSubmit() {
