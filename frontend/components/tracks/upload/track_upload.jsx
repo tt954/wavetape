@@ -46,6 +46,7 @@ class TrackUpload extends React.Component {
     if (photo) {
       fr.readAsDataURL(photo);
       fr.onloadend = () => {
+        console.log(photo)
         this.setState({
           photoFile: photo,
           photoUrl: fr.result,
@@ -56,6 +57,11 @@ class TrackUpload extends React.Component {
   }
 
   handleSubmit() {
+    e.preventDefault();
+    const { title, description, genere, trackFile, photoFile } = this.state;
+    const fd = new FormData();
+
+    fd.append()
 
   }
 
@@ -66,6 +72,7 @@ class TrackUpload extends React.Component {
 
   cancel() {
     this.setState({
+      currentStep: 1,
       title: '',
       description: '',
       genre: '',
