@@ -51,13 +51,23 @@ class TrackUpload extends React.Component {
     }
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
     e.preventDefault();
-    const { title, description, genere, trackFile, photoFile } = this.state;
+    const { title, description, genre, trackFile, photoFile } = this.state;
     const fd = new FormData();
 
-    fd.append()
+    fd.append('track[title', title);
+    fd.append('track[description]', description);
+    fd.append('track[genre]', genre);
+    fd.append('track[uploader_id]', this.props.currentUser.id);
+    fd.append('track[track]', trackFile);
+    fd.append('track[photo]', photoFile);
+    console.log(fd)
+    debugger
 
+    this.props.createTrack(fd).then(
+      console.log("successful")
+    )
   }
 
   update(e) {
