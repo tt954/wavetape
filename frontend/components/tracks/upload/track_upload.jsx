@@ -26,9 +26,6 @@ class TrackUpload extends React.Component {
     this.cancel = this.cancel.bind(this);
   }
 
-  componentDidMount() {
-  }
-
   handleTrackFile(track) {
     if (track && track.type === 'audio/mpeg') {
       this.setState({
@@ -40,20 +37,18 @@ class TrackUpload extends React.Component {
   }
 
   handlePhotoFile(e) {
-    const photo = e.currentTarget.files[0];
+    const photo = e.target.files[0];
     const fr = new FileReader();
     
     if (photo) {
-      fr.readAsDataURL(photo);
-      fr.onloadend = () => {
-        console.log(photo)
+      fr.onload = e => {
         this.setState({
           photoFile: photo,
           photoUrl: fr.result,
         });
       }
+      fr.readAsDataURL(photo);
     }
-    debugger
   }
 
   handleSubmit() {
@@ -112,7 +107,7 @@ class TrackUpload extends React.Component {
             update={this.update}
             cancel={this.cancel}
             handlePhotoFile={this.handlePhotoFile}
-            photoUrl={this.photoUrl}
+            photoUrl={this.state.photoUrl}
             handleSubmit={this.handleSubmit}
             title={this.state.title}
           />

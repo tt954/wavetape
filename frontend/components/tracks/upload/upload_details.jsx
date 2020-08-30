@@ -20,7 +20,7 @@ const UploadDetails = props => {
     </>
   )
 
-  const photo = photoUrl ? <img className="track-photo-preview" src={photoUrl} /> : null;
+  // const photo = photoUrl ? <img className="track-photo-preview" src={photoUrl} /> : null;
 
   if (currentStep === 2) {
     return (
@@ -34,7 +34,7 @@ const UploadDetails = props => {
 
           <div className="udm-detailsForm">
             <div className="track-photo">
-              {photo}
+              <img src={photoUrl} alt=""/>
               {uploadPhotoBtn}
             </div>
 
